@@ -39,7 +39,6 @@
         ul { list-style: none; }
         .container { max-width: 1000px; margin: 0 auto; padding: 0 2rem; }
         
-        /* Reduced padding for tighter, professional flow */
         section { padding: 4rem 0; border-bottom: 1px solid rgba(255, 255, 255, 0.05); }
         section:last-of-type { border-bottom: none; }
         
@@ -161,6 +160,12 @@
         .profile-card a { font-family: monospace; color: var(--accent); font-size: 0.9rem; margin-bottom: 1rem; display: inline-block; }
         .profile-card p { color: var(--text-muted); font-size: 0.9rem; line-height: 1.5; }
 
+        /* --- Contact Section --- */
+        #contact { text-align: center; max-width: 600px; margin: 0 auto; }
+        .contact-links { display: flex; justify-content: center; gap: 2rem; margin-top: 2rem; }
+        .contact-icon { font-size: 2rem; color: var(--text-muted); transition: var(--transition); }
+        .contact-icon:hover { color: var(--accent); transform: translateY(-3px); }
+
         /* --- Footer --- */
         footer { text-align: center; padding: 2rem 0; color: var(--text-muted); font-size: 0.85rem; border-top: 1px solid rgba(255,255,255,0.05); }
 
@@ -185,6 +190,7 @@
                     <a href="#build-log">Build Log</a>
                     <a href="#curiosity">Interests</a>
                     <a href="#github-profiles">GitHub</a>
+                    <a href="#contact">Contact</a>
                 </div>
             </nav>
         </div>
@@ -243,8 +249,8 @@
                     </div>
                     <p class="project-desc">Designed and deployed an event website (vjcevents.tech) prioritizing clean structure and fast performance.</p>
                     <div class="project-links">
-                        <a href="#" target="_blank"><i class="fas fa-external-link-alt"></i> Live Demo</a>
-                        <a href="#" target="_blank"><i class="fab fa-github"></i> GitHub Repo</a>
+                        <a href="https://vjcevents.tech" target="_blank"><i class="fas fa-external-link-alt"></i> Live Demo</a>
+                        <a href="https://github.com/whossoham/vjcevents.tech" target="_blank"><i class="fab fa-github"></i> GitHub Repo</a>
                     </div>
                 </div>
 
@@ -256,10 +262,6 @@
                         <span>Hardware</span>
                     </div>
                     <p class="project-desc">An embedded systems project designed using Arduino IDE to automate hardware tasks.</p>
-                    <div class="project-links">
-                        <a href="#" target="_blank"><i class="fas fa-external-link-alt"></i> Live Demo</a>
-                        <a href="#" target="_blank"><i class="fab fa-github"></i> GitHub Repo</a>
-                    </div>
                 </div>
 
                 <div class="project-card">
@@ -270,10 +272,6 @@
                         <span>CLI</span>
                     </div>
                     <p class="project-desc">A command-line Python application built to parse, process, and analyze datasets.</p>
-                    <div class="project-links">
-                        <a href="#" target="_blank"><i class="fas fa-external-link-alt"></i> Live Demo</a>
-                        <a href="#" target="_blank"><i class="fab fa-github"></i> GitHub Repo</a>
-                    </div>
                 </div>
 
             </div>
@@ -325,6 +323,21 @@
                     <p>Reserved for structured academic coursework, official college assignments, and school-affiliated collaborative projects.</p>
                 </div>
 
+            </div>
+        </div>
+    </section>
+
+    <section id="contact">
+        <div class="container">
+            <h2 class="section-title">Get In Touch</h2>
+            <p style="color: var(--text-muted); margin-top: 1rem;">
+                Whether you have a question, an internship opportunity, or just want to say hi, my inbox is always open. Let's connect!
+            </p>
+            <div class="contact-links">
+                <a href="mailto:sohamdalvi59@gmail.com" class="contact-icon" title="Email Me"><i class="fas fa-envelope"></i></a>
+                <a href="https://www.linkedin.com/in/dalvisoham" target="_blank" class="contact-icon" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                <a href="https://github.com/ind-soham" target="_blank" class="contact-icon" title="GitHub"><i class="fab fa-github"></i></a>
+                <a href="https://www.instagram.com/sohamdalviiiii?igsh=Zm9qaGZ0d2gzMDV5" target="_blank" class="contact-icon" title="Instagram"><i class="fab fa-instagram"></i></a>
             </div>
         </div>
     </section>

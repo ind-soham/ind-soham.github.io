@@ -8,7 +8,7 @@
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
@@ -37,117 +37,139 @@
         a { text-decoration: none; color: var(--accent); transition: var(--transition); }
         a:hover { color: var(--accent-hover); }
         ul { list-style: none; }
-        .container { max-width: 1100px; margin: 0 auto; padding: 0 2rem; }
-        section { padding: 5rem 0; border-bottom: 1px solid rgba(255, 255, 255, 0.05); }
+        .container { max-width: 1000px; margin: 0 auto; padding: 0 2rem; }
+        
+        /* Reduced padding for tighter, professional flow */
+        section { padding: 4rem 0; border-bottom: 1px solid rgba(255, 255, 255, 0.05); }
+        section:last-of-type { border-bottom: none; }
+        
         h2.section-title {
-            font-size: 2rem; margin-bottom: 2rem; color: var(--text-main);
-            position: relative; display: inline-block;
+            font-size: 1.75rem; margin-bottom: 2rem; color: var(--text-main);
+            position: relative; display: inline-block; font-weight: 700;
         }
         h2.section-title::after {
-            content: ''; position: absolute; left: 0; bottom: -8px;
-            width: 50%; height: 3px; background-color: var(--accent); border-radius: 2px;
+            content: ''; position: absolute; left: 0; bottom: -6px;
+            width: 40px; height: 3px; background-color: var(--accent); border-radius: 2px;
         }
 
         /* --- Navigation --- */
         header {
             position: fixed; top: 0; width: 100%;
-            background-color: rgba(15, 23, 42, 0.9); backdrop-filter: blur(10px);
+            background-color: rgba(15, 23, 42, 0.95); backdrop-filter: blur(10px);
             z-index: 1000; border-bottom: 1px solid rgba(255,255,255,0.05);
         }
         nav { display: flex; justify-content: space-between; align-items: center; height: 70px; }
-        .logo { font-size: 1.5rem; font-weight: 700; color: var(--text-main); }
+        .logo { font-size: 1.25rem; font-weight: 700; color: var(--text-main); letter-spacing: -0.5px; }
         .logo span { color: var(--accent); }
         .nav-links { display: flex; gap: 2rem; }
-        .nav-links a { color: var(--text-main); font-weight: 600; font-size: 0.9rem; }
-        .nav-links a:hover { color: var(--accent); }
+        .nav-links a { color: var(--text-muted); font-weight: 500; font-size: 0.9rem; }
+        .nav-links a:hover { color: var(--text-main); }
 
-        /* --- Hero Section --- */
-        #hero { height: 100vh; display: flex; align-items: center; padding-top: 70px; }
+        /* --- Hero Section & Authority Block --- */
+        #hero { min-height: 100vh; display: flex; align-items: center; padding-top: 70px; }
         .hero-content { max-width: 800px; }
-        .hero-greeting { color: var(--accent); font-weight: 600; margin-bottom: 1rem; display: block; letter-spacing: 1px; }
-        .hero-title { font-size: clamp(3rem, 5vw, 4.5rem); font-weight: 700; line-height: 1.1; margin-bottom: 1rem; }
-        .hero-subtitle { font-size: clamp(1.2rem, 2.5vw, 2rem); color: var(--text-muted); font-weight: 600; margin-bottom: 1.5rem; }
-        .hero-desc { color: var(--text-muted); font-size: 1.1rem; max-width: 650px; margin-bottom: 2.5rem; }
+        .hero-greeting { color: var(--accent); font-weight: 600; margin-bottom: 1rem; display: block; letter-spacing: 1px; font-size: 0.95rem; }
+        .hero-title { font-size: clamp(2.5rem, 5vw, 4rem); font-weight: 700; line-height: 1.1; margin-bottom: 0.5rem; letter-spacing: -1px; }
+        .hero-subtitle { font-size: clamp(1.2rem, 2.5vw, 1.75rem); color: var(--text-muted); font-weight: 500; margin-bottom: 1.5rem; }
+        
+        .authority-block {
+            background-color: rgba(255, 255, 255, 0.02);
+            border-left: 3px solid var(--accent);
+            padding: 1rem 1.5rem;
+            margin-bottom: 2rem;
+            border-radius: 0 8px 8px 0;
+            max-width: 650px;
+        }
+        .authority-block ul { display: flex; flex-direction: column; gap: 0.5rem; }
+        .authority-block li { color: var(--text-main); font-size: 0.95rem; display: flex; align-items: center; gap: 10px; font-weight: 500; }
+        .authority-block i { color: var(--accent); font-size: 0.85rem; }
+
+        .hero-desc { color: var(--text-muted); font-size: 1.05rem; max-width: 650px; margin-bottom: 2rem; line-height: 1.7; }
         
         .hero-buttons { display: flex; gap: 1rem; flex-wrap: wrap; }
-        .btn { display: inline-block; padding: 0.8rem 1.5rem; border-radius: 4px; font-weight: 600; cursor: pointer; transition: var(--transition); }
+        .btn { display: inline-block; padding: 0.75rem 1.5rem; border-radius: 6px; font-weight: 600; font-size: 0.9rem; cursor: pointer; transition: var(--transition); }
         .btn-primary { background-color: transparent; color: var(--accent); border: 1px solid var(--accent); }
         .btn-primary:hover { background-color: rgba(56, 189, 248, 0.1); }
 
-        /* --- About Section --- */
-        .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; }
-        .about-text p { color: var(--text-muted); margin-bottom: 1rem; }
-        .subjects-list { background-color: var(--bg-card); padding: 1.5rem; border-radius: 8px; border: 1px solid rgba(255,255,255,0.05); }
-        .subjects-list li { margin-bottom: 0.5rem; color: var(--text-muted); display: flex; align-items: center; gap: 10px; }
-        .subjects-list i { color: var(--accent); font-size: 0.8rem; }
-
-        /* --- Skills & Learning Section --- */
-        .skills-container { display: flex; flex-direction: column; gap: 2rem; }
-        .skills-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 1rem; }
-        .skill-item {
-            background-color: var(--bg-card); padding: 1rem; text-align: center;
-            border-radius: 8px; border: 1px solid rgba(255,255,255,0.05);
-            transition: var(--transition); font-weight: 600; font-size: 0.9rem; color: var(--text-muted);
+        /* --- Tech Stack Section --- */
+        .tech-badges { display: flex; flex-wrap: wrap; gap: 0.8rem; }
+        .badge {
+            background-color: rgba(255, 255, 255, 0.05);
+            color: var(--text-main);
+            padding: 0.4rem 1rem;
+            border-radius: 30px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            transition: var(--transition);
         }
-        .skill-item:hover { transform: translateY(-3px); border-color: var(--accent); color: var(--text-main); }
-        
-        .learning-box {
-            background-color: rgba(56, 189, 248, 0.05); border: 1px dashed var(--accent);
-            padding: 1.5rem; border-radius: 8px;
-        }
-        .learning-box h3 { color: var(--accent); margin-bottom: 1rem; font-size: 1.1rem; }
-        .learning-list { display: flex; gap: 1.5rem; flex-wrap: wrap; }
-        .learning-list li { color: var(--text-muted); font-size: 0.95rem; display: flex; align-items: center; gap: 8px; }
+        .badge:hover { background-color: rgba(255, 255, 255, 0.1); border-color: rgba(255, 255, 255, 0.2); }
 
-        /* --- Projects Section --- */
+        /* --- Featured Projects Section --- */
         .projects-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 2rem; }
         .project-card {
             background-color: var(--bg-card); border-radius: 8px; padding: 2rem;
             border: 1px solid rgba(255,255,255,0.05); transition: var(--transition);
+            display: flex; flex-direction: column;
         }
-        .project-card:hover { transform: translateY(-5px); border-color: rgba(56, 189, 248, 0.3); }
-        .project-title { font-size: 1.25rem; margin-bottom: 0.5rem; }
+        .project-card:hover { border-color: rgba(56, 189, 248, 0.3); transform: translateY(-3px); }
+        .project-title { font-size: 1.25rem; font-weight: 600; margin-bottom: 0.5rem; }
         
-        .tech-stack { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 1rem; }
-        .tech-stack span {
-            background: rgba(255, 255, 255, 0.05); color: var(--text-muted);
-            padding: 0.2rem 0.6rem; border-radius: 4px; font-size: 0.75rem; font-weight: 600;
+        .project-tech-stack { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 1rem; }
+        .project-tech-stack span {
+            color: var(--accent); font-family: monospace; font-size: 0.75rem; letter-spacing: 0.5px;
         }
         
-        .project-desc { color: var(--text-muted); font-size: 0.95rem; margin-bottom: 1.5rem; }
-        .project-links { display: flex; gap: 1rem; }
+        .project-desc { color: var(--text-muted); font-size: 0.95rem; margin-bottom: 1.5rem; flex-grow: 1; }
+        .project-links { display: flex; gap: 1.25rem; }
         .project-links a {
-            font-size: 0.85rem; font-weight: 600; color: var(--text-main);
-            border: 1px solid rgba(255,255,255,0.2); padding: 0.5rem 1rem;
-            border-radius: 4px; display: flex; align-items: center; gap: 0.5rem;
+            font-size: 0.9rem; font-weight: 500; color: var(--text-main);
+            display: flex; align-items: center; gap: 0.4rem;
         }
-        .project-links a:hover { border-color: var(--accent); color: var(--accent); }
+        .project-links a:hover { color: var(--accent); }
 
-        /* --- GitHub Stats Section --- */
-        .github-stats-container { text-align: center; margin-top: 3rem; }
-        .github-stats-container img { max-width: 100%; border-radius: 8px; }
+        /* --- Build Log Section --- */
+        .log-container {
+            border-left: 2px solid rgba(255, 255, 255, 0.08);
+            margin-left: 10px; padding-left: 2rem;
+            display: flex; flex-direction: column; gap: 2.5rem;
+        }
+        .log-entry { position: relative; }
+        .log-entry::before {
+            content: ''; position: absolute; left: -39px; top: 6px;
+            width: 12px; height: 12px; background-color: var(--bg-dark);
+            border: 2px solid var(--accent); border-radius: 50%;
+        }
+        .log-title { font-size: 1.1rem; font-weight: 600; color: var(--text-main); margin-bottom: 0.5rem; }
+        .log-desc { color: var(--text-muted); font-size: 0.95rem; line-height: 1.6; }
 
-        /* --- Achievements Section --- */
-        .achievements-list { display: flex; flex-direction: column; gap: 1.5rem; }
-        .achievement-item { background-color: var(--bg-card); padding: 1.5rem; border-radius: 8px; border-left: 4px solid var(--accent); }
-        .achievement-title { font-weight: 600; font-size: 1.1rem; }
-        .achievement-desc { color: var(--text-muted); font-size: 0.9rem; margin-top: 0.5rem; }
+        /* --- Technical Curiosity Section --- */
+        .curiosity-list { display: flex; flex-direction: column; gap: 1rem; }
+        .curiosity-list li {
+            color: var(--text-muted); font-size: 0.95rem; display: flex; align-items: flex-start; gap: 12px;
+            background-color: var(--bg-card); padding: 1rem 1.25rem; border-radius: 6px; border: 1px solid rgba(255,255,255,0.02);
+        }
+        .curiosity-list i { color: var(--accent); font-size: 0.9rem; margin-top: 4px; }
 
-        /* --- Contact Section --- */
-        #contact { text-align: center; max-width: 600px; margin: 0 auto; }
-        .contact-links { display: flex; justify-content: center; gap: 2rem; margin-top: 2rem; }
-        .contact-icon { font-size: 2rem; color: var(--text-muted); transition: var(--transition); }
-        .contact-icon:hover { color: var(--accent); transform: translateY(-3px); }
+        /* --- GitHub Profiles Section --- */
+        .profiles-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; }
+        .profile-card {
+            background-color: var(--bg-card); padding: 2rem; border-radius: 8px;
+            border: 1px solid rgba(255,255,255,0.05); text-align: left;
+        }
+        .profile-card h3 { font-size: 1.1rem; margin-bottom: 0.5rem; color: var(--text-main); display: flex; align-items: center; gap: 10px; }
+        .profile-card a { font-family: monospace; color: var(--accent); font-size: 0.9rem; margin-bottom: 1rem; display: inline-block; }
+        .profile-card p { color: var(--text-muted); font-size: 0.9rem; line-height: 1.5; }
 
         /* --- Footer --- */
-        footer { text-align: center; padding: 2rem 0; color: var(--text-muted); font-size: 0.9rem; border-top: 1px solid rgba(255,255,255,0.05); }
+        footer { text-align: center; padding: 2rem 0; color: var(--text-muted); font-size: 0.85rem; border-top: 1px solid rgba(255,255,255,0.05); }
 
         /* --- Responsive Design --- */
         @media (max-width: 768px) {
-            .about-grid { grid-template-columns: 1fr; }
             .nav-links { display: none; }
             .hero-buttons { flex-direction: column; width: 100%; max-width: 300px; }
             .btn { text-align: center; }
+            .profiles-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
@@ -158,11 +180,11 @@
             <nav>
                 <div class="logo">Soham<span>.</span></div>
                 <div class="nav-links">
-                    <a href="#about">About</a>
-                    <a href="#skills">Skills</a>
+                    <a href="#tech-stack">Skills</a>
                     <a href="#projects">Projects</a>
-                    <a href="#achievements">Achievements</a>
-                    <a href="#contact">Contact</a>
+                    <a href="#build-log">Build Log</a>
+                    <a href="#curiosity">Interests</a>
+                    <a href="#github-profiles">GitHub</a>
                 </div>
             </nav>
         </div>
@@ -174,78 +196,52 @@
                 <span class="hero-greeting">Hi, my name is</span>
                 <h1 class="hero-title">Soham Dalvi.</h1>
                 <h2 class="hero-subtitle">Computer Science Student | Web Developer</h2>
+                
+                <div class="authority-block">
+                    <ul>
+                        <li><i class="fas fa-check"></i> Built & deployed live college event website (vjcevents.tech)</li>
+                        <li><i class="fas fa-check"></i> Participant — TCS InquisITive 2024 (Mumbai)</li>
+                        <li><i class="fas fa-check"></i> Cambridge AS & A Level Computer Science (9618)</li>
+                    </ul>
+                </div>
+
                 <p class="hero-desc">
                     Cambridge International AS & A Level Computer Science student with hands-on experience in web development, GitHub deployment, and embedded systems projects. Focused on building practical technical solutions and participating in technology competitions.
                 </p>
                 <div class="hero-buttons">
                     <a href="#projects" class="btn btn-primary">View My Work</a>
-                    <a href="https://github.com/ind-soham" target="_blank" class="btn btn-primary" title="Personal Projects"><i class="fab fa-github"></i> Personal GitHub</a>
-                    <a href="https://github.com/whossoham" target="_blank" class="btn btn-primary" title="College Coursework"><i class="fas fa-graduation-cap"></i> College GitHub</a>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="about">
+    <section id="tech-stack">
         <div class="container">
-            <h2 class="section-title">About Me</h2>
-            <div class="about-grid">
-                <div class="about-text">
-                    <p>I am currently a student at <strong>Vijaybhoomi Singapore International School</strong>, pursuing the rigorous Cambridge International AS & A Levels.</p>
-                    <p>My academic focus bridges deep logical thinking with practical application. Beyond the classroom, I am deeply interested in exploring emerging technologies, building hardware and software solutions, and actively participating in technical events to refine my skills.</p>
-                </div>
-                <div class="subjects-list">
-                    <h3>Academic Subjects</h3>
-                    <ul style="margin-top: 10px;">
-                        <li><i class="fas fa-code"></i> Computer Science (9618)</li>
-                        <li><i class="fas fa-square-root-variable"></i> Mathematics (9709)</li>
-                        <li><i class="fas fa-atom"></i> Physics (9702)</li>
-                        <li><i class="fas fa-book"></i> English (8021)</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="skills">
-        <div class="container">
-            <h2 class="section-title">Technical Skills</h2>
-            <div class="skills-container">
-                <div class="skills-grid">
-                    <div class="skill-item">HTML / CSS</div>
-                    <div class="skill-item">Python</div>
-                    <div class="skill-item">C++ (Arduino IDE)</div>
-                    <div class="skill-item">Embedded Systems</div>
-                    <div class="skill-item">GitHub Pages</div>
-                    <div class="skill-item">Git Version Control</div>
-                </div>
-
-                <div class="learning-box">
-                    <h3><i class="fas fa-seedling"></i> Currently Learning</h3>
-                    <ul class="learning-list">
-                        <li><i class="fas fa-arrow-right"></i> Advanced Python Scripting</li>
-                        <li><i class="fas fa-arrow-right"></i> Git Workflows</li>
-                        <li><i class="fas fa-arrow-right"></i> Web Performance Optimization</li>
-                    </ul>
-                </div>
+            <h2 class="section-title">Tech Stack</h2>
+            <div class="tech-badges">
+                <span class="badge">HTML</span>
+                <span class="badge">Python</span>
+                <span class="badge">GitHub Pages</span>
+                <span class="badge">Arduino IDE</span>
+                <span class="badge">Web Development</span>
+                <span class="badge">Problem Solving</span>
             </div>
         </div>
     </section>
 
     <section id="projects">
         <div class="container">
-            <h2 class="section-title">Projects</h2>
+            <h2 class="section-title">Featured Projects</h2>
             <div class="projects-grid">
                 
                 <div class="project-card">
                     <h3 class="project-title">College Event Website</h3>
-                    <div class="tech-stack">
+                    <div class="project-tech-stack">
                         <span>HTML</span>
                         <span>CSS</span>
                         <span>GitHub Pages</span>
-                        <span>Responsive Design</span>
                     </div>
-                    <p class="project-desc">A complete web platform built for a college event (vjcevents.tech) to handle event information, scheduling, and participant details seamlessly.</p>
+                    <p class="project-desc">Designed and deployed an event website (vjcevents.tech) prioritizing clean structure and fast performance.</p>
                     <div class="project-links">
                         <a href="#" target="_blank"><i class="fas fa-external-link-alt"></i> Live Demo</a>
                         <a href="#" target="_blank"><i class="fab fa-github"></i> GitHub Repo</a>
@@ -254,72 +250,81 @@
 
                 <div class="project-card">
                     <h3 class="project-title">Arduino Automation System</h3>
-                    <div class="tech-stack">
+                    <div class="project-tech-stack">
                         <span>C++</span>
                         <span>Arduino IDE</span>
-                        <span>Hardware Integration</span>
+                        <span>Hardware</span>
                     </div>
-                    <p class="project-desc">An embedded systems project designed using Arduino IDE to automate hardware tasks. Focuses on sensor integration and logic control.</p>
+                    <p class="project-desc">An embedded systems project designed using Arduino IDE to automate hardware tasks.</p>
                     <div class="project-links">
+                        <a href="#" target="_blank"><i class="fas fa-external-link-alt"></i> Live Demo</a>
                         <a href="#" target="_blank"><i class="fab fa-github"></i> GitHub Repo</a>
                     </div>
                 </div>
 
                 <div class="project-card">
                     <h3 class="project-title">Python Data Script</h3>
-                    <div class="tech-stack">
+                    <div class="project-tech-stack">
                         <span>Python</span>
                         <span>Data Parsing</span>
                         <span>CLI</span>
                     </div>
-                    <p class="project-desc">A command-line Python application built to parse, process, and analyze datasets for improved decision making and workflow automation.</p>
+                    <p class="project-desc">A command-line Python application built to parse, process, and analyze datasets.</p>
                     <div class="project-links">
+                        <a href="#" target="_blank"><i class="fas fa-external-link-alt"></i> Live Demo</a>
                         <a href="#" target="_blank"><i class="fab fa-github"></i> GitHub Repo</a>
                     </div>
                 </div>
 
             </div>
-
-            <div class="github-stats-container">
-                <a href="https://github.com/whossoham" target="_blank" title="View College GitHub">
-                    <img src="https://github-readme-stats.vercel.app/api?username=whossoham&show_icons=true&theme=tokyonight&hide_border=true&bg_color=1e293b&title_color=38bdf8&text_color=cbd5e1" alt="Soham's College GitHub Stats">
-                </a>
-            </div>
         </div>
     </section>
 
-    <section id="achievements">
+    <section id="build-log">
         <div class="container">
-            <h2 class="section-title">Achievements & Activities</h2>
-            <div class="achievements-list">
-                <div class="achievement-item">
-                    <div class="achievement-title">TCS InquisITive Competition – Mumbai 2024</div>
-                    <div class="achievement-desc">Participated in Tata Consultancy Services' premier IT quiz, demonstrating strong knowledge of the tech industry, history, and emerging trends.</div>
+            <h2 class="section-title">Build Log</h2>
+            <div class="log-container">
+                <div class="log-entry">
+                    <h3 class="log-title">Building My Personal Portfolio</h3>
+                    <p class="log-desc">Focused on structuring a professional developer-style portfolio using GitHub Pages. Learned about layout hierarchy and deployment workflow.</p>
                 </div>
-                <div class="achievement-item">
-                    <div class="achievement-title">Debate Competitions</div>
-                    <div class="achievement-desc">Active participant in school debate competitions, honing analytical thinking, public speaking, and the ability to construct logical arguments.</div>
-                </div>
-                <div class="achievement-item">
-                    <div class="achievement-title">Tech Events & Hackathons</div>
-                    <div class="achievement-desc">Continuous involvement in local and online tech events to network, learn collaborative building, and apply academic concepts to real-world problems.</div>
+                <div class="log-entry">
+                    <h3 class="log-title">College Event Website Development</h3>
+                    <p class="log-desc">Designed and deployed an event website prioritizing clean structure and fast performance.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="contact">
+    <section id="curiosity">
         <div class="container">
-            <h2 class="section-title">Get In Touch</h2>
-            <p style="color: var(--text-muted); margin-top: 1rem;">
-                Whether you have a question, an internship opportunity, or just want to say hi, my inbox is always open. Let's connect!
-            </p>
-            <div class="contact-links">
-                <a href="mailto:your.email@example.com" class="contact-icon" title="Email Me"><i class="fas fa-envelope"></i></a>
-                <a href="https://linkedin.com/in/yourprofile" target="_blank" class="contact-icon" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+            <h2 class="section-title">Technical Curiosity</h2>
+            <ul class="curiosity-list">
+                <li><i class="fas fa-angle-right"></i> Integrating embedded systems (Arduino) with web interfaces</li>
+                <li><i class="fas fa-angle-right"></i> Performance optimization in lightweight web systems</li>
+                <li><i class="fas fa-angle-right"></i> Understanding how AI evaluates structured data</li>
+                <li><i class="fas fa-angle-right"></i> Translating computer science theory into practical systems</li>
+            </ul>
+        </div>
+    </section>
+
+    <section id="github-profiles">
+        <div class="container">
+            <h2 class="section-title">GitHub Profiles</h2>
+            <div class="profiles-grid">
                 
-                <a href="https://github.com/yourusername" target="_blank" class="contact-icon" title="Personal GitHub"><i class="fab fa-github"></i></a>
-                <a href="https://github.com/whossoham" target="_blank" class="contact-icon" title="College GitHub"><i class="fab fa-github-square"></i></a>
+                <div class="profile-card">
+                    <h3><i class="fab fa-github"></i> Personal GitHub</h3>
+                    <a href="https://github.com/ind-soham" target="_blank">github.com/ind-soham</a>
+                    <p>Dedicated to my independent builds, portfolio development, and personal technical exploration outside of the standard curriculum.</p>
+                </div>
+
+                <div class="profile-card">
+                    <h3><i class="fas fa-graduation-cap"></i> College GitHub</h3>
+                    <a href="https://github.com/whossoham" target="_blank">github.com/whossoham</a>
+                    <p>Reserved for structured academic coursework, official college assignments, and school-affiliated collaborative projects.</p>
+                </div>
+
             </div>
         </div>
     </section>

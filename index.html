@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Soham Dalvi | Computer Science Portfolio</title>
     
-    <title>Soham Dalvi | Portfolio</title>
+    <link rel="icon" type="image/png" href="logo.png?v=2">
     
-    <link rel="icon" type="image/svg+xml" href="favicon.svg">
-
     <meta name="description" content="Portfolio of Soham Dalvi, focusing on computer science, web systems, and embedded hardware engineering.">
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -29,7 +29,11 @@
 
         /* --- Global Reset & Typography --- */
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        html { scroll-behavior: smooth; }
+        html { 
+            scroll-behavior: smooth; 
+            scrollbar-width: thin; 
+            scrollbar-color: var(--bg-card) var(--bg-dark);
+        }
         body {
             font-family: 'Inter', sans-serif;
             background-color: var(--bg-dark);
@@ -54,6 +58,16 @@
             width: 40px; height: 3px; background-color: var(--accent); border-radius: 2px;
         }
 
+        /* --- Premium Upgrades: Custom Scrollbar --- */
+        ::-webkit-scrollbar { width: 10px; }
+        ::-webkit-scrollbar-track { background: var(--bg-dark); }
+        ::-webkit-scrollbar-thumb { background: var(--bg-card); border-radius: 5px; border: 1px solid rgba(255,255,255,0.05); }
+        ::-webkit-scrollbar-thumb:hover { background: rgba(56, 189, 248, 0.3); }
+
+        /* --- Premium Upgrades: Scroll Reveal Animation --- */
+        .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s cubic-bezier(0.5, 0, 0, 1); }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+
         /* --- Navigation --- */
         header {
             position: fixed; top: 0; width: 100%;
@@ -66,6 +80,9 @@
         .nav-links { display: flex; gap: 2rem; }
         .nav-links a { color: var(--text-muted); font-weight: 500; font-size: 0.9rem; }
         .nav-links a:hover { color: var(--text-main); }
+        
+        /* Mobile Menu Button */
+        .menu-toggle { display: none; color: var(--text-main); font-size: 1.5rem; cursor: pointer; }
 
         /* --- Hero Section (Identity) --- */
         #hero { min-height: 100vh; display: flex; align-items: center; padding-top: 70px; }
@@ -79,8 +96,10 @@
         .btn { display: inline-block; padding: 0.75rem 1.5rem; border-radius: 6px; font-weight: 600; font-size: 0.9rem; cursor: pointer; transition: var(--transition); border: 1px solid var(--accent); }
         .btn-primary { background-color: transparent; color: var(--accent); }
         .btn-primary:hover { background-color: rgba(56, 189, 248, 0.1); }
+        .btn-secondary { border-color: rgba(255,255,255,0.2); color: var(--text-main); }
+        .btn-secondary:hover { border-color: var(--text-main); }
 
-        /* --- Projects Section (Moved Up) --- */
+        /* --- Projects Section --- */
         .projects-grid { display: flex; flex-direction: column; gap: 2.5rem; }
         .project-card {
             background-color: var(--bg-card); border-radius: 8px; padding: 2.5rem;
@@ -176,7 +195,16 @@
 
         /* --- Responsive Design --- */
         @media (max-width: 768px) {
-            .nav-links { display: none; }
+            .menu-toggle { display: block; }
+            .nav-links {
+                position: fixed; top: 70px; right: -100%; height: calc(100vh - 70px); width: 100%;
+                background-color: rgba(15, 23, 42, 0.98); backdrop-filter: blur(10px);
+                flex-direction: column; align-items: center; justify-content: center; gap: 3rem;
+                transition: right 0.3s ease; border-top: 1px solid rgba(255,255,255,0.05);
+            }
+            .nav-links.active { right: 0; }
+            .nav-links a { font-size: 1.2rem; }
+            
             .thinking-layout, .bio-grid { grid-template-columns: 1fr; gap: 2rem; }
             .hero-buttons { flex-direction: column; width: 100%; max-width: 300px; }
             .btn { text-align: center; }
@@ -191,7 +219,12 @@
         <div class="container">
             <nav>
                 <div class="logo">Soham<span>.</span></div>
-                <div class="nav-links">
+                
+                <div class="menu-toggle" id="mobile-menu">
+                    <i class="fas fa-bars"></i>
+                </div>
+                
+                <div class="nav-links" id="nav-links">
                     <a href="#projects">Projects</a>
                     <a href="#thinking">Research</a>
                     <a href="#about">Academic Context</a>
@@ -214,12 +247,13 @@
 
                 <div class="hero-buttons">
                     <a href="#projects" class="btn btn-primary">Review Technical Work</a>
+                    <a href="resume.pdf" target="_blank" class="btn btn-secondary"><i class="fas fa-file-pdf"></i> View Resume</a>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="projects">
+    <section id="projects" class="reveal">
         <div class="container">
             <h2 class="section-title">Technical Projects</h2>
             <div class="projects-grid">
@@ -296,7 +330,7 @@
         </div>
     </section>
 
-    <section id="thinking">
+    <section id="thinking" class="reveal">
         <div class="container">
             <div class="thinking-layout">
                 
@@ -323,7 +357,7 @@
         </div>
     </section>
 
-    <section id="about">
+    <section id="about" class="reveal">
         <div class="container">
             <h2 class="section-title">Academic Background</h2>
             <div class="bio-grid">
@@ -349,7 +383,7 @@
         </div>
     </section>
 
-    <section id="build-log">
+    <section id="build-log" class="reveal">
         <div class="container">
             <h2 class="section-title">Build Log</h2>
             <div class="log-container">
@@ -370,7 +404,7 @@
         </div>
     </section>
 
-    <section id="github-profiles">
+    <section id="github-profiles" class="reveal">
         <div class="container">
             <h2 class="section-title">Version Control & Repositories</h2>
             <div class="profiles-grid">
@@ -391,7 +425,7 @@
         </div>
     </section>
 
-    <section id="contact">
+    <section id="contact" class="reveal">
         <div class="container">
             <h2 class="section-title">Connect</h2>
             <p style="color: var(--text-muted); margin-top: 1rem;">
@@ -415,6 +449,57 @@
             <p>&copy; 2026 Soham Dalvi. Coded via static HTML/CSS. Deployed via GitHub Pages.</p>
         </div>
     </footer>
+
+    <script>
+        // 1. Mobile Menu Toggle Logic
+        const menuToggle = document.querySelector('#mobile-menu');
+        const navLinks = document.querySelector('#nav-links');
+        
+        menuToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            
+            // Swap hamburger icon for an 'X' icon when open
+            const icon = menuToggle.querySelector('i');
+            if(navLinks.classList.contains('active')) {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-times');
+            } else {
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            }
+        });
+
+        // Close mobile menu automatically when a link is clicked
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+                menuToggle.querySelector('i').classList.replace('fa-times', 'fa-bars');
+            });
+        });
+
+        // 2. Scroll Reveal Animation Logic (Intersection Observer)
+        const reveals = document.querySelectorAll('.reveal');
+        const revealOptions = { 
+            threshold: 0.15, 
+            rootMargin: "0px 0px -50px 0px" 
+        };
+
+        const revealOnScroll = new IntersectionObserver(function(entries, observer) {
+            entries.forEach(entry => {
+                if (!entry.isIntersecting) return;
+                
+                // Add the active class to trigger the CSS animation
+                entry.target.classList.add('active');
+                
+                // Stop observing the element once it has been revealed
+                observer.unobserve(entry.target);
+            });
+        }, revealOptions);
+
+        reveals.forEach(reveal => {
+            revealOnScroll.observe(reveal);
+        });
+    </script>
 
 </body>
 </html>

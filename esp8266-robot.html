@@ -3,83 +3,139 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Technical Breakdown | ESP8266 Robot</title>
+    <title>Technical Architecture | WiFi Robotic Vehicle</title>
+    
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
+
     <style>
+        /* --- Core Theme Variables --- */
         :root {
-            --bg-dark: #0f172a; --bg-card: #1e293b; --text-main: #f8fafc;
-            --text-muted: #cbd5e1; --accent: #38bdf8; --accent-hover: #0284c7;
+            --bg-dark: #0f172a;       
+            --bg-card: #1e293b;       
+            --text-main: #f8fafc;     
+            --text-muted: #cbd5e1;    
+            --accent: #38bdf8;        
+            --accent-hover: #0284c7;  
             --transition: all 0.3s ease;
         }
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
-        body { background-color: var(--bg-dark); color: var(--text-main); line-height: 1.6; }
+
+        /* --- Global Reset --- */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scrollbar-width: thin; scrollbar-color: var(--bg-card) var(--bg-dark); }
+        body { font-family: 'Inter', sans-serif; background-color: var(--bg-dark); color: var(--text-main); line-height: 1.6; }
         a { text-decoration: none; color: var(--accent); transition: var(--transition); }
         a:hover { color: var(--accent-hover); }
+
+        /* --- Layout --- */
         .container { max-width: 800px; margin: 0 auto; padding: 4rem 2rem; }
         
-        /* Minimalist Nav */
+        /* Navigation */
         nav { margin-bottom: 3rem; border-bottom: 1px solid rgba(255,255,255,0.05); padding-bottom: 1rem; }
-        .back-link { font-size: 0.9rem; font-weight: 500; display: flex; align-items: center; gap: 8px; color: var(--text-muted); }
-        .back-link:hover { color: var(--text-main); }
-        
+        .back-link { font-size: 0.95rem; font-weight: 500; display: inline-flex; align-items: center; gap: 8px; color: var(--text-muted); padding: 0.5rem 1rem; background: rgba(255,255,255,0.05); border-radius: 6px; }
+        .back-link:hover { color: var(--text-main); background: rgba(255,255,255,0.1); }
+
         /* Typography */
-        h1 { font-size: 2.5rem; letter-spacing: -1px; margin-bottom: 0.5rem; }
-        .subtitle { color: var(--accent); font-family: monospace; font-size: 0.9rem; margin-bottom: 2rem; display: block; }
-        h2 { font-size: 1.4rem; margin: 2.5rem 0 1rem 0; border-left: 3px solid var(--accent); padding-left: 10px; }
-        p { color: var(--text-muted); margin-bottom: 1rem; font-size: 1.05rem; }
+        h1 { font-size: 2.2rem; font-weight: 700; letter-spacing: -1px; margin-bottom: 0.5rem; line-height: 1.2; }
+        .subtitle { font-family: monospace; color: var(--accent); font-size: 0.9rem; margin-bottom: 2rem; display: block; letter-spacing: 0.5px; }
+        h2 { font-size: 1.4rem; font-weight: 600; margin: 3rem 0 1.5rem 0; color: var(--text-main); display: flex; align-items: center; gap: 10px; border-bottom: 1px solid rgba(255,255,255,0.05); padding-bottom: 0.5rem; }
+        p { color: var(--text-muted); font-size: 1.05rem; margin-bottom: 1.5rem; }
+
+        /* Hero Image */
+        .img-wrapper { width: 100%; border-radius: 8px; overflow: hidden; border: 1px solid rgba(255, 255, 255, 0.08); margin-bottom: 2.5rem; background-color: var(--bg-card); aspect-ratio: 16/9; max-height: 400px; }
+        .img-wrapper img { width: 100%; height: 100%; object-fit: cover; display: block; opacity: 0.9; }
+
+        /* Technical Content Boxes */
+        .tech-box { background: var(--bg-card); padding: 2rem; border-radius: 8px; border: 1px solid rgba(255,255,255,0.05); margin-bottom: 2rem; }
         
-        /* Tech Data Boxes */
-        .data-box { background: var(--bg-card); padding: 1.5rem; border-radius: 8px; border: 1px solid rgba(255,255,255,0.05); margin-bottom: 1.5rem; }
-        ul { list-style: none; display: flex; flex-direction: column; gap: 0.8rem; }
-        li { color: var(--text-muted); font-size: 0.95rem; display: flex; align-items: flex-start; gap: 10px; }
-        li i { color: var(--accent); margin-top: 4px; font-size: 0.8rem; }
-        
-        /* Image Wrapper */
-        .img-wrapper { width: 100%; border-radius: 6px; overflow: hidden; border: 1px solid rgba(255,255,255,0.08); margin: 2rem 0; background: var(--bg-card); }
-        .img-wrapper img { width: 100%; height: auto; display: block; opacity: 0.9; }
+        ul.engineering-list { list-style: none; display: flex; flex-direction: column; gap: 1rem; }
+        ul.engineering-list li { color: var(--text-muted); font-size: 0.95rem; display: flex; align-items: flex-start; gap: 12px; }
+        ul.engineering-list li i { color: var(--accent); margin-top: 5px; font-size: 0.8rem; }
+        ul.engineering-list strong { color: var(--text-main); }
+
+        /* Architecture Flowchart Styling */
+        .flow-container { display: flex; flex-direction: column; align-items: center; gap: 0.5rem; margin: 2rem 0; padding: 2rem; background: rgba(15, 23, 42, 0.5); border-radius: 8px; border: 1px dashed rgba(56, 189, 248, 0.3); }
+        .flow-node { background: var(--bg-card); border: 1px solid rgba(56, 189, 248, 0.4); padding: 0.8rem 1.5rem; border-radius: 6px; color: var(--text-main); font-weight: 500; font-size: 0.95rem; text-align: center; width: 100%; max-width: 350px; position: relative; }
+        .flow-node.sensor { border-color: #a855f7; background: rgba(168, 85, 247, 0.05); margin-top: 1rem; }
+        .flow-arrow { color: var(--text-muted); font-size: 1.2rem; margin: 0.2rem 0; }
+
+        /* Code Snippet */
+        .code-block { background: #0b1120; padding: 1.5rem; border-radius: 8px; border: 1px solid rgba(255,255,255,0.05); font-family: monospace; font-size: 0.95rem; line-height: 1.6; overflow-x: auto; margin-bottom: 1.5rem; }
+        .code-comment { color: #6b7280; }
+        .code-type { color: #c678dd; }
+        .code-var { color: var(--text-main); }
+        .code-func { color: #61afef; }
+        .code-num { color: #d19a66; }
+
+        /* Buttons */
+        .btn-group { display: flex; gap: 1rem; margin-top: 3rem; }
+        .btn { padding: 0.75rem 1.5rem; border-radius: 6px; font-weight: 600; font-size: 0.9rem; text-align: center; border: 1px solid var(--accent); display: inline-block; }
+        .btn-primary { background: transparent; color: var(--accent); }
+        .btn-primary:hover { background: rgba(56, 189, 248, 0.1); }
     </style>
 </head>
 <body>
 
     <div class="container">
+        
         <nav>
-            <a href="index.html" class="back-link"><i class="fas fa-arrow-left"></i> Return to Main Portfolio</a>
+            <a href="index.html" class="back-link"><i class="fas fa-arrow-left"></i> Back to Main Portfolio</a>
         </nav>
 
-        <h1>WiFi-Teleoperated Robotic Chassis</h1>
-        <span class="subtitle">SYSTEM ARCHITECTURE & BUILD LOG // ESP8266 + C++</span>
+        <h1>WiFi-Controlled Robotic Vehicle with Ultrasonic Obstacle Detection</h1>
+        <span class="subtitle">HARDWARE LOGIC & SYSTEM ARCHITECTURE</span>
 
-        <p>This document details the engineering constraints, power distribution, and software architecture required to build a reliable, low-latency teleoperated vehicle using the ESP8266 microcontroller.</p>
+        <div class="img-wrapper">
+            <img src="robot.jpg" alt="WiFi-controlled robotic vehicle with ESP8266 and ultrasonic sensor">
+        </div>
 
-        <h2>1. System Architecture & Control Loop</h2>
-        <div class="data-box">
-            <p>The core requirement was minimizing input latency over a local network. Standard HTTP requests require establishing and tearing down a connection for every command, which causes motor stuttering. To solve this:</p>
-            <ul>
-                <li><i class="fas fa-microchip"></i> <strong>Asynchronous Web Server:</strong> Hosted directly on the ESP8266, allowing non-blocking network requests while the main C++ loop continues to process motor PWM signals.</li>
-                <li><i class="fas fa-network-wired"></i> <strong>Data Pipeline:</strong> Mobile Browser (Client UI) → WiFi (802.11) → ESP8266 (Host) → 3.3V GPIO Logic → L298N Motor Driver.</li>
+        <p>Built a WiFi-controlled robotic vehicle using ESP8266 for wireless communication and Arduino for control logic. Integrated an HC-SR04 ultrasonic sensor to detect obstacles and influence movement decisions. Motor control was handled through an L298N driver to safely manage DC motor power.</p>
+
+        <h2><i class="fas fa-sitemap" style="color: var(--accent);"></i> System Architecture</h2>
+        <p>To ensure reliable operation, communication parsing was physically separated from the motor control logic. The data flow operates sequentially from the user interface down to the hardware level:</p>
+        
+        <div class="flow-container">
+            <div class="flow-node">Phone (WiFi Control Interface)</div>
+            <i class="fas fa-arrow-down flow-arrow"></i>
+            <div class="flow-node">ESP8266 (Receives Command)</div>
+            <i class="fas fa-arrow-down flow-arrow"></i>
+            <div class="flow-node">Arduino (Processes Logic + Sensor Input)</div>
+            <i class="fas fa-arrow-down flow-arrow"></i>
+            <div class="flow-node">L298N Motor Driver</div>
+            <i class="fas fa-arrow-down flow-arrow"></i>
+            <div class="flow-node" style="border-color: rgba(255,255,255,0.2);">DC Motors</div>
+            
+            <div class="flow-node sensor"><strong>Sensor Loop:</strong> HC-SR04 &rarr; Arduino &rarr; Distance Measurement &rarr; Movement Logic</div>
+        </div>
+
+        <h2><i class="fas fa-microchip" style="color: var(--accent);"></i> Environmental Control Logic</h2>
+        <p>The Arduino continuously reads the distance from the HC-SR04 sensor in the main loop. If the obstacle distance falls below a defined safety threshold, any incoming forward movement commands from the ESP8266 are overridden to prevent a physical collision.</p>
+        
+        <div class="code-block">
+            <span class="code-comment">// Safety override logic</span><br>
+            <span class="code-type">long</span> <span class="code-var">distance</span> = <span class="code-func">measureDistance</span>();<br><br>
+            <span class="code-type">if</span> (<span class="code-var">distance</span> < <span class="code-num">20</span>) {<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;<span class="code-func">stopMotors</span>();<br>
+            }
+        </div>
+
+        <h2><i class="fas fa-clipboard-list" style="color: var(--accent);"></i> Key Engineering Decisions</h2>
+        <div class="tech-box">
+            <ul class="engineering-list">
+                <li><i class="fas fa-check"></i> <strong>Wireless Protocol:</strong> Used ESP8266 for 802.11 WiFi control instead of Bluetooth to significantly increase the reliable control range.</li>
+                <li><i class="fas fa-check"></i> <strong>Separation of Concerns:</strong> Separated communication (ESP8266) from control logic (Arduino) to allow for easier debugging and prevent network latency from interrupting PWM timing.</li>
+                <li><i class="fas fa-check"></i> <strong>Collision Mitigation:</strong> Implemented continuous ultrasonic distance measurement to safeguard the chassis.</li>
+                <li><i class="fas fa-check"></i> <strong>Power Isolation:</strong> Used an L298N motor driver to isolate high-current inductive loads (DC motors) from the fragile microcontroller GPIO pins.</li>
+                <li><i class="fas fa-check"></i> <strong>Signal Integrity:</strong> Ensured a shared common ground between the ESP8266, Arduino, and motor driver power sources to guarantee reliable logic-level signal communication.</li>
             </ul>
         </div>
 
-        <h2>2. Power Distribution & Isolation</h2>
-        <p>A major failure point in embedded robotics is microcontroller brownouts caused by motor stall currents pulling the battery voltage below the logic threshold. </p>
-        <div class="data-box">
-            <ul>
-                <li><i class="fas fa-bolt"></i> <strong>Motor Rail:</strong> Direct 7.4V feed from series 18650 Li-ion cells to the L298N driver to handle raw current spikes during sudden chassis acceleration.</li>
-                <li><i class="fas fa-plug"></i> <strong>Logic Rail (3.3V):</strong> The ESP8266 requires a strict, noise-free 3.3V. I stepped down the 7.4V source using a dedicated buck converter (or linear regulator), adding decoupling capacitors to filter out electrical noise from the brushed DC motors.</li>
-            </ul>
-        </div>
-
-        <div class="img-wrapper" style="display: flex; align-items: center; justify-content: center; min-height: 200px;">
-            <span style="color: var(--text-muted); font-size: 0.9rem;"><i class="fas fa-project-diagram"></i> [Add a screenshot of your wiring schematic here]</span>
-        </div>
-
-        <h2>3. Hardware Debugging & Logic Challenges</h2>
-        <div class="data-box">
-            <p><strong>The Challenge:</strong> Initial testing resulted in the ESP8266 resetting its WiFi connection every time the vehicle reversed direction.</p>
-            <p style="margin-bottom: 0;"><strong>The Fix:</strong> Diagnosed the issue as a sudden voltage drop caused by the reverse EMF (electromotive force) of the motors. By ensuring proper logic grounding and adding a flyback diode/capacitor filter to the logic rail, the MCU achieved stable continuous uptime.</p>
+        <div class="btn-group">
+            <a href="https://github.com/whossoham" target="_blank" class="btn btn-primary"><i class="fab fa-github"></i> View Firmware Source</a>
         </div>
 
     </div>

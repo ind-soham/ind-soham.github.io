@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Technical Breakdown | ESP8266 Robot</title>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --bg-dark: #0f172a; --bg-card: #1e293b; --text-main: #f8fafc;
+            --text-muted: #cbd5e1; --accent: #38bdf8; --accent-hover: #0284c7;
+            --transition: all 0.3s ease;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
+        body { background-color: var(--bg-dark); color: var(--text-main); line-height: 1.6; }
+        a { text-decoration: none; color: var(--accent); transition: var(--transition); }
+        a:hover { color: var(--accent-hover); }
+        .container { max-width: 800px; margin: 0 auto; padding: 4rem 2rem; }
+        
+        /* Minimalist Nav */
+        nav { margin-bottom: 3rem; border-bottom: 1px solid rgba(255,255,255,0.05); padding-bottom: 1rem; }
+        .back-link { font-size: 0.9rem; font-weight: 500; display: flex; align-items: center; gap: 8px; color: var(--text-muted); }
+        .back-link:hover { color: var(--text-main); }
+        
+        /* Typography */
+        h1 { font-size: 2.5rem; letter-spacing: -1px; margin-bottom: 0.5rem; }
+        .subtitle { color: var(--accent); font-family: monospace; font-size: 0.9rem; margin-bottom: 2rem; display: block; }
+        h2 { font-size: 1.4rem; margin: 2.5rem 0 1rem 0; border-left: 3px solid var(--accent); padding-left: 10px; }
+        p { color: var(--text-muted); margin-bottom: 1rem; font-size: 1.05rem; }
+        
+        /* Tech Data Boxes */
+        .data-box { background: var(--bg-card); padding: 1.5rem; border-radius: 8px; border: 1px solid rgba(255,255,255,0.05); margin-bottom: 1.5rem; }
+        ul { list-style: none; display: flex; flex-direction: column; gap: 0.8rem; }
+        li { color: var(--text-muted); font-size: 0.95rem; display: flex; align-items: flex-start; gap: 10px; }
+        li i { color: var(--accent); margin-top: 4px; font-size: 0.8rem; }
+        
+        /* Image Wrapper */
+        .img-wrapper { width: 100%; border-radius: 6px; overflow: hidden; border: 1px solid rgba(255,255,255,0.08); margin: 2rem 0; background: var(--bg-card); }
+        .img-wrapper img { width: 100%; height: auto; display: block; opacity: 0.9; }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <nav>
+            <a href="index.html" class="back-link"><i class="fas fa-arrow-left"></i> Return to Main Portfolio</a>
+        </nav>
+
+        <h1>WiFi-Teleoperated Robotic Chassis</h1>
+        <span class="subtitle">SYSTEM ARCHITECTURE & BUILD LOG // ESP8266 + C++</span>
+
+        <p>This document details the engineering constraints, power distribution, and software architecture required to build a reliable, low-latency teleoperated vehicle using the ESP8266 microcontroller.</p>
+
+        <h2>1. System Architecture & Control Loop</h2>
+        <div class="data-box">
+            <p>The core requirement was minimizing input latency over a local network. Standard HTTP requests require establishing and tearing down a connection for every command, which causes motor stuttering. To solve this:</p>
+            <ul>
+                <li><i class="fas fa-microchip"></i> <strong>Asynchronous Web Server:</strong> Hosted directly on the ESP8266, allowing non-blocking network requests while the main C++ loop continues to process motor PWM signals.</li>
+                <li><i class="fas fa-network-wired"></i> <strong>Data Pipeline:</strong> Mobile Browser (Client UI) → WiFi (802.11) → ESP8266 (Host) → 3.3V GPIO Logic → L298N Motor Driver.</li>
+            </ul>
+        </div>
+
+        <h2>2. Power Distribution & Isolation</h2>
+        <p>A major failure point in embedded robotics is microcontroller brownouts caused by motor stall currents pulling the battery voltage below the logic threshold. </p>
+        <div class="data-box">
+            <ul>
+                <li><i class="fas fa-bolt"></i> <strong>Motor Rail:</strong> Direct 7.4V feed from series 18650 Li-ion cells to the L298N driver to handle raw current spikes during sudden chassis acceleration.</li>
+                <li><i class="fas fa-plug"></i> <strong>Logic Rail (3.3V):</strong> The ESP8266 requires a strict, noise-free 3.3V. I stepped down the 7.4V source using a dedicated buck converter (or linear regulator), adding decoupling capacitors to filter out electrical noise from the brushed DC motors.</li>
+            </ul>
+        </div>
+
+        <div class="img-wrapper" style="display: flex; align-items: center; justify-content: center; min-height: 200px;">
+            <span style="color: var(--text-muted); font-size: 0.9rem;"><i class="fas fa-project-diagram"></i> [Add a screenshot of your wiring schematic here]</span>
+        </div>
+
+        <h2>3. Hardware Debugging & Logic Challenges</h2>
+        <div class="data-box">
+            <p><strong>The Challenge:</strong> Initial testing resulted in the ESP8266 resetting its WiFi connection every time the vehicle reversed direction.</p>
+            <p style="margin-bottom: 0;"><strong>The Fix:</strong> Diagnosed the issue as a sudden voltage drop caused by the reverse EMF (electromotive force) of the motors. By ensuring proper logic grounding and adding a flyback diode/capacitor filter to the logic rail, the MCU achieved stable continuous uptime.</p>
+        </div>
+
+    </div>
+
+</body>
+</html>

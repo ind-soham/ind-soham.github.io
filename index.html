@@ -77,24 +77,31 @@
             background-color: var(--bg-dark);
             margin-bottom: 1.5rem;
         }
+
+        /* Forces a horizontal widescreen shape and stops tall stretching */
+        .project-card .img-wrapper {
+            aspect-ratio: 16/10; 
+            max-height: 320px; 
+        }
         
         .img-wrapper img {
             width: 100%;
-            height: auto;
+            height: 100%; 
             display: block;
-            object-fit: cover;
-            opacity: 0.85; /* Dims bright photos to blend with dark theme */
+            object-fit: cover; /* Automatically crops tall images to fit perfectly */
+            object-position: top; /* Ensures the top of the website screenshot is visible */
+            opacity: 0.85; 
             transition: opacity 0.3s ease, transform 0.4s ease;
         }
         
         .img-wrapper img:hover {
             opacity: 1;
-            transform: scale(1.02); /* Subtle hover zoom */
+            transform: scale(1.02); 
         }
 
         /* Featured Project Layout (Desktop Span) */
         .project-card.featured {
-            grid-column: 1 / -1; /* Forces card to span all columns */
+            grid-column: 1 / -1; 
             border-color: rgba(56, 189, 248, 0.3);
         }
         
@@ -121,7 +128,6 @@
             }
             .project-card.featured .img-wrapper {
                 margin-bottom: 0;
-                height: 100%;
             }
         }
 
@@ -310,7 +316,7 @@
         </div>
     </section>
 
-   <section id="projects" class="reveal">
+    <section id="projects" class="reveal">
         <div class="container">
             <h2 class="section-title">Technical Projects</h2>
             <div class="projects-grid">
@@ -370,16 +376,9 @@
                 </div>
 
                 <div class="project-card featured">
-                    
                     <div class="img-wrapper">
                         <img src="vjc-website.png" alt="VJCEvents Platform Interface">
                     </div>
-
-                    <div>
-                        <div class="project-header">
-                            <h3 class="project-title">College Event Web Platform</h3>
-                        </div>
-                        <div class="project-tech-stack">
 
                     <div>
                         <div class="project-header">
@@ -408,7 +407,7 @@
                 </div>
 
                 <div class="project-card featured">
-                    <div class="img-wrapper" style="display: flex; align-items: center; justify-content: center; min-height: 250px; background: #0f172a;">
+                    <div class="img-wrapper" style="display: flex; align-items: center; justify-content: center; background: #0f172a;">
                         <span style="color: var(--text-muted); font-size: 0.9rem;"><i class="fas fa-terminal"></i> Add Terminal Screenshot Here</span>
                     </div>
 
@@ -475,8 +474,8 @@
                     
                     <div style="margin-top: 2rem;">
                         <h4 style="color: var(--text-main); font-size: 1.1rem; margin-bottom: 1rem;"><i class="fas fa-trophy" style="color: var(--accent);"></i> Competitions & Exposure</h4>
-                        <div class="img-wrapper">
-                            <img src="tcs.jpg" alt="Participating in the TCS InquisITive 2024 competition">
+                        <div class="img-wrapper" style="aspect-ratio: auto; max-height: none;">
+                            <img src="tcs.jpg" alt="Participating in the TCS InquisITive 2024 competition" style="object-fit: contain;">
                         </div>
                         <p style="color: var(--text-muted); font-size: 0.95rem; margin-top: 0.5rem;">
                             Representing my institution at <strong>TCS InquisITive 2024</strong>. Engaging in high-level technical competitions sharpens my ability to solve problems under pressure and exposes me to industry-standard technological trends.

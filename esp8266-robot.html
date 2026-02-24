@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Technical Architecture | WiFi Robotic Vehicle</title>
+    <title>Technical Architecture | Bluetooth Robotic Vehicle</title>
     
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
     
@@ -13,130 +13,168 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
-        /* --- Core Theme Variables --- */
         :root {
-            --bg-dark: #0f172a;       
-            --bg-card: #1e293b;       
-            --text-main: #f8fafc;     
-            --text-muted: #cbd5e1;    
-            --accent: #38bdf8;        
-            --accent-hover: #0284c7;  
+            --bg-dark: #0f172a; --bg-card: #1e293b; --text-main: #f8fafc;
+            --text-muted: #cbd5e1; --accent: #38bdf8; --accent-hover: #0284c7;
             --transition: all 0.3s ease;
         }
-
-        /* --- Global Reset --- */
         * { margin: 0; padding: 0; box-sizing: border-box; }
         html { scrollbar-width: thin; scrollbar-color: var(--bg-card) var(--bg-dark); }
         body { font-family: 'Inter', sans-serif; background-color: var(--bg-dark); color: var(--text-main); line-height: 1.6; }
         a { text-decoration: none; color: var(--accent); transition: var(--transition); }
         a:hover { color: var(--accent-hover); }
 
-        /* --- Layout --- */
         .container { max-width: 800px; margin: 0 auto; padding: 4rem 2rem; }
-        
-        /* Navigation */
         nav { margin-bottom: 3rem; border-bottom: 1px solid rgba(255,255,255,0.05); padding-bottom: 1rem; }
         .back-link { font-size: 0.95rem; font-weight: 500; display: inline-flex; align-items: center; gap: 8px; color: var(--text-muted); padding: 0.5rem 1rem; background: rgba(255,255,255,0.05); border-radius: 6px; }
         .back-link:hover { color: var(--text-main); background: rgba(255,255,255,0.1); }
 
-        /* Typography */
         h1 { font-size: 2.2rem; font-weight: 700; letter-spacing: -1px; margin-bottom: 0.5rem; line-height: 1.2; }
         .subtitle { font-family: monospace; color: var(--accent); font-size: 0.9rem; margin-bottom: 2rem; display: block; letter-spacing: 0.5px; }
         h2 { font-size: 1.4rem; font-weight: 600; margin: 3rem 0 1.5rem 0; color: var(--text-main); display: flex; align-items: center; gap: 10px; border-bottom: 1px solid rgba(255,255,255,0.05); padding-bottom: 0.5rem; }
         p { color: var(--text-muted); font-size: 1.05rem; margin-bottom: 1.5rem; }
 
-        /* Hero Image */
         .img-wrapper { width: 100%; border-radius: 8px; overflow: hidden; border: 1px solid rgba(255, 255, 255, 0.08); margin-bottom: 2.5rem; background-color: var(--bg-card); aspect-ratio: 16/9; max-height: 400px; }
         .img-wrapper img { width: 100%; height: 100%; object-fit: cover; display: block; opacity: 0.9; }
 
-        /* Technical Content Boxes */
-        .tech-box { background: var(--bg-card); padding: 2rem; border-radius: 8px; border: 1px solid rgba(255,255,255,0.05); margin-bottom: 2rem; }
-        
-        ul.engineering-list { list-style: none; display: flex; flex-direction: column; gap: 1rem; }
-        ul.engineering-list li { color: var(--text-muted); font-size: 0.95rem; display: flex; align-items: flex-start; gap: 12px; }
-        ul.engineering-list li i { color: var(--accent); margin-top: 5px; font-size: 0.8rem; }
-        ul.engineering-list strong { color: var(--text-main); }
-
-        /* Architecture Flowchart Styling */
+        /* Architecture Flowchart */
         .flow-container { display: flex; flex-direction: column; align-items: center; gap: 0.5rem; margin: 2rem 0; padding: 2rem; background: rgba(15, 23, 42, 0.5); border-radius: 8px; border: 1px dashed rgba(56, 189, 248, 0.3); }
-        .flow-node { background: var(--bg-card); border: 1px solid rgba(56, 189, 248, 0.4); padding: 0.8rem 1.5rem; border-radius: 6px; color: var(--text-main); font-weight: 500; font-size: 0.95rem; text-align: center; width: 100%; max-width: 350px; position: relative; }
-        .flow-node.sensor { border-color: #a855f7; background: rgba(168, 85, 247, 0.05); margin-top: 1rem; }
+        .flow-node { background: var(--bg-card); border: 1px solid rgba(56, 189, 248, 0.4); padding: 0.8rem 1.5rem; border-radius: 6px; color: var(--text-main); font-weight: 500; font-size: 0.95rem; text-align: center; width: 100%; max-width: 400px; }
         .flow-arrow { color: var(--text-muted); font-size: 1.2rem; margin: 0.2rem 0; }
+        .sensor-loop { border-color: #a855f7; background: rgba(168, 85, 247, 0.05); margin-top: 1rem; }
 
-        /* Code Snippet */
-        .code-block { background: #0b1120; padding: 1.5rem; border-radius: 8px; border: 1px solid rgba(255,255,255,0.05); font-family: monospace; font-size: 0.95rem; line-height: 1.6; overflow-x: auto; margin-bottom: 1.5rem; }
-        .code-comment { color: #6b7280; }
-        .code-type { color: #c678dd; }
-        .code-var { color: var(--text-main); }
-        .code-func { color: #61afef; }
-        .code-num { color: #d19a66; }
+        /* Full Code Snippet Window */
+        .code-window { background: #0b1120; border-radius: 8px; border: 1px solid rgba(255,255,255,0.1); overflow: hidden; margin-bottom: 2rem; }
+        .code-header { background: #1e293b; padding: 0.5rem 1rem; border-bottom: 1px solid rgba(255,255,255,0.05); display: flex; gap: 6px; align-items: center; }
+        .mac-btn { width: 12px; height: 12px; border-radius: 50%; }
+        .mac-close { background: #ff5f56; } .mac-min { background: #ffbd2e; } .mac-max { background: #27c93f; }
+        .code-body { padding: 1.5rem; overflow-x: auto; font-family: 'Courier New', Courier, monospace; font-size: 0.9rem; line-height: 1.5; color: #abb2bf; }
+        
+        /* Syntax Colors */
+        .kd { color: #c678dd; } /* Keyword */
+        .nd { color: #d19a66; } /* Define/Number */
+        .nc { color: #e5c07b; } /* Class/Function */
+        .s { color: #98c379; }  /* String */
+        .c { color: #5c6370; font-style: italic; } /* Comment */
 
-        /* Buttons */
-        .btn-group { display: flex; gap: 1rem; margin-top: 3rem; }
-        .btn { padding: 0.75rem 1.5rem; border-radius: 6px; font-weight: 600; font-size: 0.9rem; text-align: center; border: 1px solid var(--accent); display: inline-block; }
-        .btn-primary { background: transparent; color: var(--accent); }
-        .btn-primary:hover { background: rgba(56, 189, 248, 0.1); }
+        .btn { padding: 0.75rem 1.5rem; border-radius: 6px; font-weight: 600; font-size: 0.9rem; border: 1px solid var(--accent); display: inline-block; background: transparent; color: var(--accent); margin-top: 1rem; }
+        .btn:hover { background: rgba(56, 189, 248, 0.1); }
     </style>
 </head>
 <body>
 
     <div class="container">
-        
         <nav>
             <a href="index.html" class="back-link"><i class="fas fa-arrow-left"></i> Back to Main Portfolio</a>
         </nav>
 
-        <h1>WiFi-Controlled Robotic Vehicle with Ultrasonic Obstacle Detection</h1>
-        <span class="subtitle">HARDWARE LOGIC & SYSTEM ARCHITECTURE</span>
+        <h1>Bluetooth-Controlled Robotic Vehicle</h1>
+        <span class="subtitle">HARDWARE LOGIC & SERIAL COMMUNICATION</span>
 
         <div class="img-wrapper">
-            <img src="robot.jpg" alt="WiFi-controlled robotic vehicle with ESP8266 and ultrasonic sensor">
+            <img src="robot.jpg" alt="Bluetooth-controlled robotic vehicle">
         </div>
 
-        <p>Built a WiFi-controlled robotic vehicle using ESP8266 for wireless communication and Arduino for control logic. Integrated an HC-SR04 ultrasonic sensor to detect obstacles and influence movement decisions. Motor control was handled through an L298N driver to safely manage DC motor power.</p>
+        <p>Built a Bluetooth-controlled robotic vehicle using Arduino hardware to receive directional commands from a smartphone controller app. Integrated an HC-SR04 ultrasonic sensor to detect obstacles and override movement commands for collision prevention. Motor control was handled through an L298N motor driver.</p>
 
-        <h2><i class="fas fa-sitemap" style="color: var(--accent);"></i> System Architecture</h2>
-        <p>To ensure reliable operation, communication parsing was physically separated from the motor control logic. The data flow operates sequentially from the user interface down to the hardware level:</p>
+        <h2><i class="fas fa-sitemap" style="color: var(--accent);"></i> Control Flow Architecture</h2>
+        <p>The system relies on Serial (UART) communication. A smartphone application transmits single-character payloads over a Bluetooth link. The microcontroller parses these characters sequentially while running a non-blocking sensor check in its main loop.</p>
         
         <div class="flow-container">
-            <div class="flow-node">Phone (WiFi Control Interface)</div>
+            <div class="flow-node">Phone App (Generic Controller)</div>
             <i class="fas fa-arrow-down flow-arrow"></i>
-            <div class="flow-node">ESP8266 (Receives Command)</div>
+            <div class="flow-node" style="color: var(--accent);">Bluetooth Command (F / B / L / R / S)</div>
             <i class="fas fa-arrow-down flow-arrow"></i>
-            <div class="flow-node">Arduino (Processes Logic + Sensor Input)</div>
+            <div class="flow-node">Arduino Serial Input Buffer</div>
+            <i class="fas fa-arrow-down flow-arrow"></i>
+            <div class="flow-node">Movement Logic + Distance Check</div>
             <i class="fas fa-arrow-down flow-arrow"></i>
             <div class="flow-node">L298N Motor Driver</div>
             <i class="fas fa-arrow-down flow-arrow"></i>
             <div class="flow-node" style="border-color: rgba(255,255,255,0.2);">DC Motors</div>
             
-            <div class="flow-node sensor"><strong>Sensor Loop:</strong> HC-SR04 &rarr; Arduino &rarr; Distance Measurement &rarr; Movement Logic</div>
+            <div class="flow-node sensor-loop"><strong>Sensor Loop:</strong> HC-SR04 &rarr; Pulse Calculation &rarr; Collision Override</div>
         </div>
 
-        <h2><i class="fas fa-microchip" style="color: var(--accent);"></i> Environmental Control Logic</h2>
-        <p>The Arduino continuously reads the distance from the HC-SR04 sensor in the main loop. If the obstacle distance falls below a defined safety threshold, any incoming forward movement commands from the ESP8266 are overridden to prevent a physical collision.</p>
-        
-        <div class="code-block">
-            <span class="code-comment">// Safety override logic</span><br>
-            <span class="code-type">long</span> <span class="code-var">distance</span> = <span class="code-func">measureDistance</span>();<br><br>
-            <span class="code-type">if</span> (<span class="code-var">distance</span> < <span class="code-num">20</span>) {<br>
-            &nbsp;&nbsp;&nbsp;&nbsp;<span class="code-func">stopMotors</span>();<br>
-            }
+        <h2><i class="fas fa-code" style="color: var(--accent);"></i> Firmware Implementation</h2>
+        <p>The core logic ensures that the ultrasonic sensor acts as a hard safety override. If the distance falls below 20cm, the robot will refuse to execute a 'Forward' (<code>F</code>) command, protecting the hardware from collision.</p>
+
+        <div class="code-window">
+            <div class="code-header">
+                <div class="mac-btn mac-close"></div>
+                <div class="mac-btn mac-min"></div>
+                <div class="mac-btn mac-max"></div>
+                <span style="margin-left: 10px; color: #6b7280; font-family: sans-serif; font-size: 0.8rem;">main.ino</span>
+            </div>
+            <div class="code-body">
+<span class="kd">#define</span> <span class="nd">IN1 5</span>
+<span class="kd">#define</span> <span class="nd">IN2 6</span>
+<span class="kd">#define</span> <span class="nd">IN3 9</span>
+<span class="kd">#define</span> <span class="nd">IN4 10</span>
+
+<span class="kd">#define</span> <span class="nd">TRIG 7</span>
+<span class="kd">#define</span> <span class="nd">ECHO 8</span>
+
+<span class="kd">char</span> command;
+
+<span class="kd">long</span> <span class="nc">getDistance</span>() {
+  <span class="nc">digitalWrite</span>(TRIG, <span class="nd">LOW</span>);
+  <span class="nc">delayMicroseconds</span>(<span class="nd">2</span>);
+  <span class="nc">digitalWrite</span>(TRIG, <span class="nd">HIGH</span>);
+  <span class="nc">delayMicroseconds</span>(<span class="nd">10</span>);
+  <span class="nc">digitalWrite</span>(TRIG, <span class="nd">LOW</span>);
+
+  <span class="kd">long</span> duration = <span class="nc">pulseIn</span>(ECHO, <span class="nd">HIGH</span>);
+  <span class="kd">long</span> distance = duration * <span class="nd">0.034</span> / <span class="nd">2</span>;
+  <span class="kd">return</span> distance;
+}
+
+<span class="kd">void</span> <span class="nc">setup</span>() {
+  <span class="nc">Serial.begin</span>(<span class="nd">9600</span>);
+
+  <span class="nc">pinMode</span>(IN1, <span class="nd">OUTPUT</span>);
+  <span class="nc">pinMode</span>(IN2, <span class="nd">OUTPUT</span>);
+  <span class="nc">pinMode</span>(IN3, <span class="nd">OUTPUT</span>);
+  <span class="nc">pinMode</span>(IN4, <span class="nd">OUTPUT</span>);
+
+  <span class="nc">pinMode</span>(TRIG, <span class="nd">OUTPUT</span>);
+  <span class="nc">pinMode</span>(ECHO, <span class="nd">INPUT</span>);
+}
+
+<span class="kd">void</span> <span class="nc">stopMotors</span>() {
+  <span class="nc">digitalWrite</span>(IN1, <span class="nd">LOW</span>);
+  <span class="nc">digitalWrite</span>(IN2, <span class="nd">LOW</span>);
+  <span class="nc">digitalWrite</span>(IN3, <span class="nd">LOW</span>);
+  <span class="nc">digitalWrite</span>(IN4, <span class="nd">LOW</span>);
+}
+
+<span class="kd">void</span> <span class="nc">forward</span>() {
+  <span class="nc">digitalWrite</span>(IN1, <span class="nd">HIGH</span>);
+  <span class="nc">digitalWrite</span>(IN2, <span class="nd">LOW</span>);
+  <span class="nc">digitalWrite</span>(IN3, <span class="nd">HIGH</span>);
+  <span class="nc">digitalWrite</span>(IN4, <span class="nd">LOW</span>);
+}
+
+<span class="kd">void</span> <span class="nc">loop</span>() {
+  <span class="kd">if</span> (<span class="nc">Serial.available</span>()) {
+    command = <span class="nc">Serial.read</span>();
+  }
+
+  <span class="kd">long</span> distance = <span class="nc">getDistance</span>();
+
+  <span class="c">// Collision Prevention Override</span>
+  <span class="kd">if</span>(distance < <span class="nd">20</span> && command == <span class="s">'F'</span>) {
+    <span class="nc">stopMotors</span>();
+  }
+  <span class="kd">else</span> {
+    <span class="kd">if</span>(command == <span class="s">'F'</span>) <span class="nc">forward</span>();
+    <span class="kd">else if</span>(command == <span class="s">'S'</span>) <span class="nc">stopMotors</span>();
+  }
+}
+            </div>
         </div>
 
-        <h2><i class="fas fa-clipboard-list" style="color: var(--accent);"></i> Key Engineering Decisions</h2>
-        <div class="tech-box">
-            <ul class="engineering-list">
-                <li><i class="fas fa-check"></i> <strong>Wireless Protocol:</strong> Used ESP8266 for 802.11 WiFi control instead of Bluetooth to significantly increase the reliable control range.</li>
-                <li><i class="fas fa-check"></i> <strong>Separation of Concerns:</strong> Separated communication (ESP8266) from control logic (Arduino) to allow for easier debugging and prevent network latency from interrupting PWM timing.</li>
-                <li><i class="fas fa-check"></i> <strong>Collision Mitigation:</strong> Implemented continuous ultrasonic distance measurement to safeguard the chassis.</li>
-                <li><i class="fas fa-check"></i> <strong>Power Isolation:</strong> Used an L298N motor driver to isolate high-current inductive loads (DC motors) from the fragile microcontroller GPIO pins.</li>
-                <li><i class="fas fa-check"></i> <strong>Signal Integrity:</strong> Ensured a shared common ground between the ESP8266, Arduino, and motor driver power sources to guarantee reliable logic-level signal communication.</li>
-            </ul>
-        </div>
-
-        <div class="btn-group">
-            <a href="https://github.com/whossoham" target="_blank" class="btn btn-primary"><i class="fab fa-github"></i> View Firmware Source</a>
-        </div>
+        <a href="#" target="_blank" class="btn"><i class="fab fa-github"></i> View Full Firmware Source</a>
 
     </div>
 

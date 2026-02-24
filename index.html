@@ -68,6 +68,63 @@
         .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s cubic-bezier(0.5, 0, 0, 1); }
         .reveal.active { opacity: 1; transform: translateY(0); }
 
+        /* --- Premium Upgrades: Image Wrappers & Featured Layout --- */
+        .img-wrapper {
+            width: 100%;
+            border-radius: 6px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            background-color: var(--bg-dark);
+            margin-bottom: 1.5rem;
+        }
+        
+        .img-wrapper img {
+            width: 100%;
+            height: auto;
+            display: block;
+            object-fit: cover;
+            opacity: 0.85; /* Dims bright photos to blend with dark theme */
+            transition: opacity 0.3s ease, transform 0.4s ease;
+        }
+        
+        .img-wrapper img:hover {
+            opacity: 1;
+            transform: scale(1.02); /* Subtle hover zoom */
+        }
+
+        /* Featured Project Layout (Desktop Span) */
+        .project-card.featured {
+            grid-column: 1 / -1; /* Forces card to span all columns */
+            border-color: rgba(56, 189, 248, 0.3);
+        }
+        
+        .featured-badge {
+            display: inline-block;
+            background: rgba(56, 189, 248, 0.1);
+            color: var(--accent);
+            padding: 0.2rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+            border: 1px solid rgba(56, 189, 248, 0.3);
+        }
+
+        @media (min-width: 768px) {
+            .project-card.featured {
+                display: grid;
+                grid-template-columns: 1.2fr 1fr;
+                gap: 2.5rem;
+                align-items: center;
+            }
+            .project-card.featured .img-wrapper {
+                margin-bottom: 0;
+                height: 100%;
+            }
+        }
+
         /* --- Navigation --- */
         header {
             position: fixed; top: 0; width: 100%;
@@ -100,7 +157,7 @@
         .btn-secondary:hover { border-color: var(--text-main); }
 
         /* --- Projects Section --- */
-        .projects-grid { display: flex; flex-direction: column; gap: 2.5rem; }
+        .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2.5rem; }
         .project-card {
             background-color: var(--bg-card); border-radius: 8px; padding: 2.5rem;
             border: 1px solid rgba(255,255,255,0.05); transition: var(--transition);
@@ -258,6 +315,58 @@
             <h2 class="section-title">Technical Projects</h2>
             <div class="projects-grid">
                 
+                <div class="project-card featured">
+                    <div class="img-wrapper">
+                        <img src="robot.jpg" alt="Custom Arduino robotic chassis">
+                    </div>
+
+                    <div>
+                        <span class="featured-badge"><i class="fas fa-star"></i> Featured Build</span>
+                        <div class="project-header">
+                            <h3 class="project-title">Autonomous Robotic Chassis</h3>
+                        </div>
+                        <div class="project-tech-stack">
+                            <span>C++</span>
+                            <span>Arduino Uno</span>
+                            <span>HC-SR04 Sonar</span>
+                            <span>Hardware Logic</span>
+                        </div>
+                        <p class="project-desc">Prototyped and wired a differential-drive robotic vehicle capable of environmental detection and wireless communication.</p>
+                        
+                        <div class="engineering-decisions">
+                            <h4>Engineering Decisions:</h4>
+                            <ul>
+                                <li><i class="fas fa-circle"></i> Integrated an ultrasonic sensor to calculate real-time distance metrics for obstacle avoidance logic.</li>
+                                <li><i class="fas fa-circle"></i> Managed physical pin routing, power distribution, and breadboard circuitry for external modules.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="img-wrapper">
+                        <img src="model.jpg" alt="Presenting a smart infrastructure prototype">
+                    </div>
+
+                    <div class="project-header">
+                        <h3 class="project-title">Smart Infrastructure Prototype</h3>
+                    </div>
+                    <div class="project-tech-stack">
+                        <span>Systems Design</span>
+                        <span>Modeling</span>
+                        <span>Technical Presentation</span>
+                    </div>
+                    <p class="project-desc">Designed and presented a physical academic model demonstrating smart infrastructure and resource management concepts.</p>
+                    
+                    <div class="engineering-decisions">
+                        <h4>Engineering Decisions:</h4>
+                        <ul>
+                            <li><i class="fas fa-circle"></i> Translated theoretical systems architecture into a tangible, scaled physical model.</li>
+                            <li><i class="fas fa-circle"></i> Defended structural choices, logic flow, and scalability to academic reviewers.</li>
+                        </ul>
+                    </div>
+                </div>
+
                 <div class="project-card">
                     <div class="project-header">
                         <h3 class="project-title">College Event Web Platform</h3>
@@ -281,27 +390,6 @@
                     <div class="project-links">
                         <a href="https://vjcevents.tech" target="_blank"><i class="fas fa-external-link-alt"></i> Live Application</a>
                         <a href="https://github.com/whossoham/vjcevents.tech" target="_blank"><i class="fab fa-github"></i> Source Code</a>
-                    </div>
-                </div>
-
-                <div class="project-card">
-                    <div class="project-header">
-                        <h3 class="project-title">Embedded Automation Logic</h3>
-                    </div>
-                    <div class="project-tech-stack">
-                        <span>C++</span>
-                        <span>Arduino Environment</span>
-                        <span>Hardware Logic</span>
-                    </div>
-                    <p class="project-desc">An embedded systems project designed to interface with physical hardware, automating tasks through structured sensor data interpretation.</p>
-                    
-                    <div class="engineering-decisions">
-                        <h4>Engineering Decisions:</h4>
-                        <ul>
-                            <li><i class="fas fa-circle"></i> Structured C++ logic for predictable execution loops and memory efficiency.</li>
-                            <li><i class="fas fa-circle"></i> Processed raw sensor inputs with calculated thresholds to prevent false triggers.</li>
-                            <li><i class="fas fa-circle"></i> Kept external library dependencies minimal to ensure long-term firmware stability.</li>
-                        </ul>
                     </div>
                 </div>
 
@@ -365,6 +453,16 @@
                 <div class="bio-text">
                     <p>I view technology not just as a set of tools, but as a framework for solving complex problems. My academic focus heavily bridges deep logical reasoning with practical, hands-on application.</p>
                     <p>Outside of structured coursework, I actively participate in competitive technological events—such as the TCS InquisITive 2024—and debate competitions, which have honed my ability to construct logical arguments and evaluate systems critically.</p>
+                    
+                    <div style="margin-top: 2rem;">
+                        <h4 style="color: var(--text-main); font-size: 1.1rem; margin-bottom: 1rem;"><i class="fas fa-trophy" style="color: var(--accent);"></i> Competitions & Exposure</h4>
+                        <div class="img-wrapper">
+                            <img src="tcs.jpg" alt="Participating in the TCS InquisITive 2024 competition">
+                        </div>
+                        <p style="color: var(--text-muted); font-size: 0.95rem; margin-top: 0.5rem;">
+                            Representing my institution at <strong>TCS InquisITive 2024</strong>. Engaging in high-level technical competitions sharpens my ability to solve problems under pressure and exposes me to industry-standard technological trends.
+                        </p>
+                    </div>
                 </div>
 
                 <div class="academic-context">

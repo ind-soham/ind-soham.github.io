@@ -321,30 +321,37 @@
             <h2 class="section-title">Technical Projects</h2>
             <div class="projects-grid">
                 
-                <div class="project-card featured">
+               <div class="project-card featured">
                     <div class="img-wrapper">
-                        <img src="robot.jpg" alt="Custom Arduino robotic chassis">
+                        <img src="robot.jpg" alt="Bluetooth-controlled robotic vehicle with ultrasonic sensor">
                     </div>
 
                     <div>
                         <span class="featured-badge"><i class="fas fa-star"></i> Featured Build</span>
                         <div class="project-header">
-                            <h3 class="project-title">Autonomous Robotic Chassis</h3>
+                            <h3 class="project-title">Bluetooth-Controlled Robotic Vehicle</h3>
                         </div>
                         <div class="project-tech-stack">
-                            <span>C++</span>
-                            <span>Arduino Uno</span>
-                            <span>HC-SR04 Sonar</span>
-                            <span>Hardware Logic</span>
+                            <span>C++ / Arduino</span>
+                            <span>Bluetooth Serial</span>
+                            <span>HC-SR04 Sensor</span>
+                            <span>L298N Driver</span>
                         </div>
-                        <p class="project-desc">Prototyped and wired a differential-drive robotic vehicle capable of environmental detection and wireless communication.</p>
+                        <p class="project-desc">Built a Bluetooth-controlled robotic vehicle using Arduino to receive directional commands from a smartphone controller app. Integrated an HC-SR04 ultrasonic sensor to detect obstacles and override movement commands for collision prevention.</p>
                         
                         <div class="engineering-decisions">
                             <h4>Engineering Decisions:</h4>
                             <ul>
-                                <li><i class="fas fa-circle"></i> Integrated an ultrasonic sensor to calculate real-time distance metrics for obstacle avoidance logic.</li>
-                                <li><i class="fas fa-circle"></i> Managed physical pin routing, power distribution, and breadboard circuitry for external modules.</li>
+                                <li><i class="fas fa-circle"></i> Parsed incoming serial character commands ('F', 'B', 'L', 'R') to trigger discrete motor state changes.</li>
+                                <li><i class="fas fa-circle"></i> Implemented a continuous ultrasonic polling loop to dynamically override the 'Forward' command if an obstacle is detected under 20cm.</li>
+                                <li><i class="fas fa-circle"></i> Used an L298N motor driver to safely isolate high-current inductive DC motor loads from the fragile logic pins.</li>
+                                <li><i class="fas fa-circle"></i> Established a shared common ground across all logic and power modules to prevent signal floating and UART communication drops.</li>
                             </ul>
+                        </div>
+
+                        <div class="project-links" style="margin-top: 1.5rem;">
+                            <a href="bluetooth-robot.html" class="btn btn-primary" style="padding: 0.5rem 1rem; font-size: 0.85rem;"><i class="fas fa-search-plus"></i> View System Architecture</a>
+                            <a href="#" target="_blank"><i class="fab fa-github"></i> Firmware Repo</a>
                         </div>
                     </div>
                 </div>

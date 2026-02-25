@@ -44,13 +44,13 @@
         
         /* Grid and Boxes */
         .tech-box { background: var(--bg-card); padding: 2rem; border-radius: 8px; border: 1px solid rgba(255,255,255,0.05); margin-bottom: 2rem; }
-        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
+        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-bottom: 2rem; }
         @media (max-width: 600px) { .grid-2 { grid-template-columns: 1fr; } }
         
-        /* Standard Bullet Lists */
+        /* Standard Bullet Lists - SHATTER-PROOF FIX APPLIED HERE */
         ul.engineering-list { list-style: none; display: flex; flex-direction: column; gap: 1rem; }
-        ul.engineering-list li { color: var(--text-muted); font-size: 0.95rem; display: flex; align-items: flex-start; gap: 12px; }
-        ul.engineering-list li i { color: var(--accent); margin-top: 5px; font-size: 0.8rem; }
+        ul.engineering-list li { color: var(--text-muted); font-size: 0.95rem; position: relative; padding-left: 24px; line-height: 1.6; }
+        ul.engineering-list li i { color: var(--accent); position: absolute; left: 0; top: 5px; font-size: 0.85rem; }
         ul.engineering-list strong { color: var(--text-main); }
 
         /* --- Separated Steps for Working Principle --- */
@@ -126,6 +126,7 @@
         </div>
 
         <div class="grid-2">
+            
             <div>
                 <h2><i class="fas fa-microchip" style="color: var(--accent);"></i> Hardware Components</h2>
                 <div class="tech-box" style="height: 100%;">
@@ -151,9 +152,8 @@
                     </ul>
                 </div>
             </div>
-        </div>
 
-        <h2><i class="fas fa-cogs" style="color: var(--accent);"></i> System Working Principle</h2>
+        </div> <h2><i class="fas fa-cogs" style="color: var(--accent);"></i> System Working Principle</h2>
         
         <div class="separated-steps">
             <div class="step-box">

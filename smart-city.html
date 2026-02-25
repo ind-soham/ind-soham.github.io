@@ -47,10 +47,25 @@
         .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
         @media (max-width: 600px) { .grid-2 { grid-template-columns: 1fr; } }
         
-       ul.engineering-list { list-style: none; display: flex; flex-direction: column; gap: 1rem; }
-        ul.engineering-list li { color: var(--text-muted); font-size: 0.95rem; position: relative; padding-left: 28px; line-height: 1.6; }
-        ul.engineering-list li i { color: var(--accent); position: absolute; left: 0; top: 5px; font-size: 0.9rem; }
+        /* Standard Bullet Lists */
+        ul.engineering-list { list-style: none; display: flex; flex-direction: column; gap: 1rem; }
+        ul.engineering-list li { color: var(--text-muted); font-size: 0.95rem; display: flex; align-items: flex-start; gap: 12px; }
+        ul.engineering-list li i { color: var(--accent); margin-top: 5px; font-size: 0.8rem; }
         ul.engineering-list strong { color: var(--text-main); }
+
+        /* --- Strict Grid Layout for Working Principles --- */
+        .step-grid { display: flex; flex-direction: column; gap: 1.5rem; list-style: none; }
+        .step-grid li { display: grid; grid-template-columns: 20px 110px 1fr; gap: 15px; align-items: start; }
+        .step-grid i { color: var(--accent); margin-top: 5px; font-size: 0.9rem; }
+        .step-title { color: var(--text-main); font-weight: 700; font-size: 0.95rem; background: rgba(255, 255, 255, 0.03); padding: 0.2rem 0.5rem; border-radius: 4px; border: 1px solid rgba(255, 255, 255, 0.05); }
+        .step-desc { color: var(--text-muted); font-size: 0.95rem; line-height: 1.6; }
+        
+        @media (max-width: 600px) {
+            .step-grid li { grid-template-columns: 20px 1fr; }
+            .step-title { grid-column: 2; width: max-content; margin-bottom: 0.2rem; }
+            .step-desc { grid-column: 2; }
+        }
+
         /* Code Snippet Window */
         .code-window { background: #0b1120; border-radius: 8px; border: 1px solid rgba(255,255,255,0.1); overflow: hidden; margin-bottom: 2rem; }
         .code-header { background: #1e293b; padding: 0.5rem 1rem; border-bottom: 1px solid rgba(255,255,255,0.05); display: flex; gap: 6px; align-items: center; }
@@ -129,12 +144,32 @@
 
         <h2><i class="fas fa-cogs" style="color: var(--accent);"></i> System Working Principle</h2>
         <div class="tech-box">
-            <ul class="engineering-list">
-                <li><i class="fas fa-step-forward"></i> <strong>1. Trigger:</strong> Pedestrian presses sidewalk tile (simulated via push button).</li>
-                <li><i class="fas fa-step-forward"></i> <strong>2. Detection:</strong> Arduino detects a <code>LOW</code> signal dropping against the internal pull-up resistor.</li>
-                <li><i class="fas fa-step-forward"></i> <strong>3. Activation:</strong> Arduino outputs <code>HIGH</code> to all LED street light pins simultaneously.</li>
-                <li><i class="fas fa-step-forward"></i> <strong>4. Duration:</strong> Lights remain illuminated for a fixed safety duration of 3 seconds.</li>
-                <li><i class="fas fa-step-forward"></i> <strong>5. Reset:</strong> System automatically shuts off lighting, conserving power until the next trigger.</li>
+            <ul class="step-grid">
+                <li>
+                    <i class="fas fa-step-forward"></i> 
+                    <div class="step-title">1. Trigger:</div> 
+                    <div class="step-desc">Pedestrian presses sidewalk tile (simulated via push button).</div>
+                </li>
+                <li>
+                    <i class="fas fa-step-forward"></i> 
+                    <div class="step-title">2. Detection:</div> 
+                    <div class="step-desc">Arduino detects a <code>LOW</code> signal dropping against the internal pull-up resistor.</div>
+                </li>
+                <li>
+                    <i class="fas fa-step-forward"></i> 
+                    <div class="step-title">3. Activation:</div> 
+                    <div class="step-desc">Arduino outputs <code>HIGH</code> to all LED street light pins simultaneously.</div>
+                </li>
+                <li>
+                    <i class="fas fa-step-forward"></i> 
+                    <div class="step-title">4. Duration:</div> 
+                    <div class="step-desc">Lights remain illuminated for a fixed safety duration of 3 seconds.</div>
+                </li>
+                <li>
+                    <i class="fas fa-step-forward"></i> 
+                    <div class="step-title">5. Reset:</div> 
+                    <div class="step-desc">System automatically shuts off lighting, conserving power until the next trigger.</div>
+                </li>
             </ul>
         </div>
 

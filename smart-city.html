@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Technical Architecture | Smart Street Lighting</title>
+    
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        :root {
+            --bg-dark: #0f172a; --bg-card: #1e293b; --text-main: #f8fafc;
+            --text-muted: #cbd5e1; --accent: #38bdf8; --accent-hover: #0284c7;
+            --transition: all 0.3s ease;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scrollbar-width: thin; scrollbar-color: var(--bg-card) var(--bg-dark); }
+        body { font-family: 'Inter', sans-serif; background-color: var(--bg-dark); color: var(--text-main); line-height: 1.6; }
+        a { text-decoration: none; color: var(--accent); transition: var(--transition); }
+        a:hover { color: var(--accent-hover); }
+
+        .container { max-width: 800px; margin: 0 auto; padding: 4rem 2rem; }
+        nav { margin-bottom: 3rem; border-bottom: 1px solid rgba(255,255,255,0.05); padding-bottom: 1rem; }
+        .back-link { font-size: 0.95rem; font-weight: 500; display: inline-flex; align-items: center; gap: 8px; color: var(--text-muted); padding: 0.5rem 1rem; background: rgba(255,255,255,0.05); border-radius: 6px; }
+        .back-link:hover { color: var(--text-main); background: rgba(255,255,255,0.1); }
+
+        h1 { font-size: 2.2rem; font-weight: 700; letter-spacing: -1px; margin-bottom: 0.5rem; line-height: 1.2; }
+        .subtitle { font-family: monospace; color: var(--accent); font-size: 0.9rem; margin-bottom: 2rem; display: block; letter-spacing: 0.5px; }
+        h2 { font-size: 1.4rem; font-weight: 600; margin: 3rem 0 1.5rem 0; color: var(--text-main); display: flex; align-items: center; gap: 10px; border-bottom: 1px solid rgba(255,255,255,0.05); padding-bottom: 0.5rem; }
+        p { color: var(--text-muted); font-size: 1.05rem; margin-bottom: 1.5rem; }
+
+        .img-wrapper { width: 100%; border-radius: 8px; overflow: hidden; border: 1px solid rgba(255, 255, 255, 0.08); margin-bottom: 2.5rem; background-color: var(--bg-card); aspect-ratio: 16/9; max-height: 400px; }
+        .img-wrapper img { width: 100%; height: 100%; object-fit: cover; display: block; opacity: 0.9; }
+
+        /* Architecture Flowchart */
+        .flow-container { display: flex; flex-direction: column; align-items: center; gap: 0.5rem; margin: 2rem 0; padding: 2rem; background: rgba(15, 23, 42, 0.5); border-radius: 8px; border: 1px dashed rgba(56, 189, 248, 0.3); }
+        .flow-node { background: var(--bg-card); border: 1px solid rgba(56, 189, 248, 0.4); padding: 0.8rem 1.5rem; border-radius: 6px; color: var(--text-main); font-weight: 500; font-size: 0.95rem; text-align: center; width: 100%; max-width: 400px; }
+        .flow-arrow { color: var(--text-muted); font-size: 1.2rem; margin: 0.2rem 0; }
+        
+        /* Grid and Boxes */
+        .tech-box { background: var(--bg-card); padding: 2rem; border-radius: 8px; border: 1px solid rgba(255,255,255,0.05); margin-bottom: 2rem; }
+        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
+        @media (max-width: 600px) { .grid-2 { grid-template-columns: 1fr; } }
+        
+        ul.engineering-list { list-style: none; display: flex; flex-direction: column; gap: 1rem; }
+        ul.engineering-list li { color: var(--text-muted); font-size: 0.95rem; display: flex; align-items: flex-start; gap: 12px; }
+        ul.engineering-list li i { color: var(--accent); margin-top: 5px; font-size: 0.8rem; }
+        ul.engineering-list strong { color: var(--text-main); }
+
+        /* Code Snippet Window */
+        .code-window { background: #0b1120; border-radius: 8px; border: 1px solid rgba(255,255,255,0.1); overflow: hidden; margin-bottom: 2rem; }
+        .code-header { background: #1e293b; padding: 0.5rem 1rem; border-bottom: 1px solid rgba(255,255,255,0.05); display: flex; gap: 6px; align-items: center; }
+        .mac-btn { width: 12px; height: 12px; border-radius: 50%; }
+        .mac-close { background: #ff5f56; } .mac-min { background: #ffbd2e; } .mac-max { background: #27c93f; }
+        .code-body { padding: 1.5rem; overflow-x: auto; font-family: 'Courier New', Courier, monospace; font-size: 0.9rem; line-height: 1.5; color: #abb2bf; }
+        
+        /* Syntax Colors */
+        .kd { color: #c678dd; } /* Keyword */
+        .nd { color: #d19a66; } /* Define/Number */
+        .nc { color: #e5c07b; } /* Class/Function */
+        .s { color: #98c379; }  /* String */
+        .c { color: #5c6370; font-style: italic; } /* Comment */
+
+        .btn { padding: 0.75rem 1.5rem; border-radius: 6px; font-weight: 600; font-size: 0.9rem; border: 1px solid var(--accent); display: inline-block; background: transparent; color: var(--accent); margin-top: 1rem; }
+        .btn:hover { background: rgba(56, 189, 248, 0.1); }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        
+        <nav>
+            <a href="index.html" class="back-link"><i class="fas fa-arrow-left"></i> Back to Main Portfolio</a>
+        </nav>
+
+        <h1>Pedestrian-Activated Smart Street Lighting System</h1>
+        <span class="subtitle">ARDUINO-BASED SMART CITY MODEL INSPIRED BY JAPANESE PIEZOELECTRIC WALKWAYS</span>
+
+        <div class="img-wrapper">
+            <img src="model.jpg" alt="Smart City Road Model with Pedestrian Lighting">
+        </div>
+
+        <p>This project demonstrates a smart street lighting system where pedestrian interaction activates road lights. Inspired by piezoelectric energy-generating sidewalks used in Japan, the model simulates pressure detection using push buttons connected to an Arduino UNO. When a pedestrian presses either sidewalk button, street lights automatically turn on for a fixed duration to improve safety and energy efficiency.</p>
+
+        <h2><i class="fas fa-project-diagram" style="color: var(--accent);"></i> Control Flow Architecture</h2>
+        <div class="flow-container">
+            <div class="flow-node">Pedestrian Button Press</div>
+            <i class="fas fa-arrow-down flow-arrow"></i>
+            <div class="flow-node">Arduino Input Detection</div>
+            <i class="fas fa-arrow-down flow-arrow"></i>
+            <div class="flow-node">Signal Processing (INPUT_PULLUP logic)</div>
+            <i class="fas fa-arrow-down flow-arrow"></i>
+            <div class="flow-node">LED Control Loop</div>
+            <i class="fas fa-arrow-down flow-arrow"></i>
+            <div class="flow-node" style="border-color: #facc15; background: rgba(250, 204, 21, 0.05); color: #facc15;">Street Lights Activated (3 Seconds)</div>
+        </div>
+
+        <div class="grid-2">
+            <div>
+                <h2><i class="fas fa-microchip" style="color: var(--accent);"></i> Hardware Components</h2>
+                <div class="tech-box" style="height: 100%;">
+                    <ul class="engineering-list">
+                        <li><i class="fas fa-check"></i> Arduino UNO</li>
+                        <li><i class="fas fa-check"></i> Custom PCB Push Buttons (2 units)</li>
+                        <li><i class="fas fa-check"></i> LEDs (6 street lights)</li>
+                        <li><i class="fas fa-check"></i> Current-limiting resistors (220Ω)</li>
+                        <li><i class="fas fa-check"></i> Breadboard & Jumper wires</li>
+                        <li><i class="fas fa-check"></i> USB Power Supply</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div>
+                <h2><i class="fas fa-plug" style="color: var(--accent);"></i> Circuit Design</h2>
+                <div class="tech-box" style="height: 100%;">
+                    <ul class="engineering-list">
+                        <li><i class="fas fa-bolt"></i> Each LED is connected to a separate Arduino digital output pin.</li>
+                        <li><i class="fas fa-bolt"></i> Each LED circuit utilizes a 220Ω resistor for current protection.</li>
+                        <li><i class="fas fa-bolt"></i> Both physical buttons are wired in parallel to a single digital input pin.</li>
+                        <li><i class="fas fa-bolt"></i> Utilized the Arduino's internal pull-up resistor (<code>INPUT_PULLUP</code>) to ensure a stable logic state, preventing floating pin interference.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <h2><i class="fas fa-cogs" style="color: var(--accent);"></i> System Working Principle</h2>
+        <div class="tech-box">
+            <ul class="engineering-list">
+                <li><i class="fas fa-step-forward"></i> <strong>1. Trigger:</strong> Pedestrian presses sidewalk tile (simulated via push button).</li>
+                <li><i class="fas fa-step-forward"></i> <strong>2. Detection:</strong> Arduino detects a <code>LOW</code> signal dropping against the internal pull-up resistor.</li>
+                <li><i class="fas fa-step-forward"></i> <strong>3. Activation:</strong> Arduino outputs <code>HIGH</code> to all LED street light pins simultaneously.</li>
+                <li><i class="fas fa-step-forward"></i> <strong>4. Duration:</strong> Lights remain illuminated for a fixed safety duration of 3 seconds.</li>
+                <li><i class="fas fa-step-forward"></i> <strong>5. Reset:</strong> System automatically shuts off lighting, conserving power until the next trigger.</li>
+            </ul>
+        </div>
+
+        <h2><i class="fas fa-code" style="color: var(--accent);"></i> Firmware Implementation</h2>
+        <p>The logic relies on <code>INPUT_PULLUP</code>, meaning the unpressed state reads as HIGH. When a button is pressed, the circuit connects to ground, dropping the pin to a <code>LOW</code> state to trigger the lighting loop.</p>
+        
+        <div class="code-window">
+            <div class="code-header">
+                <div class="mac-btn mac-close"></div>
+                <div class="mac-btn mac-min"></div>
+                <div class="mac-btn mac-max"></div>
+                <span style="margin-left: 10px; color: #6b7280; font-family: sans-serif; font-size: 0.8rem;">smart_lighting.ino</span>
+            </div>
+            <div class="code-body">
+<span class="kd">#define</span> <span class="nd">BUTTON_PIN 2</span>
+
+<span class="c">// Array to manage 6 street light LEDs</span>
+<span class="kd">int</span> streetLights[] = {<span class="nd">3</span>, <span class="nd">4</span>, <span class="nd">5</span>, <span class="nd">6</span>, <span class="nd">7</span>, <span class="nd">8</span>};
+<span class="kd">int</span> numLights = <span class="nd">6</span>;
+
+<span class="kd">void</span> <span class="nc">setup</span>() {
+  <span class="c">// Internal pull-up ensures stable HIGH state when unpressed</span>
+  <span class="nc">pinMode</span>(BUTTON_PIN, <span class="nd">INPUT_PULLUP</span>);
+
+  <span class="kd">for</span> (<span class="kd">int</span> i = <span class="nd">0</span>; i < numLights; i++) {
+    <span class="nc">pinMode</span>(streetLights[i], <span class="nd">OUTPUT</span>);
+    <span class="nc">digitalWrite</span>(streetLights[i], <span class="nd">LOW</span>); <span class="c">// Ensure off at startup</span>
+  }
+}
+
+<span class="kd">void</span> <span class="nc">loop</span>() {
+  <span class="c">// LOW signal indicates button press (connected to GND)</span>
+  <span class="kd">if</span> (<span class="nc">digitalRead</span>(BUTTON_PIN) == <span class="nd">LOW</span>) {
+    
+    <span class="c">// Activate all street lights</span>
+    <span class="kd">for</span> (<span class="kd">int</span> i = <span class="nd">0</span>; i < numLights; i++) {
+      <span class="nc">digitalWrite</span>(streetLights[i], <span class="nd">HIGH</span>);
+    }
+
+    <span class="nc">delay</span>(<span class="nd">3000</span>); <span class="c">// Maintain illumination for 3 seconds</span>
+
+    <span class="c">// Deactivate lights</span>
+    <span class="kd">for</span> (<span class="kd">int</span> i = <span class="nd">0</span>; i < numLights; i++) {
+      <span class="nc">digitalWrite</span>(streetLights[i], <span class="nd">LOW</span>);
+    }
+  }
+}
+            </div>
+        </div>
+
+        <div class="grid-2">
+            <div>
+                <h2><i class="fas fa-star" style="color: var(--accent);"></i> Key Features</h2>
+                <div class="tech-box" style="height: 100%;">
+                    <ul class="engineering-list">
+                        <li><i class="fas fa-check-circle"></i> Energy efficient lighting</li>
+                        <li><i class="fas fa-check-circle"></i> Pedestrian safety focused</li>
+                        <li><i class="fas fa-check-circle"></i> Real-world smart city inspiration</li>
+                        <li><i class="fas fa-check-circle"></i> Low-cost hardware implementation</li>
+                        <li><i class="fas fa-check-circle"></i> Highly expandable system</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div>
+                <h2><i class="fas fa-rocket" style="color: var(--accent);"></i> Future Scalability</h2>
+                <div class="tech-box" style="height: 100%;">
+                    <ul class="engineering-list">
+                        <li><i class="fas fa-arrow-right"></i> Integration of real piezoelectric sensors</li>
+                        <li><i class="fas fa-arrow-right"></i> Solar-powered independent lighting nodes</li>
+                        <li><i class="fas fa-arrow-right"></i> Automatic night detection (via LDR)</li>
+                        <li><i class="fas fa-arrow-right"></i> Wireless monitoring dashboard</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <h2><i class="fas fa-flag-checkered" style="color: var(--accent);"></i> Conclusion</h2>
+        <p style="margin-bottom: 3rem;">This project demonstrates how simple embedded systems can simulate smart city infrastructure. By combining pedestrian input with automated lighting control, the design highlights energy efficiency and urban safety concepts, proving that scalable logic can be prototyped using highly accessible microcontrollers.</p>
+
+    </div>
+
+</body>
+</html>

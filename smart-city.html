@@ -47,11 +47,10 @@
         .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
         @media (max-width: 600px) { .grid-2 { grid-template-columns: 1fr; } }
         
-        ul.engineering-list { list-style: none; display: flex; flex-direction: column; gap: 1rem; }
-        ul.engineering-list li { color: var(--text-muted); font-size: 0.95rem; display: flex; align-items: flex-start; gap: 12px; }
-        ul.engineering-list li i { color: var(--accent); margin-top: 5px; font-size: 0.8rem; }
+       ul.engineering-list { list-style: none; display: flex; flex-direction: column; gap: 1rem; }
+        ul.engineering-list li { color: var(--text-muted); font-size: 0.95rem; position: relative; padding-left: 28px; line-height: 1.6; }
+        ul.engineering-list li i { color: var(--accent); position: absolute; left: 0; top: 5px; font-size: 0.9rem; }
         ul.engineering-list strong { color: var(--text-main); }
-
         /* Code Snippet Window */
         .code-window { background: #0b1120; border-radius: 8px; border: 1px solid rgba(255,255,255,0.1); overflow: hidden; margin-bottom: 2rem; }
         .code-header { background: #1e293b; padding: 0.5rem 1rem; border-bottom: 1px solid rgba(255,255,255,0.05); display: flex; gap: 6px; align-items: center; }

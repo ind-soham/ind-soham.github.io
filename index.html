@@ -18,9 +18,9 @@
     <style>
         /* --- CSS Variables for Dark Theme --- */
         :root {
-            --bg-dark: #0f172a;       
-            --bg-card: #1e293b;       
-            --text-main: #f8fafc;     
+            --bg-dark: #0f172a;        
+            --bg-card: #1e293b;        
+            --text-main: #f8fafc;      
             --text-muted: #cbd5e1;    
             --accent: #38bdf8;        
             --accent-hover: #0284c7;  
@@ -321,7 +321,39 @@
             <h2 class="section-title">Technical Projects</h2>
             <div class="projects-grid">
                 
-               <div class="project-card featured">
+                <div class="project-card featured">
+                    <div class="img-wrapper">
+                        <img src="https://via.placeholder.com/800x400/1e293b/38bdf8?text=Zyqorath+AI+Interface" alt="Zyqorath AI Interface showing chat and file attachments">
+                    </div>
+
+                    <div>
+                        <span class="featured-badge"><i class="fas fa-star"></i> Featured Build</span>
+                        <div class="project-header">
+                            <h3 class="project-title">Zyqorath AI (Multi-Agent System)</h3>
+                        </div>
+                        <div class="project-tech-stack">
+                            <span>Python</span>
+                            <span>HTML</span>
+                            <span>AI Agent Framework</span>
+                        </div>
+                        <p class="project-desc">Developed a multi-agent AI web application where specialized intelligent systems collaborate to plan, explain, generate, and evaluate tasks. The system features persistent contextual memory tracking, automated code formatting, and native PDF file parsing.</p>
+                        
+                        <div class="engineering-decisions">
+                            <h4>Engineering Decisions:</h4>
+                            <ul>
+                                <li><i class="fas fa-circle"></i> Engineered a multi-agent backend architecture using Python (<code>main.py</code>) to decouple task planning and evaluation into specialized, modular nodes.</li>
+                                <li><i class="fas fa-circle"></i> Built a custom front-end interface capable of stateful interactions, persistent memory tracking, and dynamic attachment handling.</li>
+                                <li><i class="fas fa-circle"></i> Implemented robust document parsing to extract textual data from user-uploaded PDFs directly into the AI's context window for immediate analysis.</li>
+                            </ul>
+                        </div>
+
+                        <div class="project-links" style="margin-top: 1.5rem;">
+                            <a href="https://soham-labs.github.io/Zyqorath-ai/" target="_blank" class="btn btn-primary" style="padding: 0.5rem 1rem; font-size: 0.85rem;"><i class="fas fa-external-link-alt"></i> Live Application</a>
+                            <a href="https://github.com/Soham-labs/Zyqorath-ai" target="_blank"><i class="fab fa-github"></i> Source Code</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-card featured">
                     <div class="img-wrapper">
                         <img src="robot.jpg" alt="Bluetooth-controlled robotic vehicle with ultrasonic sensor">
                     </div>
@@ -484,6 +516,12 @@
         <div class="container">
             <h2 class="section-title">Build Log</h2>
             <div class="log-container">
+                
+                <div class="log-entry">
+                    <h3 class="log-title">Zyqorath AI Release</h3>
+                    <span class="log-date">April 2026</span>
+                    <p class="log-desc">Architected and deployed a multi-agent AI system featuring PDF document parsing, code formatting, and stateful persistent memory for complex technical queries.</p>
+                </div>
                 
                 <div class="log-entry">
                     <h3 class="log-title">Architectural Portfolio Revisions</h3>

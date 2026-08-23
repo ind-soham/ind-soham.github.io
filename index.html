@@ -2,21 +2,20 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Soham Dalvi | Computer Science Portfolio</title>
+    <title>Soham Dalvi | CS Portfolio</title>
     
-   <link rel="icon" type="image/svg+xml" href="favicon.svg">
-    
-    <meta name="description" content="Portfolio of Soham Dalvi, focusing on computer science, web systems, and embedded hardware engineering.">
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <meta name="description" content="Portfolio of Soham Dalvi - Computer Science, web systems, and embedded hardware.">
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
-        /* --- CSS Variables for Dark Theme -- */
+        /* Variables */
         :root {
             --bg-dark: #0f172a;        
             --bg-card: #1e293b;        
@@ -27,13 +26,19 @@
             --transition: all 0.3s ease;
         }
 
-        /* --- Global Reset & Typography --- */
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+        /* Base styles & Reset */
+        * { 
+            margin: 0; 
+            padding: 0; 
+            box-sizing: border-box; 
+        }
+
         html { 
             scroll-behavior: smooth; 
             scrollbar-width: thin; 
             scrollbar-color: var(--bg-card) var(--bg-dark);
         }
+
         body {
             font-family: 'Inter', sans-serif;
             background-color: var(--bg-dark);
@@ -41,34 +46,78 @@
             line-height: 1.6;
             overflow-x: hidden;
         }
-        a { text-decoration: none; color: var(--accent); transition: var(--transition); }
-        a:hover { color: var(--accent-hover); }
+
+        a { 
+            text-decoration: none; 
+            color: var(--accent); 
+            transition: var(--transition); 
+        }
+
+        a:hover { 
+            color: var(--accent-hover); 
+        }
+
         ul { list-style: none; }
-        .container { max-width: 1000px; margin: 0 auto; padding: 0 2rem; }
+
+        .container { 
+            max-width: 1000px; 
+            margin: 0 auto; 
+            padding: 0 2rem; 
+        }
         
-        section { padding: 4rem 0; border-bottom: 1px solid rgba(255, 255, 255, 0.05); }
-        section:last-of-type { border-bottom: none; }
+        /* Layout utilities */
+        section { 
+            padding: 4rem 0; 
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05); 
+        }
+
+        section:last-of-type { 
+            border-bottom: none; 
+        }
         
         h2.section-title {
-            font-size: 1.75rem; margin-bottom: 2rem; color: var(--text-main);
-            position: relative; display: inline-block; font-weight: 700; letter-spacing: -0.5px;
-        }
-        h2.section-title::after {
-            content: ''; position: absolute; left: 0; bottom: -6px;
-            width: 40px; height: 3px; background-color: var(--accent); border-radius: 2px;
+            font-size: 1.75rem; 
+            margin-bottom: 2rem; 
+            color: var(--text-main);
+            position: relative; 
+            display: inline-block; 
+            font-weight: 700; 
+            letter-spacing: -0.5px;
         }
 
-        /* --- Custom Scrollbar --- */
+        h2.section-title::after {
+            content: ''; 
+            position: absolute; 
+            left: 0; 
+            bottom: -6px;
+            width: 40px; 
+            height: 3px; 
+            background-color: var(--accent); 
+            border-radius: 2px;
+        }
+
+        /* Webkit scrollbars */
         ::-webkit-scrollbar { width: 10px; }
         ::-webkit-scrollbar-track { background: var(--bg-dark); }
-        ::-webkit-scrollbar-thumb { background: var(--bg-card); border-radius: 5px; border: 1px solid rgba(255,255,255,0.05); }
+        ::-webkit-scrollbar-thumb { 
+            background: var(--bg-card); 
+            border-radius: 5px; 
+            border: 1px solid rgba(255,255,255,0.05); 
+        }
         ::-webkit-scrollbar-thumb:hover { background: rgba(56, 189, 248, 0.3); }
 
-        /* --- Scroll Reveal Animation --- */
-        .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s cubic-bezier(0.5, 0, 0, 1); }
-        .reveal.active { opacity: 1; transform: translateY(0); }
+        /* Animations */
+        .reveal { 
+            opacity: 0; 
+            transform: translateY(30px); 
+            transition: all 0.8s cubic-bezier(0.5, 0, 0, 1); 
+        }
+        .reveal.active { 
+            opacity: 1; 
+            transform: translateY(0); 
+        }
 
-        /* --- Image Wrappers & Featured Layout --- */
+        /* Project image wrappers */
         .img-wrapper {
             width: 100%;
             border-radius: 6px;
@@ -78,7 +127,6 @@
             margin-bottom: 1.5rem;
         }
 
-        /* Forces a horizontal widescreen shape and stops tall stretching */
         .project-card .img-wrapper {
             aspect-ratio: 16/10; 
             max-height: 320px; 
@@ -88,8 +136,8 @@
             width: 100%;
             height: 100%; 
             display: block;
-            object-fit: cover; /* Automatically crops tall images to fit perfectly */
-            object-position: top; /* Ensures the top of the website screenshot is visible */
+            object-fit: cover;
+            object-position: top;
             opacity: 0.85; 
             transition: opacity 0.3s ease, transform 0.4s ease;
         }
@@ -99,7 +147,7 @@
             transform: scale(1.02); 
         }
 
-        /* Featured Project Layout (Desktop Span) */
+        /* Featured project */
         .project-card.featured {
             grid-column: 1 / -1; 
             border-color: rgba(56, 189, 248, 0.3);
@@ -131,140 +179,320 @@
             }
         }
 
-        /* --- Navigation --- */
+        /* Navbar */
         header {
-            position: fixed; top: 0; width: 100%;
-            background-color: rgba(15, 23, 42, 0.95); backdrop-filter: blur(10px);
-            z-index: 1000; border-bottom: 1px solid rgba(255,255,255,0.05);
+            position: fixed; 
+            top: 0; 
+            width: 100%;
+            background-color: rgba(15, 23, 42, 0.95); 
+            backdrop-filter: blur(10px);
+            z-index: 1000; 
+            border-bottom: 1px solid rgba(255,255,255,0.05);
         }
-        nav { display: flex; justify-content: space-between; align-items: center; height: 70px; }
-        .logo { font-size: 1.25rem; font-weight: 700; color: var(--text-main); letter-spacing: -0.5px; }
+
+        nav { 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            height: 70px; 
+        }
+
+        .logo { 
+            font-size: 1.25rem; 
+            font-weight: 700; 
+            color: var(--text-main); 
+            letter-spacing: -0.5px; 
+        }
+
         .logo span { color: var(--accent); }
+        
         .nav-links { display: flex; gap: 2rem; }
         .nav-links a { color: var(--text-muted); font-weight: 500; font-size: 0.9rem; }
         .nav-links a:hover { color: var(--text-main); }
         
-        /* Mobile Menu Button */
-        .menu-toggle { display: none; color: var(--text-main); font-size: 1.5rem; cursor: pointer; }
+        .menu-toggle { 
+            display: none; 
+            color: var(--text-main); 
+            font-size: 1.5rem; 
+            cursor: pointer; 
+        }
 
-        /* --- Hero Section (Identity) --- */
-        #hero { min-height: 100vh; display: flex; align-items: center; padding-top: 70px; }
+        /* Hero */
+        #hero { 
+            min-height: 100vh; 
+            display: flex; 
+            align-items: center; 
+            padding-top: 70px; 
+        }
+
         .hero-content { max-width: 800px; }
-        .hero-title { font-size: clamp(2.5rem, 5vw, 4rem); font-weight: 700; line-height: 1.1; margin-bottom: 0.5rem; letter-spacing: -1px; }
-        .hero-subtitle { font-size: clamp(1.2rem, 2vw, 1.5rem); color: var(--accent); font-weight: 500; margin-bottom: 1.5rem; }
         
-        .hero-desc { color: var(--text-muted); font-size: 1.1rem; max-width: 650px; margin-bottom: 2.5rem; line-height: 1.7; }
+        .hero-title { 
+            font-size: clamp(2.5rem, 5vw, 4rem); 
+            font-weight: 700; 
+            line-height: 1.1; 
+            margin-bottom: 0.5rem; 
+            letter-spacing: -1px; 
+        }
+
+        .hero-subtitle { 
+            font-size: clamp(1.2rem, 2vw, 1.5rem); 
+            color: var(--accent); 
+            font-weight: 500; 
+            margin-bottom: 1.5rem; 
+        }
+        
+        .hero-desc { 
+            color: var(--text-muted); 
+            font-size: 1.1rem; 
+            max-width: 650px; 
+            margin-bottom: 2.5rem; 
+            line-height: 1.7; 
+        }
         
         .hero-buttons { display: flex; gap: 1rem; flex-wrap: wrap; }
-        .btn { display: inline-block; padding: 0.75rem 1.5rem; border-radius: 6px; font-weight: 600; font-size: 0.9rem; cursor: pointer; transition: var(--transition); border: 1px solid var(--accent); }
+        
+        .btn { 
+            display: inline-block; 
+            padding: 0.75rem 1.5rem; 
+            border-radius: 6px; 
+            font-weight: 600; 
+            font-size: 0.9rem; 
+            cursor: pointer; 
+            transition: var(--transition); 
+            border: 1px solid var(--accent); 
+        }
+
         .btn-primary { background-color: transparent; color: var(--accent); }
         .btn-primary:hover { background-color: rgba(56, 189, 248, 0.1); }
+        
         .btn-secondary { border-color: rgba(255,255,255,0.2); color: var(--text-main); }
         .btn-secondary:hover { border-color: var(--text-main); }
 
-        /* --- Projects Section --- */
-        .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2.5rem; }
-        .project-card {
-            background-color: var(--bg-card); border-radius: 8px; padding: 2.5rem;
-            border: 1px solid rgba(255,255,255,0.05); transition: var(--transition);
+        /* Projects Section */
+        .projects-grid { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); 
+            gap: 2.5rem; 
         }
+
+        .project-card {
+            background-color: var(--bg-card); 
+            border-radius: 8px; 
+            padding: 2.5rem;
+            border: 1px solid rgba(255,255,255,0.05); 
+            transition: var(--transition);
+        }
+
         .project-card:hover { border-color: rgba(56, 189, 248, 0.3); }
-        .project-header { display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 1rem; margin-bottom: 0.5rem; }
+        
+        .project-header { 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: flex-start; 
+            flex-wrap: wrap; 
+            gap: 1rem; 
+            margin-bottom: 0.5rem; 
+        }
+        
         .project-title { font-size: 1.4rem; font-weight: 600; }
         
         .project-tech-stack { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 1rem; }
-        .project-tech-stack span { color: var(--accent); font-family: monospace; font-size: 0.8rem; letter-spacing: 0.5px; background: rgba(56, 189, 248, 0.05); padding: 0.2rem 0.6rem; border-radius: 4px; border: 1px solid rgba(56, 189, 248, 0.1); }
         
-        .project-desc { color: var(--text-muted); font-size: 1rem; margin-bottom: 1.5rem; line-height: 1.6;}
+        .project-tech-stack span { 
+            color: var(--accent); 
+            font-family: monospace; 
+            font-size: 0.8rem; 
+            background: rgba(56, 189, 248, 0.05); 
+            padding: 0.2rem 0.6rem; 
+            border-radius: 4px; 
+            border: 1px solid rgba(56, 189, 248, 0.1); 
+        }
+        
+        .project-desc { 
+            color: var(--text-muted); 
+            font-size: 1rem; 
+            margin-bottom: 1.5rem; 
+            line-height: 1.6;
+        }
         
         .engineering-decisions {
-            background: rgba(15, 23, 42, 0.5); padding: 1.25rem; border-radius: 6px; margin-bottom: 1.5rem; border-left: 2px solid var(--accent);
+            background: rgba(15, 23, 42, 0.5); 
+            padding: 1.25rem; 
+            border-radius: 6px; 
+            margin-bottom: 1.5rem; 
+            border-left: 2px solid var(--accent);
         }
-        .engineering-decisions h4 { font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; color: var(--text-main); margin-bottom: 0.75rem; }
+
+        .engineering-decisions h4 { 
+            font-size: 0.9rem; 
+            text-transform: uppercase; 
+            letter-spacing: 1px; 
+            color: var(--text-main); 
+            margin-bottom: 0.75rem; 
+        }
+
         .engineering-decisions ul { display: flex; flex-direction: column; gap: 0.5rem; }
-        .engineering-decisions li { color: var(--text-muted); font-size: 0.9rem; display: flex; align-items: flex-start; gap: 8px; }
+        .engineering-decisions li { 
+            color: var(--text-muted); 
+            font-size: 0.9rem; 
+            display: flex; 
+            align-items: flex-start; 
+            gap: 8px; 
+        }
         .engineering-decisions i { color: var(--accent); font-size: 0.7rem; margin-top: 5px; }
 
         .project-links { display: flex; gap: 1.25rem; }
-        .project-links a { font-size: 0.95rem; font-weight: 500; color: var(--text-main); display: flex; align-items: center; gap: 0.5rem; transition: var(--transition); }
+        .project-links a { 
+            font-size: 0.95rem; 
+            font-weight: 500; 
+            color: var(--text-main); 
+            display: flex; 
+            align-items: center; 
+            gap: 0.5rem; 
+            transition: var(--transition); 
+        }
         .project-links a:hover { color: var(--accent); }
 
-        /* --- Thinking & Learning Layout --- */
+        /* Research & Learning */
         .thinking-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; }
         
         .curiosity-list { display: flex; flex-direction: column; gap: 1rem; }
         .curiosity-list li {
-            color: var(--text-muted); font-size: 0.95rem; display: flex; align-items: flex-start; gap: 12px;
-            background-color: var(--bg-card); padding: 1rem 1.25rem; border-radius: 6px; border: 1px solid rgba(255,255,255,0.02);
+            color: var(--text-muted); 
+            font-size: 0.95rem; 
+            display: flex; 
+            align-items: flex-start; 
+            gap: 12px;
+            background-color: var(--bg-card); 
+            padding: 1rem 1.25rem; 
+            border-radius: 6px; 
+            border: 1px solid rgba(255,255,255,0.02);
         }
         .curiosity-list i { color: var(--accent); font-size: 0.9rem; margin-top: 4px; }
 
         .learning-box {
-            background-color: rgba(56, 189, 248, 0.03); border: 1px dashed var(--accent);
-            padding: 1.5rem; border-radius: 8px; height: fit-content;
+            background-color: rgba(56, 189, 248, 0.03); 
+            border: 1px dashed var(--accent);
+            padding: 1.5rem; 
+            border-radius: 8px; 
+            height: fit-content;
         }
+
         .learning-box h3 { color: var(--accent); margin-bottom: 1rem; font-size: 1.1rem; }
         .learning-list { display: flex; flex-direction: column; gap: 0.75rem; }
         .learning-list li { color: var(--text-muted); font-size: 0.95rem; display: flex; align-items: flex-start; gap: 10px; }
         .learning-list i { font-size: 0.8rem; color: var(--accent); margin-top: 4px; }
 
-        /* --- Biography & Academic Context --- */
+        /* About / Academic context */
         .bio-grid { display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 3rem; align-items: start; }
         .bio-text p { color: var(--text-muted); margin-bottom: 1.2rem; font-size: 1rem; line-height: 1.7; }
         
-        .academic-context { background-color: var(--bg-card); padding: 1.5rem; border-radius: 8px; border: 1px solid rgba(255,255,255,0.05); }
+        .academic-context { 
+            background-color: var(--bg-card); 
+            padding: 1.5rem; 
+            border-radius: 8px; 
+            border: 1px solid rgba(255,255,255,0.05); 
+        }
+
         .academic-context h3 { font-size: 1.1rem; color: var(--text-main); margin-bottom: 0.25rem; }
         .school-name { color: var(--accent); font-size: 0.9rem; font-weight: 500; margin-bottom: 1rem; display: block; }
+        
         .academic-list { display: flex; flex-direction: column; gap: 0.5rem; }
-        .academic-list li { color: var(--text-muted); font-size: 0.9rem; display: flex; justify-content: space-between; border-bottom: 1px solid rgba(255,255,255,0.05); padding-bottom: 0.4rem; }
+        .academic-list li { 
+            color: var(--text-muted); 
+            font-size: 0.9rem; 
+            display: flex; 
+            justify-content: space-between; 
+            border-bottom: 1px solid rgba(255,255,255,0.05); 
+            padding-bottom: 0.4rem; 
+        }
         .academic-list li:last-child { border-bottom: none; padding-bottom: 0; }
         .course-code { font-family: monospace; color: var(--accent); }
 
-        /* --- Build Log Section --- */
+        /* Build Log */
         .log-container {
             border-left: 2px solid rgba(255, 255, 255, 0.08);
-            margin-left: 10px; padding-left: 2rem;
-            display: flex; flex-direction: column; gap: 2.5rem;
+            margin-left: 10px; 
+            padding-left: 2rem;
+            display: flex; 
+            flex-direction: column; 
+            gap: 2.5rem;
         }
+
         .log-entry { position: relative; }
         .log-entry::before {
-            content: ''; position: absolute; left: -39px; top: 6px;
-            width: 12px; height: 12px; background-color: var(--bg-dark);
-            border: 2px solid var(--accent); border-radius: 50%;
+            content: ''; 
+            position: absolute; 
+            left: -39px; 
+            top: 6px;
+            width: 12px; 
+            height: 12px; 
+            background-color: var(--bg-dark);
+            border: 2px solid var(--accent); 
+            border-radius: 50%;
         }
+
         .log-title { font-size: 1.1rem; font-weight: 600; color: var(--text-main); margin-bottom: 0.2rem; }
         .log-date { font-family: monospace; font-size: 0.85rem; color: var(--accent); margin-bottom: 0.75rem; display: block; }
         .log-desc { color: var(--text-muted); font-size: 0.95rem; line-height: 1.6; }
 
-        /* --- GitHub Profiles Section --- */
+        /* Repos */
         .profiles-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; }
         .profile-card {
-            background-color: var(--bg-card); padding: 2rem; border-radius: 8px;
-            border: 1px solid rgba(255,255,255,0.05); text-align: left;
+            background-color: var(--bg-card); 
+            padding: 2rem; 
+            border-radius: 8px;
+            border: 1px solid rgba(255,255,255,0.05); 
+            text-align: left;
         }
-        .profile-card h3 { font-size: 1.1rem; margin-bottom: 0.5rem; color: var(--text-main); display: flex; align-items: center; gap: 10px; }
+        .profile-card h3 { 
+            font-size: 1.1rem; 
+            margin-bottom: 0.5rem; 
+            color: var(--text-main); 
+            display: flex; 
+            align-items: center; 
+            gap: 10px; 
+        }
         .profile-card a { font-family: monospace; color: var(--accent); font-size: 0.9rem; margin-bottom: 1rem; display: inline-block; }
         .profile-card p { color: var(--text-muted); font-size: 0.9rem; line-height: 1.5; }
 
-        /* --- Contact Section --- */
+        /* Contact Section */
         #contact { text-align: center; max-width: 700px; margin: 0 auto; }
         .contact-links { display: flex; justify-content: center; align-items: center; flex-wrap: wrap; gap: 2rem; margin-top: 2rem; }
         .contact-icon { font-size: 1.8rem; color: var(--text-muted); transition: var(--transition); display: flex; align-items: center; gap: 10px; }
         .contact-icon:hover { color: var(--accent); transform: translateY(-3px); }
         .email-text { font-size: 1.1rem; font-family: 'Inter', sans-serif; font-weight: 500; }
 
-        /* --- Footer --- */
-        footer { text-align: center; padding: 2rem 0; color: var(--text-muted); font-size: 0.85rem; border-top: 1px solid rgba(255,255,255,0.05); }
+        /* Footer */
+        footer { 
+            text-align: center; 
+            padding: 2rem 0; 
+            color: var(--text-muted); 
+            font-size: 0.85rem; 
+            border-top: 1px solid rgba(255,255,255,0.05); 
+        }
 
-        /* --- Responsive Design --- */
+        /* Mobile Adjustments */
         @media (max-width: 768px) {
             .menu-toggle { display: block; }
+            
             .nav-links {
-                position: fixed; top: 70px; right: -100%; height: calc(100vh - 70px); width: 100%;
-                background-color: rgba(15, 23, 42, 0.98); backdrop-filter: blur(10px);
-                flex-direction: column; align-items: center; justify-content: center; gap: 3rem;
-                transition: right 0.3s ease; border-top: 1px solid rgba(255,255,255,0.05);
+                position: fixed; 
+                top: 70px; 
+                right: -100%; 
+                height: calc(100vh - 70px); 
+                width: 100%;
+                background-color: rgba(15, 23, 42, 0.98); 
+                backdrop-filter: blur(10px);
+                flex-direction: column; 
+                align-items: center; 
+                justify-content: center; 
+                gap: 3rem;
+                transition: right 0.3s ease; 
+                border-top: 1px solid rgba(255,255,255,0.05);
             }
+
             .nav-links.active { right: 0; }
             .nav-links a { font-size: 1.2rem; }
             
@@ -323,7 +551,7 @@
                 
                 <div class="project-card featured">
                     <div class="img-wrapper">
-                        <img src="https://via.placeholder.com/800x400/1e293b/38bdf8?text=Zyqorath+AI+Interface" alt="Zyqorath AI Interface showing chat and file attachments">
+                        <img src="zyqorath-ui.jpg" alt="Zyqorath AI Interface showing chat and file attachments">
                     </div>
 
                     <div>
@@ -353,6 +581,7 @@
                         </div>
                     </div>
                 </div>
+
                 <div class="project-card featured">
                     <div class="img-wrapper">
                         <img src="robot.jpg" alt="Bluetooth-controlled robotic vehicle with ultrasonic sensor">
@@ -488,10 +717,10 @@
                     <div style="margin-top: 2rem;">
                         <h4 style="color: var(--text-main); font-size: 1.1rem; margin-bottom: 1rem;"><i class="fas fa-trophy" style="color: var(--accent);"></i> Competitions & Exposure</h4>
                         <div class="img-wrapper" style="aspect-ratio: auto; max-height: none;">
-                            <img src="tcs.jpg" alt="Participating in the TCS InquisITive 2024 competition" style="object-fit: contain;">
+                            <img src="tcs.jpg" alt="Participating in the TCS InquisITive competition" style="object-fit: contain;">
                         </div>
                         <p style="color: var(--text-muted); font-size: 0.95rem; margin-top: 0.5rem;">
-                            Representing my institution at <strong>TCS InquisITive 2024</strong>. Engaging in high-level technical competitions sharpens my ability to solve problems under pressure and exposes me to industry-standard technological trends.
+                            Representing my institution at <strong>TCS InquisITive</strong>. Engaging in high-level technical competitions sharpens my ability to solve problems under pressure and exposes me to industry-standard technological trends.
                         </p>
                     </div>
                 </div>
@@ -586,14 +815,13 @@
     </footer>
 
     <script>
-        // 1. Mobile Menu Toggle Logic
+        // Setup mobile menu
         const menuToggle = document.querySelector('#mobile-menu');
         const navLinks = document.querySelector('#nav-links');
         
         menuToggle.addEventListener('click', () => {
             navLinks.classList.toggle('active');
             
-            // Swap hamburger icon for an 'X' icon when open
             const icon = menuToggle.querySelector('i');
             if(navLinks.classList.contains('active')) {
                 icon.classList.remove('fa-bars');
@@ -604,7 +832,7 @@
             }
         });
 
-        // Close mobile menu automatically when a link is clicked
+        // Auto-close menu on link click
         document.querySelectorAll('.nav-links a').forEach(link => {
             link.addEventListener('click', () => {
                 navLinks.classList.remove('active');
@@ -612,29 +840,26 @@
             });
         });
 
-        // 2. Scroll Reveal Animation Logic (Intersection Observer)
+        // Scroll animations
         const reveals = document.querySelectorAll('.reveal');
-        const revealOptions = { 
+        
+        const observerOptions = { 
             threshold: 0.15, 
             rootMargin: "0px 0px -50px 0px" 
         };
 
-        const revealOnScroll = new IntersectionObserver(function(entries, observer) {
+        const revealOnScroll = new IntersectionObserver((entries, observer) => {
             entries.forEach(entry => {
                 if (!entry.isIntersecting) return;
                 
-                // Add the active class to trigger the CSS animation
                 entry.target.classList.add('active');
-                
-                // Stop observing the element once it has been revealed
                 observer.unobserve(entry.target);
             });
-        }, revealOptions);
+        }, observerOptions);
 
         reveals.forEach(reveal => {
             revealOnScroll.observe(reveal);
         });
     </script>
-
 </body>
 </html>

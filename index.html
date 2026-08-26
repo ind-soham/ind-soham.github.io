@@ -22,12 +22,9 @@
             --transition: all 0.3s ease;
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        
         body {
             background-color: var(--bg);
             color: var(--text);
@@ -38,148 +35,78 @@
 
         a { color: inherit; text-decoration: none; transition: var(--transition); }
         a:hover { color: var(--accent); }
+        ul { list-style: none; }
 
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 4rem 2rem;
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
+
+        /* --- Scroll Reveal Animations --- */
+        .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s cubic-bezier(0.5, 0, 0, 1); }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+
+        /* --- Navigation --- */
+        header {
+            position: fixed; top: 0; width: 100%;
+            background-color: rgba(9, 9, 11, 0.85); backdrop-filter: blur(10px);
+            z-index: 1000; border-bottom: 1px solid var(--border);
         }
+        nav { display: flex; justify-content: space-between; align-items: center; height: 70px; }
+        .logo { font-family: 'Syncopate', sans-serif; font-size: 1.25rem; font-weight: 700; color: var(--text); text-transform: uppercase; }
+        .logo span { color: var(--accent); }
+        
+        .nav-links { display: flex; gap: 2rem; }
+        .nav-links a { color: var(--muted); font-size: 0.9rem; font-weight: 500; text-transform: uppercase; letter-spacing: 1px; }
+        .nav-links a:hover { color: var(--text); }
+        
+        .menu-toggle { display: none; color: var(--text); font-size: 1.5rem; cursor: pointer; }
+
+        /* --- Global Layout Utilities --- */
+        section { padding: 6rem 0; border-bottom: 1px solid var(--border); }
+        section:last-of-type { border-bottom: none; }
+        
+        .section-header { margin-bottom: 3rem; display: flex; justify-content: space-between; align-items: flex-end; }
+        .section-title { font-family: 'Syncopate', sans-serif; font-size: clamp(1.5rem, 3vw, 2.5rem); text-transform: uppercase; }
 
         /* --- Hero Section --- */
-        .hero {
-            min-height: 70vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            border-bottom: 1px solid var(--border);
-            padding-bottom: 4rem;
-        }
-
-        .hero-tag {
-            font-family: monospace;
-            color: var(--accent);
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            font-size: 0.9rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .hero h1 {
-            font-family: 'Syncopate', sans-serif;
-            font-size: clamp(2.8rem, 8vw, 8rem);
-            line-height: 0.95;
-            text-transform: uppercase;
-            letter-spacing: -2px;
-            font-weight: 700;
-        }
-
-        .hero h1 span {
-            color: transparent;
-            -webkit-text-stroke: 1px var(--muted);
-            transition: var(--transition);
-        }
-
-        .hero h1 span:hover {
-            color: var(--text);
-            -webkit-text-stroke: 0px;
-        }
-
-        .hero-desc {
-            max-width: 550px;
-            margin-top: 2.5rem;
-            font-size: 1.2rem;
-            color: var(--muted);
-            font-weight: 300;
-        }
-
-        /* --- Global Section Headers --- */
-        .section-header {
-            margin: 6rem 0 3rem 0;
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-end;
-            border-bottom: 1px solid var(--border);
-            padding-bottom: 1rem;
-        }
-
-        .section-title {
-            font-family: 'Syncopate', sans-serif;
-            font-size: clamp(1.5rem, 3vw, 2.5rem);
-            text-transform: uppercase;
-        }
-
-        /* --- Tech Boxes & Lists (Reused from Project Pages) --- */
-        .tech-box {
-            background: var(--surface);
-            padding: 2rem;
-            border-radius: 12px;
-            border: 1px solid var(--border);
-            height: 100%;
-        }
-
-        .tech-box h3 {
-            font-family: 'Syncopate', sans-serif;
-            font-size: 1rem;
-            margin-bottom: 1.5rem;
-            color: var(--text);
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
+        #hero { min-height: 100vh; display: flex; align-items: center; padding-top: 70px; border-bottom: 1px solid var(--border); }
+        .hero-tag { font-family: monospace; color: var(--accent); text-transform: uppercase; letter-spacing: 2px; font-size: 0.9rem; margin-bottom: 1.5rem; }
+        .hero h1 { font-family: 'Syncopate', sans-serif; font-size: clamp(2.8rem, 8vw, 8rem); line-height: 0.95; text-transform: uppercase; letter-spacing: -2px; font-weight: 700; }
+        .hero h1 span { color: transparent; -webkit-text-stroke: 1px var(--muted); transition: var(--transition); }
+        .hero h1 span:hover { color: var(--text); -webkit-text-stroke: 0px; }
+        .hero-desc { max-width: 550px; margin-top: 2.5rem; font-size: 1.2rem; color: var(--muted); font-weight: 300; margin-bottom: 3rem; }
         
-        .tech-box h3 i { color: var(--accent); }
+        .btn { padding: 1rem 2rem; border-radius: 8px; font-weight: 600; font-size: 0.9rem; border: 1px solid var(--accent); display: inline-block; background: transparent; color: var(--accent); text-transform: uppercase; font-family: 'Syncopate', sans-serif; transition: var(--transition); }
+        .btn:hover { background: var(--accent); color: var(--bg); }
+        .hero-buttons { display: flex; gap: 1rem; flex-wrap: wrap; }
 
-        ul.engineering-list { list-style: none; display: flex; flex-direction: column; gap: 1rem; }
+        /* --- Tech Boxes & Lists --- */
+        .tech-box { background: var(--surface); padding: 2rem; border-radius: 12px; border: 1px solid var(--border); height: 100%; }
+        .tech-box h3 { font-family: 'Syncopate', sans-serif; font-size: 1rem; margin-bottom: 1.5rem; color: var(--text); text-transform: uppercase; letter-spacing: 1px; display: flex; align-items: center; gap: 10px; }
+        .tech-box h3 i { color: var(--accent); }
+        
+        ul.engineering-list { display: flex; flex-direction: column; gap: 1rem; }
         ul.engineering-list li { color: var(--muted); font-size: 0.95rem; position: relative; padding-left: 24px; line-height: 1.6; font-weight: 300; }
         ul.engineering-list li i { color: var(--accent); position: absolute; left: 0; top: 5px; font-size: 0.85rem; }
         ul.engineering-list strong { color: var(--text); font-weight: 500; }
-
+        
         .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
 
         /* --- Projects Grid --- */
         .projects-grid { display: flex; flex-direction: column; gap: 2.5rem; }
-        
-        .project-card {
-            background-color: var(--surface);
-            border: 1px solid var(--border);
-            border-radius: 12px;
-            overflow: hidden;
-            transition: var(--transition);
-            display: grid;
-            grid-template-columns: 1.2fr 1fr;
-            align-items: center;
-        }
-
+        .project-card { background-color: var(--surface); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; transition: var(--transition); display: grid; grid-template-columns: 1.2fr 1fr; align-items: center; }
         .project-card:hover { border-color: var(--accent); transform: translateY(-4px); }
-
-        .project-img-wrapper {
-            width: 100%; height: 100%;
-            min-height: 280px; max-height: 360px;
-            overflow: hidden; background-color: #000;
-        }
-
-        .project-img-wrapper img {
-            width: 100%; height: 100%; object-fit: cover;
-            opacity: 0.8; transition: var(--transition); filter: grayscale(50%);
-        }
-
-        .project-card:hover .project-img-wrapper img { opacity: 1; transform: scale(1.03); filter: grayscale(0%); }
-
-        .project-content { padding: 2.5rem; display: flex; flex-direction: column; justify-content: space-between; height: 100%; }
         
-        .project-title {
-            font-family: 'Syncopate', sans-serif; font-size: 1.6rem; font-weight: 700;
-            text-transform: uppercase; margin-bottom: 0.75rem; transition: var(--transition);
-        }
+        .project-img-wrapper { width: 100%; height: 100%; min-height: 280px; max-height: 360px; overflow: hidden; background-color: #000; }
+        .project-img-wrapper img { width: 100%; height: 100%; object-fit: cover; opacity: 0.8; transition: var(--transition); filter: grayscale(50%); }
+        .project-card:hover .project-img-wrapper img { opacity: 1; transform: scale(1.03); filter: grayscale(0%); }
+        
+        .project-content { padding: 2.5rem; display: flex; flex-direction: column; justify-content: space-between; height: 100%; }
+        .project-title { font-family: 'Syncopate', sans-serif; font-size: 1.6rem; font-weight: 700; text-transform: uppercase; margin-bottom: 0.75rem; transition: var(--transition); }
         .project-card:hover .project-title { color: var(--accent); }
-
         .project-desc { color: var(--muted); font-size: 0.95rem; margin-bottom: 1.5rem; line-height: 1.6; }
-
+        
         .tech-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1.5rem; }
         .tech-tags span { font-family: monospace; font-size: 0.75rem; padding: 0.3rem 0.6rem; background: rgba(255, 255, 255, 0.05); border: 1px solid var(--border); border-radius: 4px; }
-
+        
         .project-link { font-weight: 600; font-size: 0.9rem; color: var(--accent); display: inline-flex; align-items: center; gap: 6px; }
         .project-link:hover { gap: 10px; }
 
@@ -187,8 +114,8 @@
         .bio-grid { display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 3rem; align-items: start; }
         .bio-text p { color: var(--muted); margin-bottom: 1.2rem; font-size: 1rem; line-height: 1.7; font-weight: 300; }
         
-        .exposure-img { width: 100%; border-radius: 8px; overflow: hidden; border: 1px solid var(--border); margin: 1.5rem 0 1rem 0; background-color: #000; }
-        .exposure-img img { width: 100%; display: block; filter: grayscale(50%); transition: var(--transition); }
+        .exposure-img { width: 100%; border-radius: 8px; overflow: hidden; border: 1px solid var(--border); margin: 1.5rem 0 1rem 0; background-color: #000; aspect-ratio: 16/9; }
+        .exposure-img img { width: 100%; height: 100%; object-fit: cover; display: block; filter: grayscale(50%); transition: var(--transition); }
         .exposure-img:hover img { filter: grayscale(0%); transform: scale(1.02); }
 
         .academic-list { display: flex; flex-direction: column; gap: 1rem; }
@@ -197,37 +124,35 @@
         .course-code { font-family: monospace; color: var(--accent); background: rgba(204, 255, 0, 0.1); padding: 0.2rem 0.5rem; border-radius: 4px; }
 
         /* --- Build Log Timeline --- */
-        .timeline {
-            border-left: 1px solid var(--border);
-            margin-left: 10px;
-            padding-left: 2rem;
-            display: flex;
-            flex-direction: column;
-            gap: 3rem;
-        }
-
+        .timeline { border-left: 1px solid var(--border); margin-left: 10px; padding-left: 2rem; display: flex; flex-direction: column; gap: 3rem; }
         .timeline-entry { position: relative; }
-        .timeline-entry::before {
-            content: ''; position: absolute; left: -39px; top: 6px;
-            width: 12px; height: 12px; background-color: var(--bg);
-            border: 2px solid var(--accent); border-radius: 50%;
-        }
-
+        .timeline-entry::before { content: ''; position: absolute; left: -39px; top: 6px; width: 12px; height: 12px; background-color: var(--bg); border: 2px solid var(--accent); border-radius: 50%; }
         .timeline-title { font-size: 1.2rem; font-weight: 600; color: var(--text); margin-bottom: 0.2rem; }
         .timeline-date { font-family: monospace; font-size: 0.85rem; color: var(--accent); margin-bottom: 1rem; display: block; text-transform: uppercase; }
         .timeline-desc { color: var(--muted); font-size: 0.95rem; line-height: 1.6; font-weight: 300; max-width: 600px; }
 
-        /* --- Footer --- */
-        footer {
-            margin-top: 6rem; border-top: 1px solid var(--border); padding: 3rem 0;
-            display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1.5rem;
-            color: var(--muted); font-size: 0.9rem;
-        }
+        /* --- Contact Section --- */
+        #contact { text-align: center; max-width: 700px; margin: 0 auto; padding-bottom: 2rem; border-bottom: none; }
+        .contact-links { display: flex; justify-content: center; align-items: center; flex-wrap: wrap; gap: 2.5rem; margin-top: 2.5rem; }
+        .contact-icon { font-size: 1.8rem; color: var(--muted); transition: var(--transition); display: flex; align-items: center; gap: 10px; }
+        .contact-icon:hover { color: var(--accent); transform: translateY(-3px); }
+        .email-text { font-size: 1.1rem; font-family: 'Space Grotesk', sans-serif; font-weight: 500; }
 
-        .social-links { display: flex; gap: 1.5rem; }
+        /* --- Footer --- */
+        footer { text-align: center; border-top: 1px solid var(--border); padding: 2rem 0; color: var(--muted); font-size: 0.85rem; }
 
         /* --- Responsive --- */
         @media (max-width: 850px) {
+            .menu-toggle { display: block; }
+            .nav-links {
+                position: fixed; top: 70px; right: -100%; height: calc(100vh - 70px); width: 100%;
+                background-color: rgba(9, 9, 11, 0.98); backdrop-filter: blur(10px);
+                flex-direction: column; align-items: center; justify-content: center; gap: 3rem;
+                transition: right 0.3s ease; border-top: 1px solid var(--border);
+            }
+            .nav-links.active { right: 0; }
+            .nav-links a { font-size: 1.2rem; }
+            
             .project-card, .grid-2, .bio-grid { grid-template-columns: 1fr; }
             .project-img-wrapper { min-height: 220px; }
             .project-content { padding: 1.75rem; }
@@ -236,195 +161,280 @@
 </head>
 <body>
 
-    <main class="container">
-        
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">Soham<span>.</span></div>
+                <div class="menu-toggle" id="mobile-menu">
+                    <i class="fas fa-bars"></i>
+                </div>
+                <div class="nav-links" id="nav-links">
+                    <a href="#projects">Projects</a>
+                    <a href="#research">Research</a>
+                    <a href="#academic">Academic Context</a>
+                    <a href="#build-log">Build Log</a>
+                    <a href="#contact">Contact</a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main>
         <!-- Hero Section -->
-        <section class="hero">
-            <div class="hero-tag">Systems & Hardware Engineer</div>
-            <h1>Soham<br><span>Dalvi</span></h1>
-            <p class="hero-desc">
-                Computer Science student engineering robust web systems and exploring embedded hardware architecture. Translating abstract theory into tangible reality.
-            </p>
+        <section id="hero">
+            <div class="container">
+                <div class="hero-tag">Systems & Hardware Engineer</div>
+                <h1>Soham<br><span>Dalvi</span></h1>
+                <p class="hero-desc">
+                    Computer Science student engineering robust web systems and exploring embedded hardware architecture. Translating abstract theory into tangible reality.
+                </p>
+                <div class="hero-buttons">
+                    <a href="#projects" class="btn" style="background: var(--accent); color: var(--bg);">Review Works</a>
+                    <a href="resume.pdf" target="_blank" class="btn"><i class="fas fa-file-pdf" style="margin-right: 8px;"></i> View Resume</a>
+                </div>
+            </div>
         </section>
 
         <!-- Projects Section -->
-        <section id="projects">
-            <div class="section-header">
-                <h2 class="section-title">Selected Works</h2>
-            </div>
+        <section id="projects" class="reveal">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">Selected Works</h2>
+                </div>
 
-            <div class="projects-grid">
-                
-                <article class="project-card">
-                    <div class="project-img-wrapper">
-                        <img src="robot.jpg" alt="Bluetooth Robotic Vehicle">
-                    </div>
-                    <div class="project-content">
-                        <div>
-                            <h3 class="project-title">Bluetooth Robot</h3>
-                            <p class="project-desc">Microcontroller-driven vehicle featuring real-time serial Bluetooth command parsing and automated ultrasonic collision-override routines.</p>
-                            <div class="tech-tags">
-                                <span>C++</span><span>Arduino</span><span>UART Serial</span><span>L298N</span>
+                <div class="projects-grid">
+                    
+                    <article class="project-card">
+                        <div class="project-img-wrapper">
+                            <img src="robot.jpg" alt="Bluetooth Robotic Vehicle">
+                        </div>
+                        <div class="project-content">
+                            <div>
+                                <h3 class="project-title">Bluetooth Robot</h3>
+                                <p class="project-desc">Microcontroller-driven vehicle featuring real-time serial Bluetooth command parsing and automated ultrasonic collision-override routines.</p>
+                                <div class="tech-tags">
+                                    <span>C++</span><span>Arduino</span><span>UART Serial</span><span>L298N</span>
+                                </div>
+                            </div>
+                            <div>
+                                <a href="bluetooth-robot.html" class="project-link">View Architecture <i class="fas fa-arrow-right"></i></a>
                             </div>
                         </div>
-                        <div>
-                            <a href="bluetooth-robot.html" class="project-link">View Architecture <i class="fas fa-arrow-right"></i></a>
-                        </div>
-                    </div>
-                </article>
+                    </article>
 
-                <article class="project-card">
-                    <div class="project-img-wrapper">
-                        <img src="model.jpg" alt="Smart City Model">
-                    </div>
-                    <div class="project-content">
-                        <div>
-                            <h3 class="project-title">Smart City Prototype</h3>
-                            <p class="project-desc">Physical prototype proving kinetic energy harvesting using piezoelectric transducer arrays and analog signal amplification.</p>
-                            <div class="tech-tags">
-                                <span>Arduino Uno</span><span>Piezo Sensors</span><span>Signal Processing</span>
+                    <article class="project-card">
+                        <div class="project-img-wrapper">
+                            <img src="model.jpg" alt="Smart City Model">
+                        </div>
+                        <div class="project-content">
+                            <div>
+                                <h3 class="project-title">Smart City Prototype</h3>
+                                <p class="project-desc">Physical prototype proving kinetic energy harvesting using piezoelectric transducer arrays and analog signal amplification.</p>
+                                <div class="tech-tags">
+                                    <span>Arduino Uno</span><span>Piezo Sensors</span><span>Signal Processing</span>
+                                </div>
+                            </div>
+                            <div>
+                                <a href="smart-city.html" class="project-link">Explore Model <i class="fas fa-arrow-right"></i></a>
                             </div>
                         </div>
-                        <div>
-                            <a href="smart-city.html" class="project-link">Explore Model <i class="fas fa-arrow-right"></i></a>
-                        </div>
-                    </div>
-                </article>
+                    </article>
 
-                <article class="project-card">
-                    <div class="project-img-wrapper">
-                        <img src="vjc-website.png" alt="VJC Event Platform">
-                    </div>
-                    <div class="project-content">
-                        <div>
-                            <h3 class="project-title">VJC Event Platform</h3>
-                            <p class="project-desc">Lightweight, accessible web system built for high throughput and reliable live schedule delivery across mobile networks.</p>
-                            <div class="tech-tags">
-                                <span>HTML5</span><span>CSS3</span><span>GitHub Pages</span>
+                    <article class="project-card">
+                        <div class="project-img-wrapper">
+                            <img src="vjc-website.png" alt="VJC Event Platform">
+                        </div>
+                        <div class="project-content">
+                            <div>
+                                <h3 class="project-title">VJC Event Platform</h3>
+                                <p class="project-desc">Lightweight, accessible web system built for high throughput and reliable live schedule delivery across mobile networks.</p>
+                                <div class="tech-tags">
+                                    <span>HTML5</span><span>CSS3</span><span>GitHub Pages</span>
+                                </div>
+                            </div>
+                            <div>
+                                <a href="https://vjcevents.tech" target="_blank" class="project-link">Visit Platform <i class="fas fa-arrow-right"></i></a>
                             </div>
                         </div>
-                        <div>
-                            <a href="https://vjcevents.tech" target="_blank" class="project-link">Visit Platform <i class="fas fa-arrow-right"></i></a>
-                        </div>
-                    </div>
-                </article>
+                    </article>
 
+                </div>
             </div>
         </section>
 
-        <!-- Research & Curiosity Section -->
-        <section id="research">
-            <div class="section-header">
-                <h2 class="section-title">Research Focus</h2>
-            </div>
-            
-            <div class="grid-2">
-                <div class="tech-box">
-                    <h3><i class="fas fa-brain"></i> Technical Curiosity</h3>
-                    <ul class="engineering-list">
-                        <li><i class="fas fa-angle-right"></i> How embedded systems communicate securely with web interfaces.</li>
-                        <li><i class="fas fa-angle-right"></i> Performance optimization methodologies in lightweight web systems.</li>
-                        <li><i class="fas fa-angle-right"></i> Translating abstract computer science theory into tangible systems.</li>
-                        <li><i class="fas fa-angle-right"></i> The ethical frameworks and constraints of modern AI tools.</li>
-                    </ul>
+        <!-- Research Section -->
+        <section id="research" class="reveal">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">Research Focus</h2>
                 </div>
+                
+                <div class="grid-2">
+                    <div class="tech-box">
+                        <h3><i class="fas fa-brain"></i> Technical Curiosity</h3>
+                        <ul class="engineering-list">
+                            <li><i class="fas fa-angle-right"></i> How embedded systems communicate securely with web interfaces.</li>
+                            <li><i class="fas fa-angle-right"></i> Performance optimization methodologies in lightweight web systems.</li>
+                            <li><i class="fas fa-angle-right"></i> Translating abstract computer science theory into tangible systems.</li>
+                            <li><i class="fas fa-angle-right"></i> The ethical frameworks and constraints of modern AI tools.</li>
+                        </ul>
+                    </div>
 
-                <div class="tech-box">
-                    <h3><i class="fas fa-microscope"></i> Currently Learning</h3>
-                    <ul class="engineering-list">
-                        <li><i class="fas fa-angle-right"></i> Exploring professional Git branching workflows.</li>
-                        <li><i class="fas fa-angle-right"></i> Researching foundational system architecture principles.</li>
-                        <li><i class="fas fa-angle-right"></i> Experimenting with serial communication between Arduino and local web servers.</li>
-                    </ul>
+                    <div class="tech-box">
+                        <h3><i class="fas fa-microscope"></i> Currently Learning</h3>
+                        <ul class="engineering-list">
+                            <li><i class="fas fa-angle-right"></i> Exploring professional Git branching workflows.</li>
+                            <li><i class="fas fa-angle-right"></i> Researching foundational system architecture principles.</li>
+                            <li><i class="fas fa-angle-right"></i> Experimenting with serial communication between Arduino and local web servers.</li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </section>
 
         <!-- Academic Background Section -->
-        <section id="academic">
-            <div class="section-header">
-                <h2 class="section-title">Academic Context</h2>
-            </div>
-            
-            <div class="bio-grid">
-                <div class="bio-text">
-                    <p>I view technology not just as a set of tools, but as a framework for solving complex problems. My academic focus heavily bridges deep logical reasoning with practical, hands-on application.</p>
-                    <p>Outside of structured coursework, I actively participate in competitive technological events—such as the TCS InquisITive 2024—and debate competitions, which have honed my ability to construct logical arguments and evaluate systems critically.</p>
-                    
-                    <div style="margin-top: 3rem;">
-                        <h4 style="font-family: 'Syncopate', sans-serif; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 1rem;"><i class="fas fa-trophy" style="color: var(--accent); margin-right: 8px;"></i> Competitions & Exposure</h4>
-                        <div class="exposure-img">
-                            <img src="tcs.jpg" alt="Participating in the TCS InquisITive competition">
-                        </div>
-                        <p style="font-size: 0.9rem; margin-top: 1rem;">
-                            Representing my institution at <strong>TCS InquisITive</strong>. Engaging in high-level technical competitions sharpens my ability to solve problems under pressure and exposes me to industry-standard trends.
-                        </p>
-                    </div>
+        <section id="academic" class="reveal">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">Academic Context</h2>
                 </div>
-
-                <div class="tech-box" style="height: auto;">
-                    <h3 style="margin-bottom: 0.2rem;"><i class="fas fa-university"></i> Cambridge Assessment</h3>
-                    <span style="display: block; color: var(--muted); font-size: 0.85rem; margin-bottom: 2rem;">Vijaybhoomi Singapore International School</span>
-                    
-                    <ul class="academic-list">
-                        <li><span>Computer Science</span> <span class="course-code">9618</span></li>
-                        <li><span>Mathematics</span> <span class="course-code">9709</span></li>
-                        <li><span>Physics</span> <span class="course-code">9702</span></li>
-                        <li><span>English</span> <span class="course-code">8021</span></li>
-                    </ul>
-
-                    <h3 style="margin-top: 3rem; margin-bottom: 1.5rem;"><i class="fab fa-github"></i> Repositories</h3>
-                    <ul class="academic-list">
-                        <li>
-                            <div>
-                                <a href="https://github.com/ind-soham" target="_blank" style="font-weight: 500; color: var(--text);">Independent Work <i class="fas fa-external-link-alt" style="font-size: 0.7rem; margin-left: 5px;"></i></a>
-                                <p style="font-size: 0.8rem; line-height: 1.4; margin-top: 0.3rem;">Personal architectural builds.</p>
+                
+                <div class="bio-grid">
+                    <div class="bio-text">
+                        <p>I view technology not just as a set of tools, but as a framework for solving complex problems. My academic focus heavily bridges deep logical reasoning with practical, hands-on application.</p>
+                        <p>Outside of structured coursework, I actively participate in competitive technological events—such as the TCS InquisITive 2024—and debate competitions, which have honed my ability to construct logical arguments and evaluate systems critically.</p>
+                        
+                        <div style="margin-top: 3rem;">
+                            <h4 style="font-family: 'Syncopate', sans-serif; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 1rem;"><i class="fas fa-trophy" style="color: var(--accent); margin-right: 8px;"></i> Competitions & Exposure</h4>
+                            <div class="exposure-img">
+                                <img src="tcs.jpg" alt="Participating in the TCS InquisITive competition">
                             </div>
-                        </li>
-                        <li>
-                            <div>
-                                <a href="https://github.com/whossoham" target="_blank" style="font-weight: 500; color: var(--text);">Academic Coursework <i class="fas fa-external-link-alt" style="font-size: 0.7rem; margin-left: 5px;"></i></a>
-                                <p style="font-size: 0.8rem; line-height: 1.4; margin-top: 0.3rem;">School affiliated projects.</p>
-                            </div>
-                        </li>
-                    </ul>
+                            <p style="font-size: 0.9rem; margin-top: 1rem;">
+                                Representing my institution at <strong>TCS InquisITive</strong>. Engaging in high-level technical competitions sharpens my ability to solve problems under pressure and exposes me to industry-standard trends.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="tech-box" style="height: auto;">
+                        <h3 style="margin-bottom: 0.2rem;"><i class="fas fa-university"></i> Cambridge Assessment</h3>
+                        <span style="display: block; color: var(--muted); font-size: 0.85rem; margin-bottom: 2rem;">Vijaybhoomi Singapore International School</span>
+                        
+                        <ul class="academic-list">
+                            <li><span>Computer Science</span> <span class="course-code">9618</span></li>
+                            <li><span>Mathematics</span> <span class="course-code">9709</span></li>
+                            <li><span>Physics</span> <span class="course-code">9702</span></li>
+                            <li><span>English</span> <span class="course-code">8021</span></li>
+                        </ul>
+
+                        <h3 style="margin-top: 3rem; margin-bottom: 1.5rem;"><i class="fab fa-github"></i> Repositories</h3>
+                        <ul class="academic-list">
+                            <li>
+                                <div>
+                                    <a href="https://github.com/ind-soham" target="_blank" style="font-weight: 500; color: var(--text);">Independent Work <i class="fas fa-external-link-alt" style="font-size: 0.7rem; margin-left: 5px;"></i></a>
+                                    <p style="font-size: 0.8rem; line-height: 1.4; margin-top: 0.3rem;">Personal architectural builds.</p>
+                                </div>
+                            </li>
+                            <li>
+                                <div>
+                                    <a href="https://github.com/whossoham" target="_blank" style="font-weight: 500; color: var(--text);">Academic Coursework <i class="fas fa-external-link-alt" style="font-size: 0.7rem; margin-left: 5px;"></i></a>
+                                    <p style="font-size: 0.8rem; line-height: 1.4; margin-top: 0.3rem;">School affiliated projects.</p>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </section>
 
         <!-- Build Log Section -->
-        <section id="build-log">
-            <div class="section-header">
-                <h2 class="section-title">Build Log</h2>
-            </div>
-            
-            <div class="timeline">
-                <div class="timeline-entry">
-                    <h3 class="timeline-title">Architectural Portfolio Revisions</h3>
-                    <span class="timeline-date">March 2026</span>
-                    <p class="timeline-desc">Improved site architecture after evaluating layout hierarchy principles. Shifted content focus toward engineering decisions to better reflect an academic approach to system building.</p>
+        <section id="build-log" class="reveal">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">Build Log</h2>
                 </div>
                 
-                <div class="timeline-entry">
-                    <h3 class="timeline-title">College Event Website Deployment</h3>
-                    <span class="timeline-date">February 2026</span>
-                    <p class="timeline-desc">Designed and deployed an event website prioritizing clean semantic structure, accessibility, and fast network performance.</p>
+                <div class="timeline">
+                    <div class="timeline-entry">
+                        <h3 class="timeline-title">Architectural Portfolio Revisions</h3>
+                        <span class="timeline-date">March 2026</span>
+                        <p class="timeline-desc">Improved site architecture after evaluating layout hierarchy principles. Shifted content focus toward engineering decisions to better reflect an academic approach to system building.</p>
+                    </div>
+                    
+                    <div class="timeline-entry">
+                        <h3 class="timeline-title">College Event Website Deployment</h3>
+                        <span class="timeline-date">February 2026</span>
+                        <p class="timeline-desc">Designed and deployed an event website prioritizing clean semantic structure, accessibility, and fast network performance.</p>
+                    </div>
                 </div>
             </div>
         </section>
 
-        <!-- Footer -->
-        <footer>
-            <div>&copy; 2026 Soham Dalvi. Coded via static HTML/CSS.</div>
-            <div class="social-links">
-                <a href="https://github.com/ind-soham" target="_blank">GitHub</a>
-                <a href="https://www.linkedin.com/in/dalvisoham" target="_blank">LinkedIn</a>
-                <a href="mailto:sohamdalvi59@gmail.com">Email</a>
-                <a href="https://www.instagram.com/sohamdalviiiii?igsh=Zm9qaGZ0d2gzMDV5" target="_blank">Instagram</a>
+        <!-- Contact Section -->
+        <section id="contact" class="reveal">
+            <div class="container">
+                <h2 class="section-title" style="margin-bottom: 1rem;">Connect</h2>
+                <p style="color: var(--muted);">I am actively seeking opportunities to apply my theoretical knowledge to practical environments.</p>
+                
+                <div class="contact-links">
+                    <a href="mailto:sohamdalvi59@gmail.com" class="contact-icon" title="Email Me">
+                        <i class="fas fa-envelope"></i> 
+                        <span class="email-text">sohamdalvi59@gmail.com</span>
+                    </a>
+                    <a href="https://www.linkedin.com/in/dalvisoham" target="_blank" class="contact-icon" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                    <a href="https://github.com/ind-soham" target="_blank" class="contact-icon" title="GitHub"><i class="fab fa-github"></i></a>
+                    <a href="https://www.instagram.com/sohamdalviiiii?igsh=Zm9qaGZ0d2gzMDV5" target="_blank" class="contact-icon" title="Instagram"><i class="fab fa-instagram"></i></a>
+                </div>
             </div>
-        </footer>
-
+        </section>
     </main>
 
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Soham Dalvi. Engineered with HTML & CSS. Deployed via GitHub Pages.</p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script>
+        // 1. Mobile Menu Toggle
+        const menuToggle = document.querySelector('#mobile-menu');
+        const navLinks = document.querySelector('#nav-links');
+        
+        menuToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            const icon = menuToggle.querySelector('i');
+            if(navLinks.classList.contains('active')) {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-times');
+            } else {
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            }
+        });
+
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+                menuToggle.querySelector('i').classList.replace('fa-times', 'fa-bars');
+            });
+        });
+
+        // 2. Scroll Reveal Animation
+        const reveals = document.querySelectorAll('.reveal');
+        const observerOptions = { threshold: 0.1, rootMargin: "0px 0px -50px 0px" };
+
+        const revealOnScroll = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (!entry.isIntersecting) return;
+                entry.target.classList.add('active');
+                observer.unobserve(entry.target);
+            });
+        }, observerOptions);
+
+        reveals.forEach(reveal => {
+            revealOnScroll.observe(reveal);
+        });
+    </script>
 </body>
 </html>

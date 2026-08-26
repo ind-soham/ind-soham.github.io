@@ -9,90 +9,102 @@
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&family=Space+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
         :root {
-            --bg-dark: #0f172a; --bg-card: #1e293b; --text-main: #f8fafc;
-            --text-muted: #cbd5e1; --accent: #38bdf8; --accent-hover: #0284c7;
+            --bg: #09090b;
+            --surface: #121216;
+            --text: #f4f4f5;
+            --muted: #71717a;
+            --border: rgba(255, 255, 255, 0.1);
+            --accent: #ccff00; /* Neon Lime */
             --transition: all 0.3s ease;
         }
+
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        html { scrollbar-width: thin; scrollbar-color: var(--bg-card) var(--bg-dark); }
-        body { font-family: 'Inter', sans-serif; background-color: var(--bg-dark); color: var(--text-main); line-height: 1.6; }
+        html { scrollbar-width: thin; scrollbar-color: var(--surface) var(--bg); }
+        
+        body { 
+            font-family: 'Space Grotesk', sans-serif; 
+            background-color: var(--bg); 
+            color: var(--text); 
+            line-height: 1.6; 
+        }
+        
         a { text-decoration: none; color: var(--accent); transition: var(--transition); }
-        a:hover { color: var(--accent-hover); }
+        a:hover { opacity: 0.8; }
 
         .container { max-width: 800px; margin: 0 auto; padding: 4rem 2rem; }
-        nav { margin-bottom: 3rem; border-bottom: 1px solid rgba(255,255,255,0.05); padding-bottom: 1rem; }
-        .back-link { font-size: 0.95rem; font-weight: 500; display: inline-flex; align-items: center; gap: 8px; color: var(--text-muted); padding: 0.5rem 1rem; background: rgba(255,255,255,0.05); border-radius: 6px; }
-        .back-link:hover { color: var(--text-main); background: rgba(255,255,255,0.1); }
+        
+        nav { margin-bottom: 3rem; border-bottom: 1px solid var(--border); padding-bottom: 1rem; }
+        .back-link { font-size: 0.95rem; font-weight: 500; display: inline-flex; align-items: center; gap: 8px; color: var(--muted); }
+        .back-link:hover { color: var(--accent); gap: 12px; }
 
-        h1 { font-size: 2.2rem; font-weight: 700; letter-spacing: -1px; margin-bottom: 0.5rem; line-height: 1.2; }
-        .subtitle { font-family: monospace; color: var(--accent); font-size: 0.9rem; margin-bottom: 2rem; display: block; letter-spacing: 0.5px; }
-        h2 { font-size: 1.4rem; font-weight: 600; margin: 3rem 0 1.5rem 0; color: var(--text-main); display: flex; align-items: center; gap: 10px; border-bottom: 1px solid rgba(255,255,255,0.05); padding-bottom: 0.5rem; }
-        p { color: var(--text-muted); font-size: 1.05rem; margin-bottom: 1.5rem; }
+        h1 { font-family: 'Syncopate', sans-serif; font-size: clamp(1.8rem, 4vw, 2.5rem); font-weight: 700; text-transform: uppercase; margin-bottom: 0.5rem; line-height: 1.1; }
+        .subtitle { font-family: monospace; color: var(--accent); font-size: 0.9rem; margin-bottom: 2rem; display: block; letter-spacing: 2px; text-transform: uppercase; }
+        
+        h2 { font-family: 'Syncopate', sans-serif; font-size: 1.2rem; font-weight: 700; text-transform: uppercase; margin: 4rem 0 1.5rem 0; color: var(--text); display: flex; align-items: center; gap: 15px; border-bottom: 1px solid var(--border); padding-bottom: 1rem; }
+        p { color: var(--muted); font-size: 1.05rem; margin-bottom: 1.5rem; font-weight: 300; }
 
-        .img-wrapper { width: 100%; border-radius: 8px; overflow: hidden; border: 1px solid rgba(255, 255, 255, 0.08); margin-bottom: 2.5rem; background-color: var(--bg-card); aspect-ratio: 16/9; max-height: 400px; }
-        .img-wrapper img { width: 100%; height: 100%; object-fit: cover; display: block; opacity: 0.9; }
+        .img-wrapper { width: 100%; border-radius: 12px; overflow: hidden; border: 1px solid var(--border); margin-bottom: 3rem; background-color: var(--surface); aspect-ratio: 16/9; max-height: 400px; }
+        .img-wrapper img { width: 100%; height: 100%; object-fit: cover; display: block; opacity: 0.8; transition: var(--transition); filter: grayscale(50%); }
+        .img-wrapper:hover img { opacity: 1; filter: grayscale(0%); transform: scale(1.02); }
 
         /* Architecture Flowchart */
-        .flow-container { display: flex; flex-direction: column; align-items: center; gap: 0.5rem; margin: 2rem 0; padding: 2rem; background: rgba(15, 23, 42, 0.5); border-radius: 8px; border: 1px dashed rgba(56, 189, 248, 0.3); }
-        .flow-node { background: var(--bg-card); border: 1px solid rgba(56, 189, 248, 0.4); padding: 0.8rem 1.5rem; border-radius: 6px; color: var(--text-main); font-weight: 500; font-size: 0.95rem; text-align: center; width: 100%; max-width: 400px; }
-        .flow-arrow { color: var(--text-muted); font-size: 1.2rem; margin: 0.2rem 0; }
+        .flow-container { display: flex; flex-direction: column; align-items: center; gap: 0.5rem; margin: 3rem 0; padding: 3rem 1rem; background: var(--surface); border-radius: 12px; border: 1px solid var(--border); }
+        .flow-node { background: var(--bg); border: 1px solid rgba(255, 255, 255, 0.2); padding: 1rem 1.5rem; border-radius: 8px; color: var(--text); font-weight: 500; font-size: 0.95rem; text-align: center; width: 100%; max-width: 400px; text-transform: uppercase; font-family: 'Syncopate', sans-serif; letter-spacing: 1px; }
+        .flow-arrow { color: var(--accent); font-size: 1.2rem; margin: 0.5rem 0; }
         
         /* Grid and Boxes */
-        .tech-box { background: var(--bg-card); padding: 2rem; border-radius: 8px; border: 1px solid rgba(255,255,255,0.05); margin-bottom: 2rem; }
+        .tech-box { background: var(--surface); padding: 2rem; border-radius: 12px; border: 1px solid var(--border); margin-bottom: 2rem; }
         .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-bottom: 2rem; }
         @media (max-width: 600px) { .grid-2 { grid-template-columns: 1fr; } }
         
-        /* Standard Bullet Lists - SHATTER-PROOF FIX APPLIED HERE */
+        /* Standard Bullet Lists */
         ul.engineering-list { list-style: none; display: flex; flex-direction: column; gap: 1rem; }
-        ul.engineering-list li { color: var(--text-muted); font-size: 0.95rem; position: relative; padding-left: 24px; line-height: 1.6; }
+        ul.engineering-list li { color: var(--muted); font-size: 0.95rem; position: relative; padding-left: 24px; line-height: 1.6; font-weight: 300; }
         ul.engineering-list li i { color: var(--accent); position: absolute; left: 0; top: 5px; font-size: 0.85rem; }
-        ul.engineering-list strong { color: var(--text-main); }
+        ul.engineering-list strong { color: var(--text); font-weight: 500; }
 
-        /* --- Separated Steps for Working Principle --- */
-        .separated-steps { display: flex; flex-direction: column; gap: 1rem; margin-bottom: 2rem; }
+        /* Separated Steps for Working Principle */
+        .separated-steps { display: flex; flex-direction: column; gap: 1.5rem; margin-bottom: 2rem; }
         
         .step-box { 
-            background: var(--bg-card); 
-            padding: 1.5rem; 
-            border-radius: 8px; 
-            border: 1px solid rgba(255,255,255,0.05); 
-            border-left: 3px solid var(--accent); 
+            background: var(--surface); 
+            padding: 2rem; 
+            border-radius: 12px; 
+            border: 1px solid var(--border); 
+            border-left: 4px solid var(--accent); 
             display: grid; 
-            grid-template-columns: 160px 1fr; 
+            grid-template-columns: 180px 1fr; 
             gap: 1.5rem; 
             align-items: center; 
         }
         
-        .step-header { display: flex; align-items: center; gap: 12px; }
-        .step-header i { color: var(--accent); font-size: 1.1rem; }
-        .step-title { color: var(--text-main); font-weight: 700; font-size: 1.05rem; letter-spacing: 0.5px; }
-        .step-desc { color: var(--text-muted); font-size: 0.95rem; line-height: 1.6; }
+        .step-header { display: flex; align-items: center; gap: 15px; }
+        .step-header i { color: var(--accent); font-size: 1.2rem; }
+        .step-title { color: var(--text); font-family: 'Syncopate', sans-serif; font-weight: 700; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; }
+        .step-desc { color: var(--muted); font-size: 0.95rem; line-height: 1.6; font-weight: 300; }
         
         @media (max-width: 600px) { 
-            .step-box { grid-template-columns: 1fr; gap: 0.5rem; align-items: start; } 
+            .step-box { grid-template-columns: 1fr; gap: 1rem; align-items: start; } 
         }
 
         /* Code Snippet Window */
-        .code-window { background: #0b1120; border-radius: 8px; border: 1px solid rgba(255,255,255,0.1); overflow: hidden; margin-bottom: 2rem; }
-        .code-header { background: #1e293b; padding: 0.5rem 1rem; border-bottom: 1px solid rgba(255,255,255,0.05); display: flex; gap: 6px; align-items: center; }
+        .code-window { background: var(--surface); border-radius: 12px; border: 1px solid var(--border); overflow: hidden; margin-bottom: 2rem; }
+        .code-header { background: rgba(0,0,0,0.3); padding: 0.75rem 1.25rem; border-bottom: 1px solid var(--border); display: flex; gap: 8px; align-items: center; }
         .mac-btn { width: 12px; height: 12px; border-radius: 50%; }
-        .mac-close { background: #ff5f56; } .mac-min { background: #ffbd2e; } .mac-max { background: #27c93f; }
-        .code-body { padding: 1.5rem; overflow-x: auto; font-family: 'Courier New', Courier, monospace; font-size: 0.9rem; line-height: 1.5; color: #abb2bf; }
+        .mac-close { background: #3f3f46; } .mac-min { background: #52525b; } .mac-max { background: #71717a; }
+        .code-body { padding: 2rem; overflow-x: auto; font-family: 'Courier New', Courier, monospace; font-size: 0.9rem; line-height: 1.6; color: #a1a1aa; }
         
-        /* Syntax Colors */
-        .kd { color: #c678dd; } /* Keyword */
-        .nd { color: #d19a66; } /* Define/Number */
-        .nc { color: #e5c07b; } /* Class/Function */
-        .s { color: #98c379; }  /* String */
-        .c { color: #5c6370; font-style: italic; } /* Comment */
-
-        .btn { padding: 0.75rem 1.5rem; border-radius: 6px; font-weight: 600; font-size: 0.9rem; border: 1px solid var(--accent); display: inline-block; background: transparent; color: var(--accent); margin-top: 1rem; }
-        .btn:hover { background: rgba(56, 189, 248, 0.1); }
+        /* Syntax Colors (Brutalist theme) */
+        .kd { color: var(--accent); } /* Keyword */
+        .nd { color: #fff; } /* Number */
+        .nc { color: #fff; } /* Function */
+        .s { color: var(--muted); }  /* String */
+        .c { color: #52525b; font-style: italic; } /* Comment */
     </style>
 </head>
 <body>
@@ -100,11 +112,11 @@
     <div class="container">
         
         <nav>
-            <a href="index.html" class="back-link"><i class="fas fa-arrow-left"></i> Back to Main Portfolio</a>
+            <a href="index.html" class="back-link"><i class="fas fa-arrow-left"></i> Back to Main</a>
         </nav>
 
-        <h1>Pedestrian-Activated Smart Street Lighting System</h1>
-        <span class="subtitle">ARDUINO-BASED SMART CITY MODEL INSPIRED BY JAPANESE PIEZOELECTRIC WALKWAYS</span>
+        <h1>Pedestrian-Activated Lighting</h1>
+        <span class="subtitle">Arduino-based Smart City Model</span>
 
         <div class="img-wrapper">
             <img src="model.jpg" alt="Smart City Road Model with Pedestrian Lighting">
@@ -112,27 +124,27 @@
 
         <p>This project demonstrates a smart street lighting system where pedestrian interaction activates road lights. Inspired by piezoelectric energy-generating sidewalks used in Japan, the model simulates pressure detection using push buttons connected to an Arduino UNO. When a pedestrian presses either sidewalk button, street lights automatically turn on for a fixed duration to improve safety and energy efficiency.</p>
 
-        <h2><i class="fas fa-project-diagram" style="color: var(--accent);"></i> Control Flow Architecture</h2>
+        <h2><i class="fas fa-project-diagram" style="color: var(--accent);"></i> Control Flow</h2>
         <div class="flow-container">
             <div class="flow-node">Pedestrian Button Press</div>
             <i class="fas fa-arrow-down flow-arrow"></i>
             <div class="flow-node">Arduino Input Detection</div>
             <i class="fas fa-arrow-down flow-arrow"></i>
-            <div class="flow-node">Signal Processing (INPUT_PULLUP logic)</div>
+            <div class="flow-node">Signal Processing (INPUT_PULLUP)</div>
             <i class="fas fa-arrow-down flow-arrow"></i>
             <div class="flow-node">LED Control Loop</div>
             <i class="fas fa-arrow-down flow-arrow"></i>
-            <div class="flow-node" style="border-color: #facc15; background: rgba(250, 204, 21, 0.05); color: #facc15;">Street Lights Activated (3 Seconds)</div>
+            <div class="flow-node" style="border-color: var(--accent); color: var(--accent);">Lights Activated (3s)</div>
         </div>
 
         <div class="grid-2">
             
             <div>
-                <h2><i class="fas fa-microchip" style="color: var(--accent);"></i> Hardware Components</h2>
+                <h2><i class="fas fa-microchip" style="color: var(--accent);"></i> Hardware</h2>
                 <div class="tech-box" style="height: 100%;">
                     <ul class="engineering-list">
                         <li><i class="fas fa-check"></i> Arduino UNO</li>
-                        <li><i class="fas fa-check"></i> Custom PCB Push Buttons (2 units)</li>
+                        <li><i class="fas fa-check"></i> Custom PCB Push Buttons</li>
                         <li><i class="fas fa-check"></i> LEDs (6 street lights)</li>
                         <li><i class="fas fa-check"></i> Current-limiting resistors (220Ω)</li>
                         <li><i class="fas fa-check"></i> Breadboard & Jumper wires</li>
@@ -142,18 +154,20 @@
             </div>
 
             <div>
-                <h2><i class="fas fa-plug" style="color: var(--accent);"></i> Circuit Design</h2>
+                <h2><i class="fas fa-plug" style="color: var(--accent);"></i> Circuit</h2>
                 <div class="tech-box" style="height: 100%;">
                     <ul class="engineering-list">
-                        <li><i class="fas fa-bolt"></i> Each LED is connected to a separate Arduino digital output pin.</li>
-                        <li><i class="fas fa-bolt"></i> Each LED circuit utilizes a 220Ω resistor for current protection.</li>
-                        <li><i class="fas fa-bolt"></i> Both physical buttons are wired in parallel to a single digital input pin.</li>
-                        <li><i class="fas fa-bolt"></i> Utilized the Arduino's internal pull-up resistor (<code>INPUT_PULLUP</code>) to ensure a stable logic state, preventing floating pin interference.</li>
+                        <li><i class="fas fa-bolt"></i> Each LED connects to a digital output pin.</li>
+                        <li><i class="fas fa-bolt"></i> Circuits use 220Ω resistors for protection.</li>
+                        <li><i class="fas fa-bolt"></i> Physical buttons are wired in parallel.</li>
+                        <li><i class="fas fa-bolt"></i> Uses internal pull-up (<code>INPUT_PULLUP</code>) to prevent floating pins.</li>
                     </ul>
                 </div>
             </div>
 
-        </div> <h2><i class="fas fa-cogs" style="color: var(--accent);"></i> System Working Principle</h2>
+        </div> 
+        
+        <h2><i class="fas fa-cogs" style="color: var(--accent);"></i> System Logic</h2>
         
         <div class="separated-steps">
             <div class="step-box">
@@ -167,7 +181,7 @@
             <div class="step-box">
                 <div class="step-header">
                     <i class="fas fa-microchip"></i> 
-                    <div class="step-title">2. Detection</div>
+                    <div class="step-title">2. Detect</div>
                 </div>
                 <div class="step-desc">Arduino detects a <code>LOW</code> signal dropping against the internal pull-up resistor.</div>
             </div>
@@ -175,7 +189,7 @@
             <div class="step-box">
                 <div class="step-header">
                     <i class="fas fa-lightbulb"></i> 
-                    <div class="step-title">3. Activation</div>
+                    <div class="step-title">3. Activate</div>
                 </div>
                 <div class="step-desc">Arduino outputs <code>HIGH</code> to all LED street light pins simultaneously.</div>
             </div>
@@ -197,7 +211,7 @@
             </div>
         </div>
 
-        <h2><i class="fas fa-code" style="color: var(--accent);"></i> Firmware Implementation</h2>
+        <h2><i class="fas fa-code" style="color: var(--accent);"></i> Firmware</h2>
         <p>The logic relies on <code>INPUT_PULLUP</code>, meaning the unpressed state reads as HIGH. When a button is pressed, the circuit connects to ground, dropping the pin to a <code>LOW</code> state to trigger the lighting loop.</p>
         
         <div class="code-window">
@@ -205,7 +219,7 @@
                 <div class="mac-btn mac-close"></div>
                 <div class="mac-btn mac-min"></div>
                 <div class="mac-btn mac-max"></div>
-                <span style="margin-left: 10px; color: #6b7280; font-family: sans-serif; font-size: 0.8rem;">smart_lighting.ino</span>
+                <span style="margin-left: 15px; color: var(--muted); font-family: 'Space Grotesk', sans-serif; font-size: 0.85rem; letter-spacing: 1px;">smart_lighting.ino</span>
             </div>
             <div class="code-body">
 <span class="kd">#define</span> <span class="nd">BUTTON_PIN 2</span>
@@ -246,7 +260,7 @@
 
         <div class="grid-2">
             <div>
-                <h2><i class="fas fa-star" style="color: var(--accent);"></i> Key Features</h2>
+                <h2><i class="fas fa-star" style="color: var(--accent);"></i> Features</h2>
                 <div class="tech-box" style="height: 100%;">
                     <ul class="engineering-list">
                         <li><i class="fas fa-check-circle"></i> Energy efficient lighting</li>
@@ -259,7 +273,7 @@
             </div>
 
             <div>
-                <h2><i class="fas fa-rocket" style="color: var(--accent);"></i> Future Scalability</h2>
+                <h2><i class="fas fa-rocket" style="color: var(--accent);"></i> Scalability</h2>
                 <div class="tech-box" style="height: 100%;">
                     <ul class="engineering-list">
                         <li><i class="fas fa-arrow-right"></i> Integration of real piezoelectric sensors</li>
@@ -272,7 +286,7 @@
         </div>
 
         <h2><i class="fas fa-flag-checkered" style="color: var(--accent);"></i> Conclusion</h2>
-        <p style="margin-bottom: 3rem;">This project demonstrates how simple embedded systems can simulate smart city infrastructure. By combining pedestrian input with automated lighting control, the design highlights energy efficiency and urban safety concepts, proving that scalable logic can be prototyped using highly accessible microcontrollers.</p>
+        <p style="margin-bottom: 4rem;">This project demonstrates how simple embedded systems can simulate smart city infrastructure. By combining pedestrian input with automated lighting control, the design highlights energy efficiency and urban safety concepts, proving that scalable logic can be prototyped using highly accessible microcontrollers.</p>
 
     </div>
 

@@ -9,67 +9,82 @@
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&family=Space+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
         :root {
-            --bg-dark: #0f172a; --bg-card: #1e293b; --text-main: #f8fafc;
-            --text-muted: #cbd5e1; --accent: #38bdf8; --accent-hover: #0284c7;
+            --bg: #09090b;
+            --surface: #121216;
+            --text: #f4f4f5;
+            --muted: #71717a;
+            --border: rgba(255, 255, 255, 0.1);
+            --accent: #ccff00; /* Neon Lime */
             --transition: all 0.3s ease;
         }
+
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        html { scrollbar-width: thin; scrollbar-color: var(--bg-card) var(--bg-dark); }
-        body { font-family: 'Inter', sans-serif; background-color: var(--bg-dark); color: var(--text-main); line-height: 1.6; }
+        html { scrollbar-width: thin; scrollbar-color: var(--surface) var(--bg); }
+        
+        body { 
+            font-family: 'Space Grotesk', sans-serif; 
+            background-color: var(--bg); 
+            color: var(--text); 
+            line-height: 1.6; 
+        }
+        
         a { text-decoration: none; color: var(--accent); transition: var(--transition); }
-        a:hover { color: var(--accent-hover); }
+        a:hover { opacity: 0.8; }
 
         .container { max-width: 800px; margin: 0 auto; padding: 4rem 2rem; }
-        nav { margin-bottom: 3rem; border-bottom: 1px solid rgba(255,255,255,0.05); padding-bottom: 1rem; }
-        .back-link { font-size: 0.95rem; font-weight: 500; display: inline-flex; align-items: center; gap: 8px; color: var(--text-muted); padding: 0.5rem 1rem; background: rgba(255,255,255,0.05); border-radius: 6px; }
-        .back-link:hover { color: var(--text-main); background: rgba(255,255,255,0.1); }
+        
+        nav { margin-bottom: 3rem; border-bottom: 1px solid var(--border); padding-bottom: 1rem; }
+        .back-link { font-size: 0.95rem; font-weight: 500; display: inline-flex; align-items: center; gap: 8px; color: var(--muted); }
+        .back-link:hover { color: var(--accent); gap: 12px; }
 
-        h1 { font-size: 2.2rem; font-weight: 700; letter-spacing: -1px; margin-bottom: 0.5rem; line-height: 1.2; }
-        .subtitle { font-family: monospace; color: var(--accent); font-size: 0.9rem; margin-bottom: 2rem; display: block; letter-spacing: 0.5px; }
-        h2 { font-size: 1.4rem; font-weight: 600; margin: 3rem 0 1.5rem 0; color: var(--text-main); display: flex; align-items: center; gap: 10px; border-bottom: 1px solid rgba(255,255,255,0.05); padding-bottom: 0.5rem; }
-        p { color: var(--text-muted); font-size: 1.05rem; margin-bottom: 1.5rem; }
+        h1 { font-family: 'Syncopate', sans-serif; font-size: clamp(1.8rem, 4vw, 2.5rem); font-weight: 700; text-transform: uppercase; margin-bottom: 0.5rem; line-height: 1.1; }
+        .subtitle { font-family: monospace; color: var(--accent); font-size: 0.9rem; margin-bottom: 2rem; display: block; letter-spacing: 2px; text-transform: uppercase; }
+        
+        h2 { font-family: 'Syncopate', sans-serif; font-size: 1.2rem; font-weight: 700; text-transform: uppercase; margin: 4rem 0 1.5rem 0; color: var(--text); display: flex; align-items: center; gap: 15px; border-bottom: 1px solid var(--border); padding-bottom: 1rem; }
+        p { color: var(--muted); font-size: 1.05rem; margin-bottom: 1.5rem; font-weight: 300; }
 
-        .img-wrapper { width: 100%; border-radius: 8px; overflow: hidden; border: 1px solid rgba(255, 255, 255, 0.08); margin-bottom: 2.5rem; background-color: var(--bg-card); aspect-ratio: 16/9; max-height: 400px; }
-        .img-wrapper img { width: 100%; height: 100%; object-fit: cover; display: block; opacity: 0.9; }
+        .img-wrapper { width: 100%; border-radius: 12px; overflow: hidden; border: 1px solid var(--border); margin-bottom: 3rem; background-color: var(--surface); aspect-ratio: 16/9; max-height: 400px; }
+        .img-wrapper img { width: 100%; height: 100%; object-fit: cover; display: block; opacity: 0.8; transition: var(--transition); filter: grayscale(50%); }
+        .img-wrapper:hover img { opacity: 1; filter: grayscale(0%); transform: scale(1.02); }
 
         /* Architecture Flowchart */
-        .flow-container { display: flex; flex-direction: column; align-items: center; gap: 0.5rem; margin: 2rem 0; padding: 2rem; background: rgba(15, 23, 42, 0.5); border-radius: 8px; border: 1px dashed rgba(56, 189, 248, 0.3); }
-        .flow-node { background: var(--bg-card); border: 1px solid rgba(56, 189, 248, 0.4); padding: 0.8rem 1.5rem; border-radius: 6px; color: var(--text-main); font-weight: 500; font-size: 0.95rem; text-align: center; width: 100%; max-width: 400px; }
-        .flow-arrow { color: var(--text-muted); font-size: 1.2rem; margin: 0.2rem 0; }
-        .sensor-loop { border-color: #a855f7; background: rgba(168, 85, 247, 0.05); margin-top: 1rem; }
+        .flow-container { display: flex; flex-direction: column; align-items: center; gap: 0.5rem; margin: 3rem 0; padding: 3rem 1rem; background: var(--surface); border-radius: 12px; border: 1px solid var(--border); }
+        .flow-node { background: var(--bg); border: 1px solid rgba(255, 255, 255, 0.2); padding: 1rem 1.5rem; border-radius: 8px; color: var(--text); font-weight: 500; font-size: 0.95rem; text-align: center; width: 100%; max-width: 400px; text-transform: uppercase; font-family: 'Syncopate', sans-serif; letter-spacing: 1px; }
+        .flow-arrow { color: var(--accent); font-size: 1.2rem; margin: 0.5rem 0; }
+        .sensor-loop { border-color: var(--accent); color: var(--accent); margin-top: 1.5rem; font-family: 'Space Grotesk', sans-serif; text-transform: none; }
 
         /* Full Code Snippet Window */
-        .code-window { background: #0b1120; border-radius: 8px; border: 1px solid rgba(255,255,255,0.1); overflow: hidden; margin-bottom: 2rem; }
-        .code-header { background: #1e293b; padding: 0.5rem 1rem; border-bottom: 1px solid rgba(255,255,255,0.05); display: flex; gap: 6px; align-items: center; }
+        .code-window { background: var(--surface); border-radius: 12px; border: 1px solid var(--border); overflow: hidden; margin-bottom: 2rem; }
+        .code-header { background: rgba(0,0,0,0.3); padding: 0.75rem 1.25rem; border-bottom: 1px solid var(--border); display: flex; gap: 8px; align-items: center; }
         .mac-btn { width: 12px; height: 12px; border-radius: 50%; }
-        .mac-close { background: #ff5f56; } .mac-min { background: #ffbd2e; } .mac-max { background: #27c93f; }
-        .code-body { padding: 1.5rem; overflow-x: auto; font-family: 'Courier New', Courier, monospace; font-size: 0.9rem; line-height: 1.5; color: #abb2bf; }
+        .mac-close { background: #3f3f46; } .mac-min { background: #52525b; } .mac-max { background: #71717a; }
+        .code-body { padding: 2rem; overflow-x: auto; font-family: 'Courier New', Courier, monospace; font-size: 0.9rem; line-height: 1.6; color: #a1a1aa; }
         
-        /* Syntax Colors */
-        .kd { color: #c678dd; } /* Keyword */
-        .nd { color: #d19a66; } /* Define/Number */
-        .nc { color: #e5c07b; } /* Class/Function */
-        .s { color: #98c379; }  /* String */
-        .c { color: #5c6370; font-style: italic; } /* Comment */
+        /* Syntax Colors (Brutalist theme) */
+        .kd { color: var(--accent); } /* Keyword */
+        .nd { color: #fff; } /* Number */
+        .nc { color: #fff; } /* Function */
+        .s { color: var(--muted); }  /* String */
+        .c { color: #52525b; font-style: italic; } /* Comment */
 
-        .btn { padding: 0.75rem 1.5rem; border-radius: 6px; font-weight: 600; font-size: 0.9rem; border: 1px solid var(--accent); display: inline-block; background: transparent; color: var(--accent); margin-top: 1rem; }
-        .btn:hover { background: rgba(56, 189, 248, 0.1); }
+        .btn { padding: 1rem 2rem; border-radius: 8px; font-weight: 600; font-size: 0.9rem; border: 1px solid var(--accent); display: inline-block; background: transparent; color: var(--accent); margin-top: 1rem; text-transform: uppercase; font-family: 'Syncopate', sans-serif; }
+        .btn:hover { background: var(--accent); color: var(--bg); }
     </style>
 </head>
 <body>
 
     <div class="container">
         <nav>
-            <a href="index.html" class="back-link"><i class="fas fa-arrow-left"></i> Back to Main Portfolio</a>
+            <a href="index.html" class="back-link"><i class="fas fa-arrow-left"></i> Back to Main</a>
         </nav>
 
         <h1>Bluetooth-Controlled Robotic Vehicle</h1>
-        <span class="subtitle">HARDWARE LOGIC & SERIAL COMMUNICATION</span>
+        <span class="subtitle">Hardware Logic & Serial Comm</span>
 
         <div class="img-wrapper">
             <img src="robot.jpg" alt="Bluetooth-controlled robotic vehicle">
@@ -77,13 +92,13 @@
 
         <p>Built a Bluetooth-controlled robotic vehicle using Arduino hardware to receive directional commands from a smartphone controller app. Integrated an HC-SR04 ultrasonic sensor to detect obstacles and override movement commands for collision prevention. Motor control was handled through an L298N motor driver.</p>
 
-        <h2><i class="fas fa-sitemap" style="color: var(--accent);"></i> Control Flow Architecture</h2>
+        <h2><i class="fas fa-sitemap" style="color: var(--accent);"></i> Control Flow</h2>
         <p>The system relies on Serial (UART) communication. A smartphone application transmits single-character payloads over a Bluetooth link. The microcontroller parses these characters sequentially while running a non-blocking sensor check in its main loop.</p>
         
         <div class="flow-container">
             <div class="flow-node">Phone App (Generic Controller)</div>
             <i class="fas fa-arrow-down flow-arrow"></i>
-            <div class="flow-node" style="color: var(--accent);">Bluetooth Command (F / B / L / R / S)</div>
+            <div class="flow-node" style="color: var(--accent); border-color: var(--accent);">Bluetooth Command (F/B/L/R/S)</div>
             <i class="fas fa-arrow-down flow-arrow"></i>
             <div class="flow-node">Arduino Serial Input Buffer</div>
             <i class="fas fa-arrow-down flow-arrow"></i>
@@ -91,12 +106,12 @@
             <i class="fas fa-arrow-down flow-arrow"></i>
             <div class="flow-node">L298N Motor Driver</div>
             <i class="fas fa-arrow-down flow-arrow"></i>
-            <div class="flow-node" style="border-color: rgba(255,255,255,0.2);">DC Motors</div>
+            <div class="flow-node" style="border-color: rgba(255,255,255,0.1);">DC Motors</div>
             
             <div class="flow-node sensor-loop"><strong>Sensor Loop:</strong> HC-SR04 &rarr; Pulse Calculation &rarr; Collision Override</div>
         </div>
 
-        <h2><i class="fas fa-code" style="color: var(--accent);"></i> Firmware Implementation</h2>
+        <h2><i class="fas fa-code" style="color: var(--accent);"></i> Firmware</h2>
         <p>The core logic ensures that the ultrasonic sensor acts as a hard safety override. If the distance falls below 20cm, the robot will refuse to execute a 'Forward' (<code>F</code>) command, protecting the hardware from collision.</p>
 
         <div class="code-window">
@@ -104,7 +119,7 @@
                 <div class="mac-btn mac-close"></div>
                 <div class="mac-btn mac-min"></div>
                 <div class="mac-btn mac-max"></div>
-                <span style="margin-left: 10px; color: #6b7280; font-family: sans-serif; font-size: 0.8rem;">main.ino</span>
+                <span style="margin-left: 15px; color: var(--muted); font-family: 'Space Grotesk', sans-serif; font-size: 0.85rem; letter-spacing: 1px;">main.ino</span>
             </div>
             <div class="code-body">
 <span class="kd">#define</span> <span class="nd">IN1 5</span>
@@ -174,7 +189,7 @@
             </div>
         </div>
 
-        <a href="#" target="_blank" class="btn"><i class="fab fa-github"></i> View Full Firmware Source</a>
+        <a href="#" target="_blank" class="btn"><i class="fab fa-github" style="margin-right: 8px;"></i> View Firmware</a>
 
     </div>
 

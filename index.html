@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Soham Dalvi | Creative Engineer</title>
+    <title>Soham Dalvi | CS Student & Builder</title>
     
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
-    <meta name="description" content="Portfolio of Soham Dalvi - Systems engineering and embedded hardware architecture.">
+    <meta name="description" content="Portfolio of Soham Dalvi - Computer Science student building across software, hardware, and the web.">
     
     <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&family=Space+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -68,41 +68,35 @@
 
         /* --- Hero Section --- */
         #hero { min-height: 100vh; display: flex; align-items: center; padding-top: 70px; border-bottom: 1px solid var(--border); }
-        .hero-tag { font-family: monospace; color: var(--accent); text-transform: uppercase; letter-spacing: 2px; font-size: 0.9rem; margin-bottom: 1.5rem; }
+        .hero-tag { font-family: monospace; color: #22c55e; text-transform: uppercase; letter-spacing: 1px; font-size: 0.9rem; margin-bottom: 1.5rem; }
         .hero h1 { font-family: 'Syncopate', sans-serif; font-size: clamp(2.8rem, 8vw, 8rem); line-height: 0.95; text-transform: uppercase; letter-spacing: -2px; font-weight: 700; }
         .hero h1 span { color: transparent; -webkit-text-stroke: 1px var(--muted); transition: var(--transition); }
         .hero h1 span:hover { color: var(--text); -webkit-text-stroke: 0px; }
-        .hero-desc { max-width: 550px; margin-top: 2.5rem; font-size: 1.2rem; color: var(--muted); font-weight: 300; margin-bottom: 3rem; }
+        .hero-desc { max-width: 550px; margin-top: 1.5rem; font-size: 1.15rem; color: var(--muted); font-weight: 300; margin-bottom: 2.5rem; }
         
-        .btn { padding: 1rem 2rem; border-radius: 8px; font-weight: 600; font-size: 0.9rem; border: 1px solid var(--accent); display: inline-block; background: transparent; color: var(--accent); text-transform: uppercase; font-family: 'Syncopate', sans-serif; transition: var(--transition); }
+        .btn { padding: 1rem 2rem; border-radius: 8px; font-weight: 600; font-size: 0.9rem; border: 1px solid var(--accent); display: inline-flex; align-items: center; gap: 8px; background: transparent; color: var(--accent); text-transform: uppercase; font-family: 'Syncopate', sans-serif; transition: var(--transition); }
         .btn:hover { background: var(--accent); color: var(--bg); }
         .hero-buttons { display: flex; gap: 1rem; flex-wrap: wrap; }
 
         /* --- Tech Boxes & Lists --- */
         .tech-box { background: var(--surface); padding: 2rem; border-radius: 12px; border: 1px solid var(--border); height: 100%; }
-        .tech-box h3 { font-family: 'Syncopate', sans-serif; font-size: 1rem; margin-bottom: 1.5rem; color: var(--text); text-transform: uppercase; letter-spacing: 1px; display: flex; align-items: center; gap: 10px; }
-        .tech-box h3 i { color: var(--accent); }
-        
-        ul.engineering-list { display: flex; flex-direction: column; gap: 1rem; }
-        ul.engineering-list li { color: var(--muted); font-size: 0.95rem; position: relative; padding-left: 24px; line-height: 1.6; font-weight: 300; }
-        ul.engineering-list li i { color: var(--accent); position: absolute; left: 0; top: 5px; font-size: 0.85rem; }
-        ul.engineering-list strong { color: var(--text); font-weight: 500; }
-        
-        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
 
         /* --- Projects Grid --- */
-        .projects-grid { display: flex; flex-direction: column; gap: 2.5rem; }
+        .projects-grid { display: flex; flex-direction: column; gap: 3rem; }
         .project-card { background-color: var(--surface); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; transition: var(--transition); display: grid; grid-template-columns: 1.2fr 1fr; align-items: center; }
         .project-card:hover { border-color: var(--accent); transform: translateY(-4px); }
         
-        .project-img-wrapper { width: 100%; height: 100%; min-height: 280px; max-height: 360px; overflow: hidden; background-color: #000; }
-        .project-img-wrapper img { width: 100%; height: 100%; object-fit: cover; opacity: 0.8; transition: var(--transition); filter: grayscale(50%); }
+        .project-img-wrapper { width: 100%; height: 100%; min-height: 350px; overflow: hidden; background-color: #000; }
+        .project-img-wrapper img { width: 100%; height: 100%; object-fit: cover; opacity: 0.8; transition: var(--transition); filter: grayscale(30%); }
         .project-card:hover .project-img-wrapper img { opacity: 1; transform: scale(1.03); filter: grayscale(0%); }
         
         .project-content { padding: 2.5rem; display: flex; flex-direction: column; justify-content: space-between; height: 100%; }
-        .project-title { font-family: 'Syncopate', sans-serif; font-size: 1.6rem; font-weight: 700; text-transform: uppercase; margin-bottom: 0.75rem; transition: var(--transition); }
+        .project-status { font-family: monospace; font-size: 0.8rem; margin-bottom: 0.5rem; text-transform: uppercase; }
+        .project-title { font-family: 'Syncopate', sans-serif; font-size: 1.6rem; font-weight: 700; text-transform: uppercase; margin-bottom: 1.5rem; transition: var(--transition); }
         .project-card:hover .project-title { color: var(--accent); }
-        .project-desc { color: var(--muted); font-size: 0.95rem; margin-bottom: 1.5rem; line-height: 1.6; }
+        
+        .project-breakdown { display: flex; flex-direction: column; gap: 0.8rem; margin-bottom: 1.5rem; color: var(--text); font-size: 0.95rem; font-weight: 300; }
+        .project-breakdown strong { color: var(--text); font-weight: 500; }
         
         .tech-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1.5rem; }
         .tech-tags span { font-family: monospace; font-size: 0.75rem; padding: 0.3rem 0.6rem; background: rgba(255, 255, 255, 0.05); border: 1px solid var(--border); border-radius: 4px; }
@@ -110,18 +104,13 @@
         .project-link { font-weight: 600; font-size: 0.9rem; color: var(--accent); display: inline-flex; align-items: center; gap: 6px; }
         .project-link:hover { gap: 10px; }
 
-        /* --- Academic Background Section --- */
-        .bio-grid { display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 3rem; align-items: start; }
-        .bio-text p { color: var(--muted); margin-bottom: 1.2rem; font-size: 1rem; line-height: 1.7; font-weight: 300; }
+        /* --- About / Bio Grid --- */
+        .bio-grid { display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 3rem; align-items: center; }
+        .bio-text p { color: var(--muted); margin-bottom: 1.2rem; font-size: 1.05rem; line-height: 1.7; font-weight: 300; }
         
-        .exposure-img { width: 100%; border-radius: 8px; overflow: hidden; border: 1px solid var(--border); margin: 1.5rem 0 1rem 0; background-color: #000; aspect-ratio: 16/9; }
+        .exposure-img { width: 100%; border-radius: 8px; overflow: hidden; border: 1px solid var(--border); background-color: #000; aspect-ratio: 4/3; }
         .exposure-img img { width: 100%; height: 100%; object-fit: cover; display: block; filter: grayscale(50%); transition: var(--transition); }
         .exposure-img:hover img { filter: grayscale(0%); transform: scale(1.02); }
-
-        .academic-list { display: flex; flex-direction: column; gap: 1rem; }
-        .academic-list li { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border); padding-bottom: 0.75rem; color: var(--muted); font-size: 0.95rem; }
-        .academic-list li:last-child { border-bottom: none; padding-bottom: 0; }
-        .course-code { font-family: monospace; color: var(--accent); background: rgba(204, 255, 0, 0.1); padding: 0.2rem 0.5rem; border-radius: 4px; }
 
         /* --- Build Log Timeline --- */
         .timeline { border-left: 1px solid var(--border); margin-left: 10px; padding-left: 2rem; display: flex; flex-direction: column; gap: 3rem; }
@@ -153,7 +142,7 @@
             .nav-links.active { right: 0; }
             .nav-links a { font-size: 1.2rem; }
             
-            .project-card, .grid-2, .bio-grid { grid-template-columns: 1fr; }
+            .project-card, .bio-grid { grid-template-columns: 1fr; }
             .project-img-wrapper { min-height: 220px; }
             .project-content { padding: 1.75rem; }
         }
@@ -169,10 +158,10 @@
                     <i class="fas fa-bars"></i>
                 </div>
                 <div class="nav-links" id="nav-links">
-                    <a href="#projects">Projects</a>
-                    <a href="#research">Research</a>
-                    <a href="#academic">Academic Context</a>
-                    <a href="#build-log">Build Log</a>
+                    <a href="#projects">Work</a>
+                    <a href="#skills">Skills</a>
+                    <a href="#about">About</a>
+                    <a href="#build-log">Log</a>
                     <a href="#contact">Contact</a>
                 </div>
             </nav>
@@ -183,14 +172,15 @@
         <!-- Hero Section -->
         <section id="hero">
             <div class="container">
-                <div class="hero-tag">Systems & Hardware Engineer</div>
+                <div class="hero-tag">STATUS: 🟢 BUILDING & LEARNING</div>
                 <h1>Soham<br><span>Dalvi</span></h1>
+                <h2 style="font-size: 1.6rem; color: var(--text); margin-top: 1rem; font-weight: 500;">CS Student. Builder. Problem Solver.</h2>
                 <p class="hero-desc">
-                    Computer Science student engineering robust web systems and exploring embedded hardware architecture. Translating abstract theory into tangible reality.
+                    I build practical systems across software, embedded hardware, and the web—and document what I learn along the way.
                 </p>
                 <div class="hero-buttons">
-                    <a href="#projects" class="btn" style="background: var(--accent); color: var(--bg);">Review Works</a>
-                    <a href="resume.pdf" target="_blank" class="btn"><i class="fas fa-file-pdf" style="margin-right: 8px;"></i> View Resume</a>
+                    <a href="#projects" class="btn" style="background: var(--accent); color: var(--bg);">View Projects</a>
+                    <a href="https://github.com/ind-soham" target="_blank" class="btn" style="border-color: var(--muted); color: var(--text);"><i class="fab fa-github"></i> GitHub</a>
                 </div>
             </div>
         </section>
@@ -199,61 +189,90 @@
         <section id="projects" class="reveal">
             <div class="container">
                 <div class="section-header">
-                    <h2 class="section-title">Selected Works</h2>
+                    <h2 class="section-title">What I've Built</h2>
                 </div>
 
                 <div class="projects-grid">
                     
+                    <!-- Project 1 -->
                     <article class="project-card">
                         <div class="project-img-wrapper">
-                            <img src="robot.jpg" alt="Bluetooth Robotic Vehicle">
+                            <img src="robot.jpg" alt="Bluetooth Autonomous Rover">
                         </div>
                         <div class="project-content">
                             <div>
-                                <h3 class="project-title">Bluetooth Robot</h3>
-                                <p class="project-desc">Microcontroller-driven vehicle featuring real-time serial Bluetooth command parsing and automated ultrasonic collision-override routines.</p>
+                                <div class="project-status" style="color: #22c55e;">🟢 COMPLETED</div>
+                                <h3 class="project-title">Bluetooth Rover</h3>
+                                
+                                <ul class="project-breakdown">
+                                    <li><strong>🎯 Problem:</strong> Bluetooth-controlled vehicles are prone to user-error collisions.</li>
+                                    <li><strong>⚙️ Solution:</strong> Hardware-level ultrasonic override that automatically stops motors if an obstacle is detected.</li>
+                                    <li><strong>📈 Metric:</strong> Reliable obstacle detection threshold hardcoded at 20cm.</li>
+                                    <li><strong>🧠 Learned:</strong> Serial (UART) communication, motor driver isolation, and sensor polling loops.</li>
+                                </ul>
+
                                 <div class="tech-tags">
-                                    <span>C++</span><span>Arduino</span><span>UART Serial</span><span>L298N</span>
+                                    <span>C++</span><span>Arduino</span><span>HC-SR04</span><span>L298N</span>
                                 </div>
                             </div>
-                            <div>
-                                <a href="bluetooth-robot.html" class="project-link">View Architecture <i class="fas fa-arrow-right"></i></a>
+                            <div style="display: flex; gap: 1.5rem;">
+                                <a href="bluetooth-robot.html" class="project-link">Architecture <i class="fas fa-arrow-right"></i></a>
+                                <a href="#" class="project-link" style="color: var(--muted);"><i class="fab fa-github"></i> Repo</a>
                             </div>
                         </div>
                     </article>
 
+                    <!-- Project 2 -->
                     <article class="project-card">
                         <div class="project-img-wrapper">
                             <img src="model.jpg" alt="Smart City Model">
                         </div>
                         <div class="project-content">
                             <div>
+                                <div class="project-status" style="color: #22c55e;">🟢 COMPLETED</div>
                                 <h3 class="project-title">Smart City Prototype</h3>
-                                <p class="project-desc">Physical prototype proving kinetic energy harvesting using piezoelectric transducer arrays and analog signal amplification.</p>
+                                
+                                <ul class="project-breakdown">
+                                    <li><strong>🎯 Problem:</strong> Urban infrastructure wastes power and lacks scalable renewable integration.</li>
+                                    <li><strong>⚙️ Solution:</strong> A smart-street model that uses pedestrian kinetic energy triggers to activate lighting.</li>
+                                    <li><strong>📈 Metric:</strong> Successfully powers 6 parallel LEDs for 3 seconds per physical activation.</li>
+                                    <li><strong>🧠 Learned:</strong> Analog signal processing, parallel circuits, and INPUT_PULLUP logic.</li>
+                                </ul>
+
                                 <div class="tech-tags">
-                                    <span>Arduino Uno</span><span>Piezo Sensors</span><span>Signal Processing</span>
+                                    <span>Arduino Uno</span><span>Piezo Sensors</span><span>Analog Processing</span>
                                 </div>
                             </div>
-                            <div>
-                                <a href="smart-city.html" class="project-link">Explore Model <i class="fas fa-arrow-right"></i></a>
+                            <div style="display: flex; gap: 1.5rem;">
+                                <a href="smart-city.html" class="project-link">Architecture <i class="fas fa-arrow-right"></i></a>
                             </div>
                         </div>
                     </article>
 
+                    <!-- Project 3 -->
                     <article class="project-card">
                         <div class="project-img-wrapper">
                             <img src="vjc-website.png" alt="VJC Event Platform">
                         </div>
                         <div class="project-content">
                             <div>
+                                <div class="project-status" style="color: #3b82f6;">🔵 DEPLOYED</div>
                                 <h3 class="project-title">VJC Event Platform</h3>
-                                <p class="project-desc">Lightweight, accessible web system built for high throughput and reliable live schedule delivery across mobile networks.</p>
+                                
+                                <ul class="project-breakdown">
+                                    <li><strong>🎯 Problem:</strong> Heavy, bloated event websites load poorly on standard mobile networks during high traffic.</li>
+                                    <li><strong>⚙️ Solution:</strong> A completely static, lightweight web platform for fast scheduling access.</li>
+                                    <li><strong>📈 Metric:</strong> Achieved near-instant load times with zero server-side rendering overhead.</li>
+                                    <li><strong>🧠 Learned:</strong> DOM optimization, responsive CSS, and static deployment via GitHub Pages.</li>
+                                </ul>
+
                                 <div class="tech-tags">
                                     <span>HTML5</span><span>CSS3</span><span>GitHub Pages</span>
                                 </div>
                             </div>
-                            <div>
-                                <a href="https://vjcevents.tech" target="_blank" class="project-link">Visit Platform <i class="fas fa-arrow-right"></i></a>
+                            <div style="display: flex; gap: 1.5rem;">
+                                <a href="https://vjcevents.tech" target="_blank" class="project-link">Live Site <i class="fas fa-external-link-alt"></i></a>
+                                <a href="https://github.com/whossoham/sohamdalvi.github.io" target="_blank" class="project-link" style="color: var(--muted);"><i class="fab fa-github"></i> Repo</a>
                             </div>
                         </div>
                     </article>
@@ -262,85 +281,66 @@
             </div>
         </section>
 
-        <!-- Research Section -->
-        <section id="research" class="reveal">
+        <!-- Skills Section -->
+        <section id="skills" class="reveal">
             <div class="container">
                 <div class="section-header">
-                    <h2 class="section-title">Research Focus</h2>
+                    <h2 class="section-title">Technical Skills</h2>
                 </div>
                 
-                <div class="grid-2">
-                    <div class="tech-box">
-                        <h3><i class="fas fa-brain"></i> Technical Curiosity</h3>
-                        <ul class="engineering-list">
-                            <li><i class="fas fa-angle-right"></i> How embedded systems communicate securely with web interfaces.</li>
-                            <li><i class="fas fa-angle-right"></i> Performance optimization methodologies in lightweight web systems.</li>
-                            <li><i class="fas fa-angle-right"></i> Translating abstract computer science theory into tangible systems.</li>
-                            <li><i class="fas fa-angle-right"></i> The ethical frameworks and constraints of modern AI tools.</li>
-                        </ul>
-                    </div>
+                <div class="tech-box">
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 2.5rem;">
+                        
+                        <div>
+                            <h4 style="color: var(--accent); font-family: monospace; text-transform: uppercase; margin-bottom: 0.8rem; font-size: 0.9rem;">Languages</h4>
+                            <p style="color: var(--text); font-size: 1.05rem;">C++, Python, JavaScript</p>
+                        </div>
+                        
+                        <div>
+                            <h4 style="color: var(--accent); font-family: monospace; text-transform: uppercase; margin-bottom: 0.8rem; font-size: 0.9rem;">Web Systems</h4>
+                            <p style="color: var(--text); font-size: 1.05rem;">HTML, CSS, DOM Manipulation</p>
+                        </div>
+                        
+                        <div>
+                            <h4 style="color: var(--accent); font-family: monospace; text-transform: uppercase; margin-bottom: 0.8rem; font-size: 0.9rem;">Hardware</h4>
+                            <p style="color: var(--text); font-size: 1.05rem;">Arduino, Embedded Systems, Sensors</p>
+                        </div>
 
-                    <div class="tech-box">
-                        <h3><i class="fas fa-microscope"></i> Currently Learning</h3>
-                        <ul class="engineering-list">
-                            <li><i class="fas fa-angle-right"></i> Exploring professional Git branching workflows.</li>
-                            <li><i class="fas fa-angle-right"></i> Researching foundational system architecture principles.</li>
-                            <li><i class="fas fa-angle-right"></i> Experimenting with serial communication between Arduino and local web servers.</li>
-                        </ul>
+                        <div>
+                            <h4 style="color: var(--accent); font-family: monospace; text-transform: uppercase; margin-bottom: 0.8rem; font-size: 0.9rem;">Tools</h4>
+                            <p style="color: var(--text); font-size: 1.05rem;">Git, GitHub, VS Code</p>
+                        </div>
+
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Academic Background Section -->
-        <section id="academic" class="reveal">
+        <!-- About Section -->
+        <section id="about" class="reveal">
             <div class="container">
                 <div class="section-header">
-                    <h2 class="section-title">Academic Context</h2>
+                    <h2 class="section-title">About Me</h2>
                 </div>
                 
                 <div class="bio-grid">
                     <div class="bio-text">
-                        <p>I view technology not just as a set of tools, but as a framework for solving complex problems. My academic focus heavily bridges deep logical reasoning with practical, hands-on application.</p>
-                        <p>Outside of structured coursework, I actively participate in competitive technological events—such as the TCS InquisITive 2024—and debate competitions, which have honed my ability to construct logical arguments and evaluate systems critically.</p>
+                        <p>I'm Soham, a Computer Science student who likes understanding how things actually work under the hood.</p>
+                        <p>I started tinkering with hardware and Arduino projects to see code affect the physical world, and have gradually moved toward web development and software systems. Right now, I'm exploring how hardware and software communicate, alongside building strong foundations in system architecture.</p>
+                        <p>I'm still learning—this site is essentially my public build log.</p>
                         
-                        <div style="margin-top: 3rem;">
-                            <h4 style="font-family: 'Syncopate', sans-serif; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 1rem;"><i class="fas fa-trophy" style="color: var(--accent); margin-right: 8px;"></i> Competitions & Exposure</h4>
-                            <div class="exposure-img">
-                                <img src="tcs.jpg" alt="Participating in the TCS InquisITive competition">
-                            </div>
-                            <p style="font-size: 0.9rem; margin-top: 1rem;">
-                                Representing my institution at <strong>TCS InquisITive</strong>. Engaging in high-level technical competitions sharpens my ability to solve problems under pressure and exposes me to industry-standard trends.
-                            </p>
+                        <div style="margin-top: 2rem; padding-top: 2rem; border-top: 1px solid var(--border);">
+                            <h4 style="color: var(--accent); font-family: monospace; margin-bottom: 0.5rem; letter-spacing: 1px;">CURRENTLY LEARNING:</h4>
+                            <p style="color: var(--text); font-weight: 500;">System Architecture & Professional Git Workflows</p>
+                        </div>
+                        
+                        <div style="margin-top: 2rem;">
+                            <a href="resume.pdf" target="_blank" class="btn" style="border-color: var(--muted); color: var(--text);"><i class="fas fa-file-download" style="margin-right: 8px;"></i> Download Resume</a>
                         </div>
                     </div>
-
-                    <div class="tech-box" style="height: auto;">
-                        <h3 style="margin-bottom: 0.2rem;"><i class="fas fa-university"></i> Cambridge Assessment</h3>
-                        <span style="display: block; color: var(--muted); font-size: 0.85rem; margin-bottom: 2rem;">Vijaybhoomi Singapore International School</span>
-                        
-                        <ul class="academic-list">
-                            <li><span>Computer Science</span> <span class="course-code">9618</span></li>
-                            <li><span>Mathematics</span> <span class="course-code">9709</span></li>
-                            <li><span>Physics</span> <span class="course-code">9702</span></li>
-                            <li><span>English</span> <span class="course-code">8021</span></li>
-                        </ul>
-
-                        <h3 style="margin-top: 3rem; margin-bottom: 1.5rem;"><i class="fab fa-github"></i> Repositories</h3>
-                        <ul class="academic-list">
-                            <li>
-                                <div>
-                                    <a href="https://github.com/ind-soham" target="_blank" style="font-weight: 500; color: var(--text);">Independent Work <i class="fas fa-external-link-alt" style="font-size: 0.7rem; margin-left: 5px;"></i></a>
-                                    <p style="font-size: 0.8rem; line-height: 1.4; margin-top: 0.3rem;">Personal architectural builds.</p>
-                                </div>
-                            </li>
-                            <li>
-                                <div>
-                                    <a href="https://github.com/whossoham" target="_blank" style="font-weight: 500; color: var(--text);">Academic Coursework <i class="fas fa-external-link-alt" style="font-size: 0.7rem; margin-left: 5px;"></i></a>
-                                    <p style="font-size: 0.8rem; line-height: 1.4; margin-top: 0.3rem;">School affiliated projects.</p>
-                                </div>
-                            </li>
-                        </ul>
+                    
+                    <div class="exposure-img">
+                        <img src="tcs.jpg" alt="Competing at TCS InquisITive">
                     </div>
                 </div>
             </div>
@@ -355,9 +355,9 @@
                 
                 <div class="timeline">
                     <div class="timeline-entry">
-                        <h3 class="timeline-title">Architectural Portfolio Revisions</h3>
+                        <h3 class="timeline-title">Portfolio Re-Architecture</h3>
                         <span class="timeline-date">March 2026</span>
-                        <p class="timeline-desc">Improved site architecture after evaluating layout hierarchy principles. Shifted content focus toward engineering decisions to better reflect an academic approach to system building.</p>
+                        <p class="timeline-desc">Stripped away template code to build a custom, performance-focused layout. Shifted content focus toward real engineering problem-solving to better reflect an authentic approach to system building.</p>
                     </div>
                     
                     <div class="timeline-entry">
@@ -372,8 +372,8 @@
         <!-- Contact Section -->
         <section id="contact" class="reveal">
             <div class="container">
-                <h2 class="section-title" style="margin-bottom: 1rem;">Connect</h2>
-                <p style="color: var(--muted);">I am actively seeking opportunities to apply my theoretical knowledge to practical environments.</p>
+                <h2 class="section-title" style="margin-bottom: 1rem;">Let's Connect</h2>
+                <p style="color: var(--muted);">I am actively seeking opportunities to apply my knowledge to practical environments.</p>
                 
                 <div class="contact-links">
                     <a href="mailto:sohamdalvi59@gmail.com" class="contact-icon" title="Email Me">
@@ -391,7 +391,7 @@
     <!-- Footer -->
     <footer>
         <div class="container">
-            <p>&copy; 2026 Soham Dalvi. Engineered with HTML & CSS. Deployed via GitHub Pages.</p>
+            <p>&copy; 2026 Soham Dalvi. Built with HTML & CSS. Deployed via GitHub Pages.</p>
         </div>
     </footer>
 
